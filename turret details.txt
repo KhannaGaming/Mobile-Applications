@@ -1,0 +1,15 @@
+•	Towers
+o	5 Types: (Can attack, level 1) (Can attack, level 2) (Can attack, level 3)
+?	Cannon (Basic, Basic, Basic + Cloaked)
+•	Strong against: Light, Medium
+•	Weak against: Heavy
+?	Lasers (Basic + Cloaked, Basic + Cloaked, Basic + Cloaked)
+•	Strong against: Heavy
+•	Weak against: Light
+?	Electricity (Basic, Basic, Basic)
+•	Strong against: Heavy, Medium, Light, Close enemies (for chain)
+?	Sniper (Basic + Cloaked, Basic + Cloaked, Basic + Cloaked)
+•	Strong against: Heavy, Invisible
+•	Weak against: Medium, Light
+?	Rockets (Basic, Basic, Basic + Cloaked)
+•	Strong against: Clustered enemies (for area of effect damage), Light, Medium, Heavy
