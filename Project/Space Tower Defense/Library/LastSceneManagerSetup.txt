@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Level01.unity
+- path: Assets/Assets/Imported/Turrets/Sci Fi Assets/Simple SciFi Gun Turret Set/TestScene.unity
   isLoaded: 1
   isActive: 1
