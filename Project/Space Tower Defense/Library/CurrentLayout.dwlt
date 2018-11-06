@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &1
@@ -737,3 +738,5 @@ MonoBehaviour:
     width: 1366
     height: 400
   m_PersistentViewDataDictionary: {fileID: 0}
+=======
+>>>>>>> 47e4f29b17e67ef0a54d3c04279349de76148e0b
