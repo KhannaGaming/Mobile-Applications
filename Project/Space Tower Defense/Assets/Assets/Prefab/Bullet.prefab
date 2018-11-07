@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 10
+  speed: 80
+  impactEffect: {fileID: 0}
 --- !u!135 &135812867623586270
 SphereCollider:
   m_ObjectHideFlags: 1
