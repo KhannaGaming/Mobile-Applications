@@ -26,7 +26,10 @@ public class Bullet : MonoBehaviour {
             return;
         }
 
+        //FaceDirection();
         Vector3 dir = target.position - transform.position;
+        Quaternion look = Quaternion.LookRotation(dir);
+        transform.rotation = look;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame)
@@ -48,6 +51,12 @@ public class Bullet : MonoBehaviour {
 
         Destroy(gameObject);
         //Debug.Log("Hit");
+    }
+
+    void FaceDirection()
+    {
+        //Vector3 direction = (target.position - gameObject.transform.position).normalized;
+
     }
 
 

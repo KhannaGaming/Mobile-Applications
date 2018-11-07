@@ -26,7 +26,7 @@ public class Turret : MonoBehaviour {
     public string enemyTag = "Enemy";
     public Transform turretHead;
     public bool useElectric = false;
-    public Transform firePoints;
+    public Transform[] firePoints;
 
 
 
@@ -60,14 +60,14 @@ public class Turret : MonoBehaviour {
     }
 
 
-    void Shoot()
+    void Shoot(int counter)
     {
         Debug.Log("Shoot");
 
         GameObject bulletGo = null;
-        int counter = 0;
+        
 
-        bulletGo = (GameObject)Instantiate(bulletPrefab, firePoints.position, firePoints.rotation);   //casting as a game object to store
+        bulletGo = (GameObject)Instantiate(bulletPrefab, firePoints[counter].position, firePoints[counter].rotation);   //casting as a game object to store
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
         if (bullet != null)
@@ -118,24 +118,34 @@ public class Turret : MonoBehaviour {
     {
         if (fireCountdown <= 0f)
         {
-            Shoot();
+            int currentFirePoint = 0;
+            while (currentFirePoint < firePoints.Length)
+            {
+                Shoot(currentFirePoint);
+                //have delay inbetween series of fires 
+                currentFirePoint++;
+            }
             fireCountdown = 1f / fireRate;
         }
 
         fireCountdown -= Time.deltaTime;
     }
 
+
+
+   
+
     void Laser()
     {
         lineRenderer.enabled = true;
-        lineRenderer.SetPosition(0, firePoints.position);
+        lineRenderer.SetPosition(0, firePoints[0].position);
         lineRenderer.SetPosition(1, target.position);
     }
 
     void Electric()
     {
         lineRenderer.enabled = true;
-        lightning.StartObject = firePoints.gameObject;
+        lightning.StartObject = firePoints[0].gameObject;
         lightning.EndObject = target.gameObject;
 
         //lightning.StartPosition = firePoints.position;

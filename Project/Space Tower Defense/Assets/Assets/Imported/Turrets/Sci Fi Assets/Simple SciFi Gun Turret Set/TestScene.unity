@@ -140,7 +140,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &89328191
 Prefab:
   m_ObjectHideFlags: 0
@@ -243,6 +243,40 @@ Transform:
   m_Father: {fileID: 1848186252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &133861479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 133861480}
+  m_Layer: 0
+  m_Name: FirePoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &133861480
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 133861479}
+  m_LocalRotation: {x: -0.000000027818135, y: 0.00000008742278, z: -1.3894324e-15,
+    w: 1}
+  m_LocalPosition: {x: 4.6596565, y: 0.07, z: -3.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 143949966}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &143949966 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012236158368, guid: 9c0d8fc0e6cd13747bc32d29020eb716,
+    type: 2}
+  m_PrefabInternal: {fileID: 1983541023}
 --- !u!1 &157332043 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1936845021510326, guid: 62be3492e1765534a9f021b4a8058abd,
@@ -270,12 +304,17 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 659672144}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!4 &163026953 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011782443936, guid: 73c0ac7abb0ff9f4cb84dd236c8d9310,
     type: 2}
   m_PrefabInternal: {fileID: 423910959}
+--- !u!4 &172214864 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000010722643076, guid: 9c0d8fc0e6cd13747bc32d29020eb716,
+    type: 2}
+  m_PrefabInternal: {fileID: 1983541023}
 --- !u!1001 &236449784
 Prefab:
   m_ObjectHideFlags: 0
@@ -404,15 +443,20 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 50
   rotateSpeed: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
+  fireRate: 0.2
+  bulletPrefab: {fileID: 1423862893742330, guid: 58912b5805af6ea46a6b53944104af19,
+    type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}
   lightning: {fileID: 0}
   enemyTag: Enemy
   turretHead: {fileID: 432354303}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints:
+  - {fileID: 1439261491}
+  - {fileID: 1068671225}
+  - {fileID: 133861480}
+  - {fileID: 1668940432}
 --- !u!1 &284024679 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013877162466, guid: 8a4fca54c9faa3449bcff12193992420,
@@ -441,7 +485,25 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1029446580}
   useElectric: 0
-  firePoints: {fileID: 1164722118}
+  firePoints:
+  - {fileID: 1164722118}
+--- !u!95 &284024682
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 284024679}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 412c48af066185c4088afb6329d5ed73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &288227584 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011783245850, guid: 37e19f6221bf7b54a9010a1098e295b9,
@@ -461,15 +523,16 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 50
   rotateSpeed: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
+  fireRate: 0.2
+  bulletPrefab: {fileID: 1423862893742330, guid: 58912b5805af6ea46a6b53944104af19,
+    type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}
   lightning: {fileID: 0}
   enemyTag: Enemy
   turretHead: {fileID: 1132814828}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!114 &326167119 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11427938, guid: 15dec7b07032b2f4aa6f855bfbe120f7,
@@ -744,7 +807,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 163026953}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &473674108 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011721868612, guid: 12cef650d4334bf4e8cb89b83b13d690,
@@ -772,7 +835,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 2065101457}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &484736945
 Prefab:
   m_ObjectHideFlags: 0
@@ -870,6 +933,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c36865a7da8627b42a5d8dae1b1a98bb, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &520003049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 520003050}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &520003050
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 520003049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.78, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1727203143}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &524256504 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012424335932, guid: 9b3a643ca887918468955b42c4531666,
@@ -922,6 +1013,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90fa7be0208409249aaff33b8350f79a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &563287848
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -63.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 14.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -356.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434043440348228, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+      propertyPath: m_RootOrder
+      value: 40
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 58912b5805af6ea46a6b53944104af19, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &581486037 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013459775996, guid: bc3ca6cc8b3d5a149abc8317e6ddc320,
@@ -949,7 +1082,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 869707880}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &599939144
 Prefab:
   m_ObjectHideFlags: 0
@@ -1047,6 +1180,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010013219670, guid: c36865a7da8627b42a5d8dae1b1a98bb,
     type: 2}
   m_PrefabInternal: {fileID: 515946111}
+--- !u!1 &650853120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 650853121}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &650853121
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 650853120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.24, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 530429451}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &656800450
 Prefab:
   m_ObjectHideFlags: 0
@@ -1412,6 +1573,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3bd98b61e096aa418ed1d9dfa214db8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &846282784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 846282785}
+  m_Layer: 0
+  m_Name: FirePoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &846282785
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 846282784}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.7800007, y: -0, z: -0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1779044591}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &846447088
 Prefab:
   m_ObjectHideFlags: 0
@@ -1477,15 +1666,16 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 50
   rotateSpeed: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
+  fireRate: 0.2
+  bulletPrefab: {fileID: 1406264893308192, guid: 22b442c0025c2a340983d3ab7acde470,
+    type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}
   lightning: {fileID: 0}
   enemyTag: Enemy
   turretHead: {fileID: 530429451}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &861129344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,15 +1817,16 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 50
   rotateSpeed: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 0}
+  fireRate: 0.2
+  bulletPrefab: {fileID: 1423862893742330, guid: 58912b5805af6ea46a6b53944104af19,
+    type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}
   lightning: {fileID: 0}
   enemyTag: Enemy
   turretHead: {fileID: 941948606}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!4 &897064890 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010322110726, guid: c36865a7da8627b42a5d8dae1b1a98bb,
@@ -1674,7 +1865,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 702801531}
   useElectric: 0
-  firePoints: {fileID: 1885553469}
+  firePoints: []
 --- !u!1 &981235612 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1475339930049398, guid: 0d59baa4da1eced42918d102f9b94336,
@@ -1754,6 +1945,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a84cb58ef7faa67488076810242453b9, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1000574673 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012035815134, guid: 9c0d8fc0e6cd13747bc32d29020eb716,
+    type: 2}
+  m_PrefabInternal: {fileID: 1983541023}
 --- !u!1 &1011637043 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011378158488, guid: 9b3a643ca887918468955b42c4531666,
@@ -1781,7 +1977,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 488167700}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &1012222991 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011071954524, guid: 35b3c01082296cc4196b17c3493ccab6,
@@ -1809,7 +2005,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &1012227048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +2152,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 39
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068671224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1068671225}
+  m_Layer: 0
+  m_Name: FirePoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068671225
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1068671224}
+  m_LocalRotation: {x: -0.000000027818135, y: 0.00000008742278, z: -1.3894324e-15,
+    w: 1}
+  m_LocalPosition: {x: 4.709999, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 172214864}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1098328419 stripped
 Transform:
@@ -2396,12 +2621,17 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!4 &1231352071 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012646515586, guid: 7fbf3d4a2ffb5274cab3fce7dcdd7b86,
     type: 2}
   m_PrefabInternal: {fileID: 407199116}
+--- !u!4 &1266761537 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012340854062, guid: 9c0d8fc0e6cd13747bc32d29020eb716,
+    type: 2}
+  m_PrefabInternal: {fileID: 1983541023}
 --- !u!1 &1305259179 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011753963738, guid: b988617ec782dde4e978edb7d152186c,
@@ -2429,7 +2659,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1425842826}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &1352238144
 Prefab:
   m_ObjectHideFlags: 0
@@ -2515,7 +2745,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!4 &1399452904 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012949733172, guid: c13c7372ec40de943b90f61912b409f4,
@@ -2526,6 +2756,62 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010621883290, guid: b988617ec782dde4e978edb7d152186c,
     type: 2}
   m_PrefabInternal: {fileID: 89328191}
+--- !u!1 &1439261490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1439261491}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439261491
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439261490}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.709999, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1000574673}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1527277177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1527277178}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1527277178
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527277177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 941948606}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1604432753 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011388950674, guid: 913c474af4fed6e45bc3725b21e84f11,
@@ -2620,6 +2906,18 @@ Prefab:
       propertyPath: m_Name
       value: Basic Turret 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4000012932955282, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.00761795
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012932955282, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.2001443
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012932955282, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
   m_IsPrefabParent: 0
@@ -2650,7 +2948,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1038909774}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &1637950201 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013007122786, guid: c13c7372ec40de943b90f61912b409f4,
@@ -2678,7 +2976,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1399452904}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &1641686080
 Prefab:
   m_ObjectHideFlags: 0
@@ -2752,7 +3050,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &1665429053
 Prefab:
   m_ObjectHideFlags: 0
@@ -2799,6 +3097,40 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3f6517cf7fdcce4ba72d50b8333e5c2, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1668940431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1668940432}
+  m_Layer: 0
+  m_Name: FirePoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1668940432
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1668940431}
+  m_LocalRotation: {x: -0.000000027818135, y: 0.00000008742278, z: -1.3894324e-15,
+    w: 1}
+  m_LocalPosition: {x: 4.6596565, y: 0.06, z: 3.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1266761537}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1727203143 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012533437852, guid: 37e19f6221bf7b54a9010a1098e295b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102910837}
 --- !u!1 &1741314408 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013503104208, guid: 98a49dc9b8202ff49ae0f6b1609aaeef,
@@ -2826,7 +3158,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 721556507}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &1747193997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +3214,12 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1098328419}
   useElectric: 1
-  firePoints: {fileID: 2074929686}
+  firePoints: []
+--- !u!4 &1779044591 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000010715123288, guid: 37e19f6221bf7b54a9010a1098e295b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 2102910837}
 --- !u!4 &1806158751 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011008794218, guid: 913c474af4fed6e45bc3725b21e84f11,
@@ -2915,7 +3252,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &1813123028 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013730247792, guid: 7fbf3d4a2ffb5274cab3fce7dcdd7b86,
@@ -2943,7 +3280,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1231352071}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1 &1839302244 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013233239454, guid: 4f78758ac5cb51147a0ab3cd0b9cb7a6,
@@ -2971,7 +3308,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!4 &1848186252 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010118404030, guid: c36865a7da8627b42a5d8dae1b1a98bb,
@@ -3135,7 +3472,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 1892823897}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &1961772152
 Prefab:
   m_ObjectHideFlags: 0
@@ -3301,17 +3638,12 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 650236092}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!4 &2065101457 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010719033686, guid: 12cef650d4334bf4e8cb89b83b13d690,
     type: 2}
   m_PrefabInternal: {fileID: 695490260}
---- !u!4 &2074929686 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012929460004, guid: 5e4aed5eac252ca4db7435d4c60b6e0a,
-    type: 2}
-  m_PrefabInternal: {fileID: 407686969}
 --- !u!1001 &2102910837
 Prefab:
   m_ObjectHideFlags: 0
@@ -3385,7 +3717,7 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
 --- !u!1001 &2126342020
 Prefab:
   m_ObjectHideFlags: 0
@@ -3459,4 +3791,4 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 0}
   useElectric: 0
-  firePoints: {fileID: 0}
+  firePoints: []
