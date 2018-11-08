@@ -27,7 +27,7 @@ public class Turret : MonoBehaviour {
     public Transform turretHead;
     public bool useElectric = false;
     public Transform[] firePoints;
-
+    public bool fireFromAnimation = false;
 
 
     // Use this for initialization
@@ -65,13 +65,16 @@ public class Turret : MonoBehaviour {
         Debug.Log("Shoot");
 
         GameObject bulletGo = null;
-        
+
+        GameObject laserGo = null;
 
         bulletGo = (GameObject)Instantiate(bulletPrefab, firePoints[counter].position, firePoints[counter].rotation);   //casting as a game object to store
         Bullet bullet = bulletGo.GetComponent<Bullet>();
-
+        
         if (bullet != null)
             bullet.Chase(target);
+
+        
 
 
 
@@ -82,8 +85,11 @@ public class Turret : MonoBehaviour {
     {
         if (target == null)
         {
-            if (lineRenderer.enabled)
-                lineRenderer.enabled = false;
+            if (useLaser || useElectric)
+            {
+                if (lineRenderer.enabled)
+                    lineRenderer.enabled = false;
+            }
             return;
         }
 

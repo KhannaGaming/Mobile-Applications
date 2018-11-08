@@ -97,7 +97,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 80
-  impactEffect: {fileID: 0}
+  damage: 1
+  impactEffect: {fileID: 1756509070997670, guid: 1ee71597ac9a7a24a8dca68255dbacec,
+    type: 2}
+  launchEffect: {fileID: 0}
+  trailEffect: {fileID: 0}
+  targetHealth: {fileID: 0}
 --- !u!135 &135812867623586270
 SphereCollider:
   m_ObjectHideFlags: 1

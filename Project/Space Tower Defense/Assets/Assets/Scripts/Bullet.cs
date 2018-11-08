@@ -6,40 +6,54 @@ public class Bullet : MonoBehaviour {
 
     public Transform target;
     public float speed = 10f;
+    public float damage = 1f;
     public GameObject impactEffect;
+    public GameObject launchEffect;
+    public GameObject trailEffect;
+    public HealthManager targetHealth;
+
+    public bool isLaser = false;
     public void Chase(Transform _target)
     {
         //instantiate sposion effect
         target = _target;
+        //targetHealth = target.gameObject;
     }
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		if (target == null)
+        if (!isLaser)
         {
-            Destroy(gameObject);
-            return;
+            if (target == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Vector3 dir = target.position - transform.position;
+            Quaternion look = Quaternion.LookRotation(dir);
+            transform.rotation = look;
+            float distanceThisFrame = speed * Time.deltaTime;
+
+            if (dir.magnitude <= distanceThisFrame)
+            {
+                HitTarget();
+                return;
+            }
+
+            transform.Translate(dir.normalized * distanceThisFrame, Space.World);
         }
-
-        //FaceDirection();
-        Vector3 dir = target.position - transform.position;
-        Quaternion look = Quaternion.LookRotation(dir);
-        transform.rotation = look;
-        float distanceThisFrame = speed * Time.deltaTime;
-
-        if(dir.magnitude <= distanceThisFrame)
+        else if (isLaser)
         {
-            HitTarget();
-            return;
+            target.gameObject.SendMessage("TakeDamage", damage/100);
         }
-
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-	}
+    }
 
     void HitTarget()
     {
@@ -47,15 +61,20 @@ public class Bullet : MonoBehaviour {
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 2f);
 
+        //target.gameObject.HealthManager(2);
         //Destroy(target.gameObject);
-
+        target.gameObject.SendMessage("TakeDamage", damage);
         Destroy(gameObject);
         //Debug.Log("Hit");
     }
 
     void FaceDirection()
     {
-        //Vector3 direction = (target.position - gameObject.transform.position).normalized;
+       
+
+    }
+    void MoveBullet()
+    {
 
     }
 
