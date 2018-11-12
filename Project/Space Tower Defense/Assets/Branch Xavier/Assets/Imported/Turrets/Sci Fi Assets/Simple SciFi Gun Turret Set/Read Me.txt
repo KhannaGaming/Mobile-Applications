@@ -1,0 +1,29 @@
+Thank you for purchasing Simple SciFi Turret Complete Set!
+
+The pack includes 7 turret bases, each with 4 ready to use low poly defensive turrets for a total of 28 individual turrets.
+Additional 4 more elements are included in the pack for free.
+Each turret and element comes with its own prefab that you can drag-and-drop in your scenes. 
+A small test scene is also provided in order to showcase all the turrets.
+
+**************************************************
+Free scripts.
+
+The pack comes with a couple of simple scripts that are found inside "\Scripts" folder. These scripts are free to use, modify and distribute as needed. 
+
+**************************************************
+Update 1.1
+
+Added Rail Gun Turrets.
+
+**************************************************
+Using Linear Color Space
+
+The Simple SciFi Turret Complete Set can be easily set up for Linear Color Space projects.
+In order to get the best out of the models you can use the Albedo textures located inside "\Linear Workflow\LinearTextures" folder.
+**************************************************
+
+
+
+
+For any issues, requests or suggestions you can contact me directly anytime at:
+contact@tarko3d.com

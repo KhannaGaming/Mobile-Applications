@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject EndPath;
     public int currentPathNode = 1;
     public int childNumber = 0;
-    private int health = 10;
+    public int health = 10;
 
         // Use this for initialization
     void Start ()
@@ -22,6 +22,11 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if(health <= 0)
+        {
+            Debug.Log("I died!");
+            Destroy(gameObject);
+        }
         //Debug.Log("num children:"+EndPath.transform.childCount);
         childNumber = Random.Range(0, 3);
         //Debug.Log(childNumber);
@@ -47,7 +52,7 @@ public class EnemyController : MonoBehaviour {
     ///   </summary>
     ///<param name="damage">Amount to decrease health by.
     ///</param>
-    void damageHealth(int damage)
+    public void damageHealth(int damage)
     {
         health -= damage;
     }
