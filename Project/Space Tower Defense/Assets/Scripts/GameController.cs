@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     public Transform EnemySpawnLocation;
 	// Use this for initialization
 	void Start () {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 15; i++)
         {
             Instantiate(EnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
         }

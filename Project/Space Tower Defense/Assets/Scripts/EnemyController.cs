@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour {
         // Use this for initialization
     void Start ()
     {
-         childNumber = Random.Range(0, 3);
+        childNumber = Random.Range(0, 3);
         EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
         NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
     }
@@ -22,9 +22,9 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log("num children:"+EndPath.transform.childCount);
-         childNumber = Random.Range(0, 3);
-        Debug.Log(childNumber);
+        //Debug.Log("num children:"+EndPath.transform.childCount);
+        childNumber = Random.Range(0, 3);
+        //Debug.Log(childNumber);
 
         if (Vector3.Distance(transform.position, NMA.destination) <= 0.5f)
         {
@@ -38,8 +38,6 @@ public class EnemyController : MonoBehaviour {
             {
                 GameObject.Find("GameManager").GetComponent<GameController>().reduceHealth();
                 Destroy(this.gameObject);
-                
-                                
             }
         }
 	}
