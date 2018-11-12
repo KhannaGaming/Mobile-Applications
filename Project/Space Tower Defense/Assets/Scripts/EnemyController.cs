@@ -40,13 +40,13 @@ public class EnemyController : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
-	}
+    }
 
     ///   <summary>
     ///   Decreases health by input amount.
     ///   </summary>
-    ///   <param name="damage">Amount to decrease health by.
-    ///   </param>
+    ///<param name="damage">Amount to decrease health by.
+    ///</param>
     void damageHealth(int damage)
     {
         health -= damage;

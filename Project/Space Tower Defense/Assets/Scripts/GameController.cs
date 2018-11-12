@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
         {
             Instantiate(EnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
         }
+      
 	}
 	
 	// Update is called once per frame
