@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject EndPath;
     public int currentPathNode = 1;
     public int childNumber = 0;
-    public int health = 10;
+    public float health = 10;
 
         // Use this for initialization
     void Start ()
@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour {
     ///   </summary>
     ///<param name="damage">Amount to decrease health by.
     ///</param>
-    public void damageHealth(int damage)
+    public void damageHealth(float damage)
     {
         health -= damage;
     }

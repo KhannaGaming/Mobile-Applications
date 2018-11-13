@@ -20,6 +20,10 @@ public class Turret : MonoBehaviour {
     public bool useLaser = false;
     public LineRenderer lineRenderer;
 
+    [Header("Use Electricity")]
+    public float electricityDelay = 1.0f;
+    private float electricityCountdown = 0f;
+
     public LightningBoltScript lightning;
 
     [Header("Unity Setup")]
@@ -146,6 +150,7 @@ public class Turret : MonoBehaviour {
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, firePoints[0].position);
         lineRenderer.SetPosition(1, target.position);
+
     }
 
     void Electric()
@@ -154,6 +159,15 @@ public class Turret : MonoBehaviour {
         lightning.StartObject = firePoints[0].gameObject;
         lightning.EndObject = target.gameObject;
 
+        if (electricityCountdown >= electricityDelay)
+        {
+            
+            target.gameObject.GetComponent<EnemyController>().damageHealth(1.0f);
+            electricityCountdown = 0f;
+            
+        }
+            electricityCountdown += Time.deltaTime;
+       
         //lightning.StartPosition = firePoints.position;
         //lightning.EndPosition = target.position;
     }

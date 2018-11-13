@@ -6,7 +6,7 @@ public class Laser : MonoBehaviour {
 
     public Transform target;
     public float speed = 10f;
-    public float damage = 0.1f;
+    public float damage = 1f;
     public GameObject impactEffect;
     public GameObject launchEffect;
     public GameObject trailEffect;
@@ -25,6 +25,6 @@ public class Laser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        target.gameObject.SendMessage("TakeDamage", 0.1f);
+        target.gameObject.GetComponent<EnemyController>().damageHealth(damage);
 	}
 }
