@@ -65,7 +65,6 @@ public class Bullet : MonoBehaviour {
         //Destroy(target.gameObject);
        // target.gameObject.SendMessage("TakeDamage", damage);
         Destroy(gameObject);
-        //Debug.Log("Hit");
     }
 
     void FaceDirection()
@@ -82,6 +81,7 @@ public class Bullet : MonoBehaviour {
     {
         if (other.transform.tag == target.tag)
         {
+         Debug.Log("Hit");
             HitTarget();
             other.GetComponent<EnemyController>().damageHealth(1);
         }
