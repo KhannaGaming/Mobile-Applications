@@ -4,6 +4,10 @@ using System.Data;
 using UnityEngine;
 using MySql.Data.MySqlClient;
 using MySql.Data;
+using System.IO;
+using System.Collections;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 public class Database : MonoBehaviour {
 
@@ -175,19 +179,43 @@ public class Database : MonoBehaviour {
     #region Save Data
     public void SaveData()
     {
-            //Check for existing save data in database:
-        MySqlDataReader reader = queryDatabase("SELECT")
-                //If found, update
+        //Check for existing save data in database:
+        MySqlDataReader reader = queryDatabase("SELECT");
+        //If found, update
 
-                //If not found, insert
+        //If not found, insert
 
-                //Save to bin file
-                
+        //Save to bin file
+        if (!File.Exists(Application.persistentDataPath + "/save.dat"))
+            File.Create(Application.persistentDataPath + "/save.dat");
+        FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.Open);
+        try
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(file, "Hello World!");
+        }
+        catch (SerializationException e)
+        {
+            Debug.Log(e.Message);
+        }
+        finally
+        {
+            file.Close();
+        }
         //For each level saved in memory, upload to database & bin file
         foreach (Level_Info item in gameController.Level_Data)
         {
 
         }
+    }
+    public void LoadData()
+    {
+        //Check for existing save data in database
+        //If found, load
+        //Also load individual levels
+        //If not found, check bin file
+        if (File.Exists(Application.persistentDataPath + "/save.dat"))
+            
     }
     private void GetMapID(string Level_Name)
     {
