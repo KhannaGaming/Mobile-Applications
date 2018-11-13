@@ -7,6 +7,8 @@ using MySql.Data;
 
 public class Database : MonoBehaviour {
 
+    public GameController gameController;
+
     public static Dictionary<string, float> Store = new Dictionary<string, float>();
     /// <summary>
     /// The Highscores are ordered from highest to lowest in the Dictionary automatically.
@@ -18,8 +20,11 @@ public class Database : MonoBehaviour {
     private string connectionString = "Server = den1.mysql5.gear.host; port = 3306; Database = stddb; User = stdclient; Password = '8ch8J5PPRRCFKp6!';";
     private string DUI = "";
     private int Save_ID = 0;
+    private byte Map_ID = 0;
+    private string Map_Name = "";
 
     private float defaultRefreshTime = 5.0f; //Amount of seconds between database refreshes
+
     #region Query Database
     MySqlDataReader queryDatabase(string query)
     {
@@ -168,13 +173,33 @@ public class Database : MonoBehaviour {
     #endregion
 
     #region Save Data
+    public void SaveData()
+    {
+            //Check for existing save data in database:
+        MySqlDataReader reader = queryDatabase("SELECT")
+                //If found, update
+
+                //If not found, insert
+
+                //Save to bin file
+                
+        //For each level saved in memory, upload to database & bin file
+        foreach (Level_Info item in gameController.Level_Data)
+        {
+
+        }
+    }
     private void GetMapID(string Level_Name)
     {
-        //tbc
+        MySqlDataReader reader = queryDatabase("SELECT Map_ID from tbl_Map_Data WHERE Level_Name = '" + Level_Name + "';");
+        if (reader.Read())
+            Map_ID = (byte)reader["Map_ID"];
     }
-    private void GetMapID(byte Level_Number)
+    private void GetMapName(byte Level_Number)
     {
-        //tbc
+        MySqlDataReader reader = queryDatabase("SELECT Level_Name FROM tbl_Map_Data WHERE Map_ID = " + Level_Number + ";");
+        if (reader.Read())
+            Map_Name = reader["Level_Name"].ToString();
     }
     private void GetSaveID()
     {
@@ -189,7 +214,7 @@ public class Database : MonoBehaviour {
     /// <param name="Current_Medals">Current amount of medals in "inventory", this can be the same as Medals_Earned, it's just here in case we need to add additional store functionality.</param>
     /// <param name="Current_Gems">Current amount of ingame currency available.</param>
     /// <param name="Total_Gems_Earned">Lifetime amount of ingame currency earned.</param>
-    public void SaveGame(byte Medals_Earned, byte Current_Medals, int Current_Gems, int Total_Gems_Earned)
+    private void SaveGame(byte Medals_Earned, byte Current_Medals, int Current_Gems, int Total_Gems_Earned)
     {
         MySqlDataReader reader = null;
         reader = queryDatabase("SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
@@ -218,7 +243,7 @@ public class Database : MonoBehaviour {
             Save_ID = (int)reader["Save_ID"];
         }
     }
-    public void SaveLevel(string Level_Name, byte Medals_Earned)
+    private void SaveLevel(string Level_Name, byte Medals_Earned)
     {
         MySqlDataReader reader = null;
         byte Map_ID = 0;
@@ -245,7 +270,7 @@ public class Database : MonoBehaviour {
         {
             //Level save found
             reader = queryDatabase("UPDATE tbl_Level_Save_Data SET Medals_Earned = " + Medals_Earned +
-                " WHERE Save_ID = " + Save_ID + ";");
+                " WHERE Save_ID = " + Save_ID + " AND Map_ID = " + Map_ID + ";");
         }
         else
         {
@@ -254,10 +279,6 @@ public class Database : MonoBehaviour {
                 "(Map_ID, Save_ID, Medals_Earned) " +
                 "SELECT " + Map_ID + ", " + Save_ID + ", " + Medals_Earned + ";");
         }
-    }
-    public void SaveLevel(int Level_Number, byte Medals_Earned)
-    {
-
     }
     #endregion
 
