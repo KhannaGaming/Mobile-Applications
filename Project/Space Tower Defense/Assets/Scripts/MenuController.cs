@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
 {
 
     // Used for loading scenes using buttons
+    // Takes a string parameter
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
