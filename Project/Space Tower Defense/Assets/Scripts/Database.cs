@@ -30,7 +30,7 @@ public class Database : MonoBehaviour {
     private float defaultRefreshTime = 5.0f; //Amount of seconds between database refreshes
 
     #region Query Database
-    MySqlDataReader queryDatabase(string query)
+    private MySqlDataReader queryDatabase(string query)
     {
         try
         {
@@ -50,6 +50,58 @@ public class Database : MonoBehaviour {
             Debug.Log("Database query failed (SQL Exception), query: " + query);
             Debug.Log("Exception Message: " + ex.Message);
             return null;
+        }
+    }
+    private bool? checkDatabase(string query)
+    {
+        try
+        {
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            command = new MySqlCommand(query, connection);
+            if (command.ExecuteReader().Read())
+                return true;
+            else
+                return false;
+        }
+        catch (MySqlException SQLex)
+        {
+            Debug.Log("Database check failed (SQL Exception), query: " + query);
+            Debug.Log("Exception Message: " + SQLex.Message);
+            return null;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log("Database check failed (System Exception), query: " + query);
+            Debug.Log("Exception Message: " + ex.Message);
+            return null;
+        }
+    }
+    private T getDatabaseValue<T>(string value, string query)
+    {
+        try
+        {
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+            if (Equals(reader[value], typeof(T)))
+                return (T)reader[value];
+            else
+                return default(T);
+        }
+        catch (MySqlException SQLex)
+        {
+            Debug.Log("Database get failed (SQL Exception), query: " + query);
+            Debug.Log("Exception Message: " + SQLex.Message);
+            return default(T);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log("Database get failed (System Exception), query: " + query);
+            Debug.Log("Exception Message: " + ex.Message);
+            return default(T);
         }
     }
     #endregion
@@ -173,18 +225,83 @@ public class Database : MonoBehaviour {
             reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Highscore) SELECT '" + Player_Name + "', " + (float)Score + ";");
         }
     }
-    #endregion
+        #endregion
     #endregion
 
     #region Save Data
     public void SaveData()
     {
-        //Check for existing save data in database:
-        MySqlDataReader reader = queryDatabase("SELECT");
-        //If found, update
-
-        //If not found, insert
-
+        if (DUI == "") DUI = SystemInfo.deviceUniqueIdentifier;
+        try
+        {
+            //Check for existing save data in database:
+            MySqlDataReader reader;
+            int? Save_ID = getDatabaseValue<int?>("Save_ID", "SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
+            bool? Level_Save_Check;
+            bool? Map_Exists_Check;
+            if (Save_ID == null)
+            {
+                Debug.Log("Check for DUI: " + DUI + " returned null, saving data to database stopped prematurely.");
+            }
+            if (Save_ID > 0)
+            {
+                //Data
+                Debug.Log("Database save data found, updating record.");
+                reader = queryDatabase("UPDATE tbl_Save_Data " +
+                    "SET Medals_Earned = " + gameController.Medals_Earned + ", " +
+                        "Current_Medals = " + gameController.Current_Medals + ", " +
+                        "Current_Gems = " + gameController.Current_Gems + ", " +
+                        "Total_Gems_Earned = " + gameController.Total_Gems_Earned +
+                    "WHERE Unique_Identifier = '" + DUI + ";");
+                foreach (Level_Info level in gameController.Level_Data)
+                {
+                    //Check for save data for current level
+                    Level_Save_Check = checkDatabase("SELECT * FROM tbl_Level_Save_Data " +
+                        "LEFT JOIN tbl_Map_Data " +
+                            "ON tbl_Map_Data.Map_ID = tbl_Level_Save_Data.Map_ID " +
+                        "WHERE Save_ID = " + Save_ID + " AND " +
+                            "(tbl_Map_Data.Level_Name = '" + level.Name + "' OR tbl_Map_Data.Map_ID = " + level.Number + ");");
+                    if (Level_Save_Check == null)
+                    {
+                        Debug.Log("Level save check returned null, skipping save of level #" + level.Number + ": " + level.Name + " (" + level.Medals + ")");
+                        continue;
+                    }
+                    //Check whether the map ID entered exists in the map data table, if not skip
+                    Map_Exists_Check = checkDatabase("SELECT * FROM tbl_Map_Data WHERE Map_ID = " + level.Number + ";");
+                    if (Map_Exists_Check == null || Map_Exists_Check == false)
+                    {
+                        Debug.Log("Map #" + level.Number + " does not exist, skipping save of level: " + level.Name + " (" + level.Medals + " Medals)");
+                        continue;
+                    }
+                    else if (Level_Save_Check == true)
+                        //Data found for item (update)
+                        reader = queryDatabase("UPDATE tbl_Level_Save_Data " +
+                            "SET Medals_Earned = " + level.Medals + " " +
+                            "WHERE Save_ID = " + Save_ID + ";");
+                    else
+                        //No data found for item (insert)
+                        reader = queryDatabase("INSERT INTO tbl_Level_Save_Data" +
+                                "(Map_ID, Save_ID, Medals_Earned) " +
+                            "SELECT " + level.Number + ", " + Save_ID + ", " + level.Medals + ";");
+                }
+            }
+            else if (Save_ID == 0)
+            {
+                //No data
+                Debug.Log("Database save data not found, inserting new record.");
+                reader = queryDatabase("INSERT INTO tbl_Save_Data " +
+                        "(Medals_Earned, Current_Medals, Current_Gems, Total_Gems_Earned, Unique_Identifier) " +
+                    "SELECT " + gameController.Medals_Earned + ", " +
+                        gameController.Current_Medals + ", " +
+                        gameController.Current_Gems + ", " +
+                        gameController.Total_Gems_Earned + ", " +
+                        "'" + DUI + "';");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log("Database save failed: " + ex.Message + ", saving to dat file.");
+        }
         //Save to bin file
         if (!File.Exists(Application.persistentDataPath + "/save.dat"))
             File.Create(Application.persistentDataPath + "/save.dat");
@@ -192,7 +309,14 @@ public class Database : MonoBehaviour {
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(file, "Hello World!");
+            bf.Serialize(file, gameController.Medals_Earned);
+            bf.Serialize(file, gameController.Current_Medals);
+            bf.Serialize(file, gameController.Current_Gems);
+            bf.Serialize(file, gameController.Total_Gems_Earned);
+            foreach (Level_Info level in gameController.Level_Data)
+            {
+                bf.Serialize(file, level);
+            }
         }
         catch (SerializationException e)
         {
@@ -202,11 +326,6 @@ public class Database : MonoBehaviour {
         {
             file.Close();
         }
-        //For each level saved in memory, upload to database & bin file
-        foreach (Level_Info item in gameController.Level_Data)
-        {
-
-        }
     }
     public void LoadData()
     {
@@ -215,7 +334,9 @@ public class Database : MonoBehaviour {
         //Also load individual levels
         //If not found, check bin file
         if (File.Exists(Application.persistentDataPath + "/save.dat"))
-            
+        {
+
+        }
     }
     private void GetMapID(string Level_Name)
     {
@@ -315,25 +436,28 @@ public class Database : MonoBehaviour {
     {
         DUI = SystemInfo.deviceUniqueIdentifier;
         Debug.Log("Unique ID: " + DUI);
+        //RefreshHighscoresData();
+        //RefreshStoreData();
+        SaveData();
     }
     #endregion
 
-    #region Coroutine Initialisation
-    private void Start()
-    {
-        StartCoroutine(RefreshData());
-    }
+    //#region Coroutine Initialisation
+    //private void Start()
+    //{
+    //    StartCoroutine(RefreshData());
+    //}
 
-    IEnumerator RefreshData()
-    {
-        yield return new WaitForSeconds(defaultRefreshTime);
+    //IEnumerator RefreshData()
+    //{
+    //    yield return new WaitForSeconds(defaultRefreshTime);
 
-        //Refresh DB data
+    //    //Refresh DB data
 
-        RefreshStoreData();
-        RefreshHighscoresData();
+    //    RefreshStoreData();
+    //    RefreshHighscoresData();
 
-        StartCoroutine(RefreshData());
-    }
-    #endregion
+    //    StartCoroutine(RefreshData());
+    //}
+    //#endregion
 }

@@ -43,7 +43,7 @@ public class Level_Info
 {
     public string Name = "";
     public byte Number = 0;
-    private byte Medals
+    public byte Medals
     {
         get
         {
