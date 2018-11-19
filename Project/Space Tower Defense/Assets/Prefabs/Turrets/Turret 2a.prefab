@@ -234,7 +234,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675603213557868}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -22.1, y: 0, z: -356.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 4882305444428562}
@@ -545,6 +545,7 @@ MonoBehaviour:
     type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}
+  electricityDelay: 1
   lightning: {fileID: 0}
   enemyTag: Enemy
   turretHead: {fileID: 4496565559531458}
