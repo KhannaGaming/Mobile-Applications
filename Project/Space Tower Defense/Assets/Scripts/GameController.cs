@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameController : MonoBehaviour
 {
+    [HideInInspector]
+    public DateTime Modified = new DateTime();
     [HideInInspector]
     public byte Medals_Earned = 0;
     [HideInInspector]

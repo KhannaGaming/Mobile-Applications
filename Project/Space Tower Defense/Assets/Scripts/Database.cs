@@ -236,13 +236,9 @@ public class Database : MonoBehaviour {
         {
             //Check for existing save data in database:
             MySqlDataReader reader;
-            int? Save_ID = getDatabaseValue<int?>("Save_ID", "SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
+            int Save_ID = getDatabaseValue<int>("Save_ID", "SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
             bool? Level_Save_Check;
             bool? Map_Exists_Check;
-            if (Save_ID == null)
-            {
-                Debug.Log("Check for DUI: " + DUI + " returned null, saving data to database stopped prematurely.");
-            }
             if (Save_ID > 0)
             {
                 //Data
@@ -285,7 +281,7 @@ public class Database : MonoBehaviour {
                             "SELECT " + level.Number + ", " + Save_ID + ", " + level.Medals + ";");
                 }
             }
-            else if (Save_ID == 0)
+            else
             {
                 //No data
                 Debug.Log("Database save data not found, inserting new record.");
@@ -439,6 +435,7 @@ public class Database : MonoBehaviour {
         //RefreshHighscoresData();
         //RefreshStoreData();
         SaveData();
+        LoadData();
     }
     #endregion
 
