@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33037225795758310}
   - component: {fileID: 135812867623586270}
   - component: {fileID: 23628768309908924}
-  - component: {fileID: 114361855823297514}
+  - component: {fileID: 114554315373386614}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5c2ef8f43cd36fc4481f814ac0758350, type: 2}
+  - {fileID: 2100000, guid: 4dd031368bf30a4498d11235bfe61820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896124671962892}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114361855823297514
+--- !u!114 &114554315373386614
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,14 +93,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1896124671962892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7821b4d86f13594aa14377eed437ace, type: 3}
+  m_Script: {fileID: 11500000, guid: 98aff2ca708b55443b2bbb22fa384fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 10
+  speed: 2
   damage: 1
-  impactEffect: {fileID: 1756509070997670, guid: 1ee71597ac9a7a24a8dca68255dbacec,
-    type: 2}
+  impactEffect: {fileID: 0}
   launchEffect: {fileID: 0}
   trailEffect: {fileID: 0}
   targetHealth: {fileID: 0}
