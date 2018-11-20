@@ -74,7 +74,7 @@ public class Turret : MonoBehaviour {
 
         GameObject laserGo = null;
 
-        bulletGo = (GameObject)Instantiate(bulletPrefab, firePoints[counter].position, firePoints[counter].rotation);   //casting as a game object to store
+        bulletGo = Instantiate(bulletPrefab, firePoints[counter].position, firePoints[counter].rotation);   //casting as a game object to store
         Bullet bullet = bulletGo.GetComponent<Bullet>();
         
         if (bullet != null)

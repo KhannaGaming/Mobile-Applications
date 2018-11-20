@@ -199,8 +199,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013877162466}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
+  m_LocalPosition: {x: 0.0058858, y: -0.000000014901, z: -0.097622}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4000010142869368}
   - {fileID: 4285624179234494}
@@ -328,7 +328,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010884431308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -580,7 +580,8 @@ MonoBehaviour:
   enemyTag: Enemy
   turretHead: {fileID: 4000011800109488}
   useElectric: 0
-  firePoints: []
+  firePoints:
+  - {fileID: 4497617386374804}
   fireFromAnimation: 0
 --- !u!114 &114783743484912032
 MonoBehaviour:
