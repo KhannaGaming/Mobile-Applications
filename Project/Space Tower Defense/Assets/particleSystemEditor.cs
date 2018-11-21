@@ -17,6 +17,6 @@ public class particleSystemEditor : MonoBehaviour {
         {
             ParticleSystem.MainModule main = ps.main;
             main.startColor =  Color.red;
-                    }
+        }
 	}
 }
