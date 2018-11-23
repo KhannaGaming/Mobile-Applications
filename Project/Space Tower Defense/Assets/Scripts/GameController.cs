@@ -21,6 +21,23 @@ public class GameController : MonoBehaviour
     public GameObject EnemyPrefab;
     public Transform EnemySpawnLocation;
     // Use this for initialization
+    private void Awake()
+    {
+        //Use this as an example on how to save the game state:
+        //The level names can be changed if you like, I've just set them to whatever turret is newly unlocked, but if you do change it let me know and I will update it in the database
+        Modified = DateTime.Now;
+        Medals_Earned = 100;
+        Current_Medals = 50;
+        Current_Gems = 1000;
+        Total_Gems_Earned = 10000;
+        //Adding a level should only happen if the player has completed the level
+        Level_Data.Add(new Level_Info("Standard", 1, 3));
+        Level_Data.Add(new Level_Info("Lasers", 2,3));
+        Level_Data.Add(new Level_Info("Electricity", 3, 3));
+        Level_Data.Add(new Level_Info("Sniper", 4, 3));
+        Level_Data.Add(new Level_Info("Rockets", 5, 3));
+        Debug.Log("GameController Awake Initialisation Complete");
+    }
     void Start()
     {
         for (int i = 0; i < 15; i++)
@@ -42,24 +59,22 @@ public class GameController : MonoBehaviour
 
 }
 
+[Serializable]
 public class Level_Info
 {
     public string Name = "";
     public byte Number = 0;
-    public byte Medals
+    public byte Medals = 1;
+    /// <summary>
+    /// Constructor for Level_Info
+    /// </summary>
+    /// <param name="Name_">The name of the level being saved</param>
+    /// <param name="Number_">The number of the level being saved</param>
+    /// <param name="Medals_">The number of medals being saved (1 to 3)</param>
+    public Level_Info(string Name_, byte Number_, byte Medals_)
     {
-        get
-        {
-            return this.Medals;
-        }
-        set
-        {
-            if (value < 0)
-                this.Medals = 0;
-            else if (value > 3)
-                this.Medals = 3;
-            else
-                this.Medals = value;
-        }
+        Name = Name_;
+        Number = Number_;
+        Medals = Medals_;
     }
 }
