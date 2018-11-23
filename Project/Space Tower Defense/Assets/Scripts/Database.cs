@@ -12,21 +12,22 @@ using System;
 
 public class Database : MonoBehaviour {
 
-    public GameController gameController;
+    public static GameController gameController;
+    private Debug_Log d = new Debug_Log();
+    private Local_Cache LC = new Local_Cache(gameController);
 
-    public static Dictionary<string, float> Store = new Dictionary<string, float>();
-    /// <summary>
-    /// The Highscores are ordered from highest to lowest in the Dictionary automatically.
-    /// </summary>
-    public static Dictionary<string, float> Highscores = new Dictionary<string, float>();
-
+    #region Database Variables
     private MySqlConnection connection = null;
     private MySqlCommand command = null;
     private string connectionString = "Server = den1.mysql5.gear.host; port = 3306; Database = stddb; User = stdclient; Password = '8ch8J5PPRRCFKp6!';";
+    #endregion
+    #region Save State Variables
     private string DUI = "";
+    [HideInInspector]
     public int Save_ID = 0;
     private byte Map_ID = 0;
     private string Map_Name = "";
+    #endregion
 
     private float defaultRefreshTime = 5.0f; //Amount of seconds between database refreshes
 
@@ -113,23 +114,11 @@ public class Database : MonoBehaviour {
     /// </summary>
     public void RefreshStoreData()
     {
-        MySqlDataReader reader = null;
-        reader = queryDatabase("SELECT Item_ID, Item_Name, Item_Price FROM tbl_Store WHERE In_Use = 1 ORDER BY Item_ID ASC;");
+        MySqlDataReader reader = queryDatabase("SELECT Item_ID, Item_Name, Item_Price FROM tbl_Store WHERE In_Use = 1 ORDER BY Item_ID ASC;");
         if (reader == null)
-        {
-            //Query didn't return anything
-            Debug.Log("RefreshStoreData query didn't return a value.");
-        }
+            d.Log("Database.RefreshStoreData","RefreshStoreData query didn't return a value.",true);
         else
-        {
-            Debug.Log("Refreshing store data.");
-            Store.Clear();
-            while (reader.Read())
-            {
-                Debug.Log(reader["Item_Name"].ToString() + " - " + (float)reader["Item_Price"]);
-                Store.Add(reader["Item_Name"].ToString(), (float)reader["Item_Price"]);
-            }
-        }
+            LC.Save(reader, 2);
     }
     /// <summary>
     /// Get an items current store price by its name (Returns -1 if nothing was found).
@@ -160,23 +149,11 @@ public class Database : MonoBehaviour {
     /// </summary>
     public void RefreshHighscoresData()
     {
-        MySqlDataReader reader = null;
-        reader = queryDatabase("SELECT Player_Name, Highscore FROM tbl_Highscores ORDER BY Highscore ASC;");
+        MySqlDataReader reader = queryDatabase("SELECT Player_Name, Score FROM tbl_Highscores ORDER BY Score ASC;");
         if (reader == null)
-        {
-            Debug.Log("RefreshHighscoresData didn't return a value.");
-            //Query didn't return anything
-        }
+            d.Log("Database.RefreshHighscoresData","RefreshHighscoresData didn't return a value.",true);
         else
-        {
-            Debug.Log("Refreshing Highscores data.");
-            Highscores.Clear();
-            while (reader.Read())
-            {
-                Debug.Log(reader["Player_Name"].ToString() + " - " + (float)reader["Highscore"]);
-                Highscores.Add(reader["Player_Name"].ToString(), (float)reader["Highscore"]);
-            }
-        }
+            LC.Save(reader, 1);
     }
         #region SubmitScore
         /// <summary>
@@ -192,14 +169,14 @@ public class Database : MonoBehaviour {
             reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
             if (reader.Read())
             {
-                if (Score > (float)reader["Highscore"])
+                if (Score > (float)reader["Score"])
                 {
-                    reader = queryDatabase("UPDATE tbl_Highscores SET Highscore = " + Score + " WHERE Player_Name = '" + Player_Name + "';");
+                    reader = queryDatabase("UPDATE tbl_Highscores SET Score = " + Score + " WHERE Player_Name = '" + Player_Name + "';");
                 }
             }
             else
             {
-                reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Highscore) SELECT '" + Player_Name + "', " + Score + ";");
+                reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Score) SELECT '" + Player_Name + "', " + Score + ";");
             }
         }
         /// <summary>
@@ -210,19 +187,19 @@ public class Database : MonoBehaviour {
         /// <param name="Player_Name">Name of the player who submitted the score.</param>
         /// <param name="Score">The score achieved and wanting to be logged.</param>
         public void SubmitScore(string Player_Name, int Score)
+    {
+        MySqlDataReader reader = null;
+        reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
+        if (reader != null)
         {
-            MySqlDataReader reader = null;
-            reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
-            if (reader != null)
+            if (Score > (float)reader["Score"])
             {
-                if (Score > (float)reader["Highscore"])
-                {
-                    reader = queryDatabase("UPDATE tbl_Highscores SET Highscore = " + (float)Score + " WHERE Player_Name = '" + Player_Name + "';");
-                }
+                reader = queryDatabase("UPDATE tbl_Highscores SET Score = " + (float)Score + " WHERE Player_Name = '" + Player_Name + "';");
+            }
         }
         else
         {
-            reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Highscore) SELECT '" + Player_Name + "', " + (float)Score + ";");
+            reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Score) SELECT '" + Player_Name + "', " + (float)Score + ";");
         }
     }
         #endregion
@@ -243,7 +220,7 @@ public class Database : MonoBehaviour {
             if (Save_ID > 0)
             {
                 //Data
-                Debug.Log("Database save data found, updating record.");
+                d.Log("Database save data found, updating record.",false);
                 reader = queryDatabase("UPDATE tbl_Save_Data " +
                     "SET Medals_Earned = " + gameController.Medals_Earned + ", " +
                         "Current_Medals = " + gameController.Current_Medals + ", " +
@@ -261,20 +238,20 @@ public class Database : MonoBehaviour {
                             "(tbl_Map_Data.Level_Name = '" + level.Name + "' OR tbl_Map_Data.Level_Number = " + level.Number + ");");
                     if (Level_Save_Check == null)
                     {
-                        Debug.Log("Level save check returned null, skipping save of level #" + level.Number + ": " + level.Name + " (" + level.Medals + ")");
+                        d.Log("Level save check returned null, skipping save of level #" + level.Number + ": " + level.Name + " (" + level.Medals + ")",false);
                         continue;
                     }
                     //Check whether the map ID entered exists in the map data table, if not skip
                     Map_Exists_Check = checkDatabase("SELECT * FROM tbl_Map_Data WHERE Level_Number = " + level.Number + ";");
                     if (Map_Exists_Check == null || Map_Exists_Check == false)
                     {
-                        Debug.Log("Map #" + level.Number + " does not exist, skipping save of level: " + level.Name + " (" + level.Medals + " Medals)");
+                        d.Log("Map #" + level.Number + " does not exist, skipping save of level: " + level.Name + " (" + level.Medals + " Medals)",false);
                         continue;
                     }
                     else if (Level_Save_Check == true && Map_Exists_Check == true)
                     {
                         //Data found for item (update)
-                        Debug.Log("Data found for level save #" + level.Number + " Medals: " + level.Medals + " Number: " + level.Number);
+                        d.Log("Data found for level save #" + level.Number + " Medals: " + level.Medals + " Number: " + level.Number, false);
                         reader = queryDatabase("UPDATE tbl_Level_Save_Data " +
                                 "SET Medals_Earned = " + level.Medals + " " +
                                 "WHERE Save_ID = " + Save_ID + ";");
@@ -282,7 +259,7 @@ public class Database : MonoBehaviour {
                     else
                     {
                         //No data found for item (insert)
-                        Debug.Log("Data not found for level save #" + level.Number + " Medals: " + level.Medals + " Name: " + level.Name);
+                        d.Log("Data not found for level save #" + level.Number + " Medals: " + level.Medals + " Name: " + level.Name, false);
                         reader = queryDatabase("INSERT INTO tbl_Level_Save_Data" +
                                 "(Map_ID, Save_ID, Medals_Earned) " +
                             "SELECT " + level.Number + ", " + Save_ID + ", " + level.Medals + ";");
@@ -292,7 +269,7 @@ public class Database : MonoBehaviour {
             else
             {
                 //No data
-                Debug.Log("Database save data not found, inserting new record.");
+                d.Log("Database save data not found, inserting new record.",false);
                 reader = queryDatabase("INSERT INTO tbl_Save_Data " +
                         "(Medals_Earned, Current_Medals, Current_Gems, Total_Gems_Earned, Unique_Identifier, Modified) " +
                     "SELECT " + gameController.Medals_Earned + ", " +
@@ -304,7 +281,7 @@ public class Database : MonoBehaviour {
                 Save_ID = getDatabaseValue<int>("Save_ID", "SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
                 foreach (Level_Info level in gameController.Level_Data)
                 {
-                    Debug.Log("Inserting level #" + level.Number + " Name: " + level.Name + " Medals: " + level.Medals);
+                    d.Log("Inserting level #" + level.Number + " Name: " + level.Name + " Medals: " + level.Medals,false);
                     reader = queryDatabase("INSERT INTO tbl_Level_Save_Data " +
                             "(Map_ID, Save_ID, Medals_Earned) " +
                         "SELECT " + level.Number + ", " +
@@ -315,7 +292,7 @@ public class Database : MonoBehaviour {
         }
         catch (System.Exception ex)
         {
-            Debug.Log("Database save failed: " + ex.Message + ", saving to dat file.");
+            d.Log("Database save failed: " + ex.Message + ", saving to dat file.",true);
         }
         //Save to bin file
         if (!File.Exists(Application.persistentDataPath + "/save.dat"))
@@ -329,6 +306,7 @@ public class Database : MonoBehaviour {
             bw.Write(gameController.Current_Medals);
             bw.Write(gameController.Current_Gems);
             bw.Write(gameController.Total_Gems_Earned);
+            bw.Write(DateTime.Now.ToString());
             foreach (Level_Info level in gameController.Level_Data)
             {
                 bf.Serialize(file, level);
@@ -336,7 +314,7 @@ public class Database : MonoBehaviour {
         }
         catch (SerializationException e)
         {
-            Debug.Log(e.Message);
+            d.Log(e.Message, true);
         }
         finally
         {
@@ -355,13 +333,16 @@ public class Database : MonoBehaviour {
                 BinaryReader br = new BinaryReader(file);
                 byte i = 0;
                 byte Medals_Earned_ = br.ReadByte();
-                Debug.Log("Loaded Medals_Earned: " + Medals_Earned_);
+                d.Log("Loaded Medals_Earned: " + Medals_Earned_, false);
                 byte Current_Medals_ = br.ReadByte();
-                Debug.Log("Loaded Current_Medals: " + Current_Medals_);
+                d.Log("Loaded Current_Medals: " + Current_Medals_, false);
                 int Current_Gems_ = br.ReadInt32();
-                Debug.Log("Loaded Current_Gems: " + Current_Gems_);
+                d.Log("Loaded Current_Gems: " + Current_Gems_, false);
                 int Total_Gems_Earned_ = br.ReadInt32();
-                Debug.Log("Loaded Total_Gems_Earned: " + Total_Gems_Earned_);
+                d.Log("Loaded Total_Gems_Earned: " + Total_Gems_Earned_, false);
+                DateTime Modified_ = Convert.ToDateTime(br.ReadString());
+                d.Log("Loaded Modified: " + Modified_, false);
+                d.Log("Loaded Total_Gems_Earned: " + Total_Gems_Earned_, false);
                 List<Level_Info> Level_Data_ = new List<Level_Info>();
                 while (br.PeekChar() != -1)
                 {
@@ -371,115 +352,24 @@ public class Database : MonoBehaviour {
                     }
                     catch (SerializationException e)
                     {
-                        Debug.Log("SerializationException: This is most likely the end of the file.");
-                        Debug.Log(e.Message);
+                        d.Log("SerializationException: This is most likely the end of the file.", false);
+                        d.Log(e.Message, false);
                         break;
                     }
-                    Debug.Log("Loaded Level_Info: ");
-                    Debug.Log("Level Name: " + Level_Data_[i].Name + " Level Number: " + Level_Data_[i].Number + " Medals Earned: " + Level_Data_[i].Medals);
+                    d.Log("Loaded Level_Info: ", false);
+                    d.Log("Level Name: " + Level_Data_[i].Name + " Level Number: " + Level_Data_[i].Number + " Medals Earned: " + Level_Data_[i].Medals, false);
                     ++i;
                     }
             }
             catch (SerializationException e)
             {
-                Debug.Log(e.Message);
+                d.Log(e.Message, true);
                 throw;
             }
             finally
             {
                 file.Close();
             }
-        }
-    }
-    private void GetMapID(string Level_Name)
-    {
-        MySqlDataReader reader = queryDatabase("SELECT Map_ID from tbl_Map_Data WHERE Level_Name = '" + Level_Name + "';");
-        if (reader.Read())
-            Map_ID = (byte)reader["Map_ID"];
-    }
-    private void GetMapName(byte Level_Number)
-    {
-        MySqlDataReader reader = queryDatabase("SELECT Level_Name FROM tbl_Map_Data WHERE Map_ID = " + Level_Number + ";");
-        if (reader.Read())
-            Map_Name = reader["Level_Name"].ToString();
-    }
-    private void GetSaveID()
-    {
-        MySqlDataReader reader = queryDatabase("SELECT Save_ID FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
-        if (reader.Read())
-            Save_ID = (int)reader["Save_ID"];
-    }
-    /// <summary>
-    /// Saves the current overall game state.
-    /// </summary>
-    /// <param name="Medals_Earned">Lifetime medals earned from game so far.</param>
-    /// <param name="Current_Medals">Current amount of medals in "inventory", this can be the same as Medals_Earned, it's just here in case we need to add additional store functionality.</param>
-    /// <param name="Current_Gems">Current amount of ingame currency available.</param>
-    /// <param name="Total_Gems_Earned">Lifetime amount of ingame currency earned.</param>
-    private void SaveGame(byte Medals_Earned, byte Current_Medals, int Current_Gems, int Total_Gems_Earned)
-    {
-        MySqlDataReader reader = null;
-        reader = queryDatabase("SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
-        if (reader.Read())
-        {
-            Save_ID = (int)reader["Save_ID"];
-            reader = queryDatabase("UPDATE tbl_Save_Data " +
-                "SET Medals_Earned = " + Medals_Earned +
-                    "Current_Medals = " + Current_Medals +
-                    "Current_Gems = " + Current_Gems +
-                    "Total_Gems_Earned = " + Total_Gems_Earned +
-                "WHERE Unique_Identifier = '" + DUI + "';");
-        }
-        else
-        {
-            reader = queryDatabase("INSERT INTO tbl_Save_Data " +
-                "(Medals_Earned, Current_Medals, Current_Gems, Total_Gems_Earned, Unique Identifier) " +
-                "SELECT " +
-                    Medals_Earned + ", " +
-                    Current_Medals + ", " +
-                    Current_Gems + ", " +
-                    Total_Gems_Earned + ", " +
-                    "'" + DUI + "';");
-            reader = queryDatabase("SELECT Save_ID FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
-            reader.Read();
-            Save_ID = (int)reader["Save_ID"];
-        }
-    }
-    private void SaveLevel(string Level_Name, byte Medals_Earned)
-    {
-        MySqlDataReader reader = null;
-        byte Map_ID = 0;
-        //Get the map ID
-        reader = queryDatabase("SELECT * FROM tbl_Map_Data WHERE Level_Name = '" + Level_Name + "';");
-        if (reader.Read())
-        {
-            //Map ID found
-            Map_ID = (byte)reader["Map_ID"];
-            Debug.Log("Found Map_ID for " + Level_Name + " (Map_ID: " + Map_ID + ")");
-        }
-        else
-        {
-            //Map ID not found, exit
-            Debug.Log("Saving level " + Level_Name + " failed, please check the spelling (Map_ID could not be found).");
-            return;
-        }
-        //If we don't have the current save_id, get it
-        if (Save_ID == 0)
-            GetSaveID();
-        //Check to see if there is a level save for this level currently
-        reader = queryDatabase("SELECT * FROM tbl_Level_Save_Data WHERE Save_ID = " + Save_ID + " AND Map_ID = " + Map_ID + ";");
-        if (reader.Read())
-        {
-            //Level save found
-            reader = queryDatabase("UPDATE tbl_Level_Save_Data SET Medals_Earned = " + Medals_Earned +
-                " WHERE Save_ID = " + Save_ID + " AND Map_ID = " + Map_ID + ";");
-        }
-        else
-        {
-            //Level save not found (create one)
-            reader = queryDatabase("INSERT INTO tbl_Level_Save_Data " +
-                "(Map_ID, Save_ID, Medals_Earned) " +
-                "SELECT " + Map_ID + ", " + Save_ID + ", " + Medals_Earned + ";");
         }
     }
     #endregion
@@ -492,28 +382,104 @@ public class Database : MonoBehaviour {
         //RefreshHighscoresData();
         //RefreshStoreData();
     }
-    #endregion
-
-    //#region Coroutine Initialisation
     private void Start()
     {
-        Debug.Log("Database Start Initialisation starting");
+        //Testing:
         SaveData();
         LoadData();
-
-        //StartCoroutine(RefreshData());
     }
+    #endregion
 
-    //IEnumerator RefreshData()
-    //{
-    //    yield return new WaitForSeconds(defaultRefreshTime);
+}
 
-    //    //Refresh DB data
+public class Debug_Log
+{
+    bool Allow_Logs = true;
 
-    //    RefreshStoreData();
-    //    RefreshHighscoresData();
+    public void Log(string source, string output, bool toConsole)
+    {
+        if (!Allow_Logs) return;
+        if (toConsole) Debug.Log(output);
+        using (StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/debug_log.txt", true))
+        {
+            writer.WriteLine(source + " - " + DateTime.Now + ": " + output);
+        }
+    }
+    public List<string> Retrieve()
+    {
+        if (!Allow_Logs) return null;
+        List<string> temp = new List<string>();
+        using (StreamReader reader = new StreamReader(Application.persistentDataPath + "/debug_log.txt"))
+        {
+            temp.Add(reader.ReadLine());
+        }
+        return temp;
+    }
+}
 
-    //    StartCoroutine(RefreshData());
-    //}
-    //#endregion
+[Serializable]
+public class Local_Cache
+{
+    private GameController gameController;
+    private Debug_Log d = new Debug_Log();
+    public static Dictionary<string, float> Leaderboard = new Dictionary<string, float>();
+    public static Dictionary<string, float> Store = new Dictionary<string, float>();
+
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    public Local_Cache(GameController gameController_)
+    {
+        gameController = gameController_;
+    }
+    public void Load()
+    {
+
+    }
+    /// <summary>
+    /// Save game state/data to save file.
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <param name="setting">0 = Game save data, 1 = Leaderboard save data, 2 = Store save data</param>
+    public void Save(MySqlDataReader reader, byte setting)
+    {
+        string path = getFilename(setting);
+        if (path == "ERROR")
+        {
+            d.Log("Local_Cache.Save", "Error code returned when attempting to call the function getFilename", true);
+            return;
+        }
+        while (reader.Read())
+        {
+            switch (setting)
+            {
+                case 0://Player_Save.dat
+                    break;
+                case 1://Leaderboard_Save.dat
+                    Leaderboard.Clear();
+                    Leaderboard.Add(reader["Player_Name"].ToString(), (float)reader["Score"]);
+                    break;
+                case 2://Store_Save.dat
+                    Store.Clear();
+                    Store.Add(reader["Item_Name"].ToString(), (float)reader["Item_Price"]);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    private string getFilename(byte setting)
+    {
+        switch (setting)
+        {
+            case 0:
+                return "Player_Save.dat";
+            case 1:
+                return "Leaderboard_Save.dat";
+            case 2:
+                return "Store_Save.dat";
+            default:
+                return "ERROR";
+        }
+    }
 }
