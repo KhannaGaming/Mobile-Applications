@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Turret : MonoBehaviour {
 
     public Transform target;
+    public List<GameObject> enemies = null;
 
     [Header("Attributes")]
     public float range = 50f;
@@ -31,8 +33,11 @@ public class Turret : MonoBehaviour {
     public Transform[] firePoints;
     public bool fireFromAnimation = false;
 
+    float distanceToEnemy = 0f;
 
-    
+
+
+
     private Animator animator;
 
     // Use this for initialization
@@ -44,27 +49,67 @@ public class Turret : MonoBehaviour {
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+       
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
+        //enemies = GameController.Instance.Enemies.ToArray();
+        //target = enemies[0].transform;
 
-        if (nearestEnemy != null && shortestDistance <= range)
-            target = nearestEnemy.transform;
-        else
-            target = null;
+        //enemies = enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().currentPlace).ToList();
+        //target = enemies[0].transform;
+        //foreach (GameObject enemy in enemies)
+        //{
+        //    float distanceToEnemy = Vector3.Distance(transform.position, GameController.Instance.Enemies.transform.position);
+        //    if (distanceToEnemy < shortestDistance)
+        //    {
+        //        shortestDistance = distanceToEnemy;
+        //        nearestEnemy = enemy;
+        //    }
+        //}
+
+        // if (nearestEnemy != null && shortestDistance <= range)
+        //   target = nearestEnemy.transform;
+        //else
+        //target = null;
+
+        foreach (GameObject potentialTarget in GameController.Instance.Enemies)
+        {
+           distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+                target = potentialTarget.transform;
+        }
 
     }
 
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Enemy")
+    //    {
+    //        enemies.Add(other.gameObject);
+    //    }
+    //    //other.gameObject.GetComponent<EnemyController>().currentPlace;
+    //}
+
+    //void OnTriggerLeave(Collider other)
+    //{
+    //    if (other.tag == "Enemy")
+    //    {
+    //        foreach (GameObject e in enemies)
+    //        {
+    //            if (e == other.gameObject)
+    //                enemies.Remove(e);
+    //                }
+                    
+    //        //enemies.Remove(other.gameObject);
+    //    }
+
+    //}
+
+    void FirstEnemy()
+    {
+        
+    }
 
     void Shoot(int counter)
     {
@@ -174,5 +219,7 @@ public class Turret : MonoBehaviour {
         //lightning.StartPosition = firePoints.position;
         //lightning.EndPosition = target.position;
     }
+
+
 }
 
