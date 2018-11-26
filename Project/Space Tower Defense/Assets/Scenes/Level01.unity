@@ -311,7 +311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb474629fcbd334eb5318f0304cea1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 1588697542}
+  GameState:
+    Current_Medals: 0
+    Total_Medals_Earned: 0
+    Current_Gems: 0
+    Total_Gems_Earned: 0
+    Level_Data: []
+  Save_ID: 0
 --- !u!4 &1056599504
 Transform:
   m_ObjectHideFlags: 0
@@ -352,11 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc248b3406bde2c41b24b341ca575b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Medals_Earned: 0
-  Current_Medals: 0
-  Current_Gems: 0
-  Total_Gems_Earned: 0
-  Level_Data: []
+  Database_Controller: {fileID: 0}
   Health: 10
   EnemyPrefab: {fileID: 902164971}
   EnemySpawnLocation: {fileID: 902164972}
