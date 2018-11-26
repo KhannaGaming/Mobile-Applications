@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("I died!");
+            GameController.Instance.Enemies.Remove(this.gameObject);
             Destroy(gameObject);
         }
         //Debug.Log("num children:"+EndPath.transform.childCount);

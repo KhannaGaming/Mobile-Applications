@@ -11,7 +11,8 @@ public class GameController : MonoBehaviour
 
     [Header("Enemey")]
     public List<GameObject> Enemies;
-   
+    public List<GameObject> EnemiesHealth;
+
     // public List<GameObject> Enemies2;
     [Header("Player Base")]
     public int Health = 10;
@@ -49,8 +50,11 @@ public class GameController : MonoBehaviour
     void Update()
     {
         PopulateEnemyList();
+        //RemoveEnemies();  //Obselete
         OrderEnemies();
-        RemoveEnemies();
+        PopulateEnemyListStrongest();
+
+
     }
 
     private void RemoveEnemies()
@@ -93,6 +97,11 @@ public class GameController : MonoBehaviour
             enemy.GetComponent<EnemyController>().currentPlace = counter;
             counter++;
         } 
+    }
+
+    public void PopulateEnemyListStrongest()
+    {
+        EnemiesHealth = Enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().health).ToList();
     }
 
 

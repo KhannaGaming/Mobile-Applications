@@ -82,29 +82,6 @@ public class Turret : MonoBehaviour {
 
     }
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Enemy")
-    //    {
-    //        enemies.Add(other.gameObject);
-    //    }
-    //    //other.gameObject.GetComponent<EnemyController>().currentPlace;
-    //}
-
-    //void OnTriggerLeave(Collider other)
-    //{
-    //    if (other.tag == "Enemy")
-    //    {
-    //        foreach (GameObject e in enemies)
-    //        {
-    //            if (e == other.gameObject)
-    //                enemies.Remove(e);
-    //                }
-                    
-    //        //enemies.Remove(other.gameObject);
-    //    }
-
-    //}
 
     void FirstEnemy()
     {
@@ -219,6 +196,8 @@ public class Turret : MonoBehaviour {
         //lightning.StartPosition = firePoints.position;
         //lightning.EndPosition = target.position;
     }
+
+
 
 
 }
