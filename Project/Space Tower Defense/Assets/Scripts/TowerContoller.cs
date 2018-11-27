@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerContoller : MonoBehaviour
 {
@@ -18,45 +19,66 @@ public class TowerContoller : MonoBehaviour
     public GameObject electricityTowerButtonPrefab;
     public GameObject sniperTowerButtonPrefab;
 
-    // Use this for initialization
-    void Start ()
-    {
-        
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+    public List<GameObject> TowerButtons = new List<GameObject>();
 
     public void spawnButtons()
     {
+        GameObject GO = Instantiate(standardTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO.transform.localPosition = new Vector3 (-35,0,0);
+        GO.GetComponent<Button>().onClick.AddListener(CreateStandardTower);
 
+        GO = Instantiate(laserTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO.transform.localPosition = new Vector3(-18, 39, 0);
+        GO.GetComponent<Button>().onClick.AddListener(CreateLaserTower);
+
+        Instantiate(rocketTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = new Vector3(21, 39, 0);
+        Instantiate(electricityTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = new Vector3(38, 2, 0);
+        Instantiate(sniperTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = new Vector3(2, -30, 0);
+
+        foreach (var item in GameObject.FindGameObjectsWithTag("TowerButton"))
+        {
+            TowerButtons.Add(item);
+        }
     }
 
     public void CreateStandardTower()
     {
-        Instantiate(standardTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        Instantiate(standardTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        DestroyButtons();
     }
 
     public void CreateLaserTower()
     {
-        Instantiate(laserTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        Instantiate(laserTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        DestroyButtons();
     }
 
     public void CreateRocketTower()
     {
-        Instantiate(rocketTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        Instantiate(rocketTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        DestroyButtons();
     }
 
     public void CreateElectricityTower()
     {
-        Instantiate(electricityTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        Instantiate(electricityTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        DestroyButtons();
     }
 
     public void CreateSniperTower()
     {
-        Instantiate(sniperTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        Instantiate(sniperTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        DestroyButtons();
+    }
+
+    public void DestroyButtons()
+    {
+        
+        for (int i = TowerButtons.Count-1; i >= 0; i--)
+        {
+            Destroy(TowerButtons[i]);
+            TowerButtons.Remove(TowerButtons[i]);
+        }
+
     }
 }
