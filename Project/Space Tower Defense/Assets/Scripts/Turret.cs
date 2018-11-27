@@ -35,6 +35,9 @@ public class Turret : MonoBehaviour {
 
     float distanceToEnemy = 0f;
 
+    public enum ShootStyle { First, Last, Strongest, Weakest};
+    public ShootStyle shootStyle;
+
 
 
 
@@ -44,40 +47,28 @@ public class Turret : MonoBehaviour {
     void Start()
     {
         animator = GetComponent<Animator>();
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
+        transform.localPosition = Vector3.zero;
     }
 
     void UpdateTarget()
     {
-       
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
 
-        //enemies = GameController.Instance.Enemies.ToArray();
-        //target = enemies[0].transform;
-
-        //enemies = enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().currentPlace).ToList();
-        //target = enemies[0].transform;
-        //foreach (GameObject enemy in enemies)
-        //{
-        //    float distanceToEnemy = Vector3.Distance(transform.position, GameController.Instance.Enemies.transform.position);
-        //    if (distanceToEnemy < shortestDistance)
-        //    {
-        //        shortestDistance = distanceToEnemy;
-        //        nearestEnemy = enemy;
-        //    }
-        //}
-
-        // if (nearestEnemy != null && shortestDistance <= range)
-        //   target = nearestEnemy.transform;
-        //else
-        //target = null;
-
-        foreach (GameObject potentialTarget in GameController.Instance.Enemies)
+        switch(shootStyle)
         {
-           distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
-            if (distanceToEnemy <= range)
-                target = potentialTarget.transform;
+            case ShootStyle.First:
+                FirstEnemy();
+                break;
+            case ShootStyle.Last:
+                LastEnemy();
+                break;
+            case ShootStyle.Strongest:
+                StrongestEnemy();
+                break;
+            case ShootStyle.Weakest:
+                WeakestEnemy();
+                break;
+
         }
 
     }
@@ -85,7 +76,56 @@ public class Turret : MonoBehaviour {
 
     void FirstEnemy()
     {
-        
+        foreach (GameObject potentialTarget in GameController.Instance.Enemies)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+                target = potentialTarget.transform;
+
+            if (distanceToEnemy > range)
+                target = null;
+        }
+    }
+
+    void LastEnemy()
+    {
+        foreach (GameObject potentialTarget in GameController.Instance.EnemiesReversed)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+                target = potentialTarget.transform;
+
+            //Reverse 
+
+            if (distanceToEnemy > range)
+                target = null;
+        }
+    }
+
+    void StrongestEnemy()
+    {
+        foreach (GameObject potentialTarget in GameController.Instance.EnemiesHealth)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+                target = potentialTarget.transform;
+
+            if (distanceToEnemy > range)
+                target = null;
+        }
+    }
+
+    void WeakestEnemy()
+    {
+        foreach (GameObject potentialTarget in GameController.Instance.EnemiesHealthReversed)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+                target = potentialTarget.transform;
+
+            if (distanceToEnemy > range)
+                target = null;
+        }
     }
 
     void Shoot(int counter)

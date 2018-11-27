@@ -11,13 +11,16 @@ public class GameController : MonoBehaviour
 
     [Header("Enemey")]
     public List<GameObject> Enemies;
+    public List<GameObject> EnemiesReversed;
     public List<GameObject> EnemiesHealth;
+    public List<GameObject> EnemiesHealthReversed;
 
     // public List<GameObject> Enemies2;
     [Header("Player Base")]
     public int Health = 10;
     public GameObject EnemyPrefab;
     public Transform EnemySpawnLocation;
+    public GameObject CurrentEnemy = null;
     public bool wait = true;
 
     public static GameController Instance { get; private set; }
@@ -40,7 +43,8 @@ public class GameController : MonoBehaviour
     {
         for (int i = 0; i < 15; i++)
         {
-            Instantiate(EnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            CurrentEnemy = Instantiate(EnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            CurrentEnemy.name = "Enemy " + i;
         }
 
         
@@ -49,12 +53,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PopulateEnemyList();
-        //RemoveEnemies();  //Obselete
-        OrderEnemies();
-        PopulateEnemyListStrongest();
-
-
+        OrderEnemies();  
     }
 
     private void RemoveEnemies()
@@ -69,7 +68,10 @@ public class GameController : MonoBehaviour
 
     public void OrderEnemies()
     {
-
+        PopulateEnemyList();
+        PopulateEnemyListReversed();
+        PopulateEnemyListStrongest();
+        PopulateEnemyListWeakest();
     }
 
     private void OnTriggerStay(Collider other)
@@ -99,9 +101,26 @@ public class GameController : MonoBehaviour
         } 
     }
 
-    public void PopulateEnemyListStrongest()
+    public void PopulateEnemyListReversed()
+    {
+        EnemiesReversed = Enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().currentPathNode).ThenByDescending(s => s.gameObject.GetComponent<EnemyController>().distanceLeft).ToList();
+
+        int counter = 1;
+        foreach (GameObject enemy in Enemies)
+        {
+            enemy.GetComponent<EnemyController>().currentPlace = counter;
+            counter++;
+        }
+    }
+
+    public void PopulateEnemyListWeakest()
     {
         EnemiesHealth = Enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().health).ToList();
+    }
+
+    public void PopulateEnemyListStrongest()
+    {
+        EnemiesHealthReversed = Enemies.OrderByDescending(s => s.gameObject.GetComponent<EnemyController>().health).ToList();
     }
 
 

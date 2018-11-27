@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 2
-  damage: 1
+  damage: 10
   impactEffect: {fileID: 0}
   launchEffect: {fileID: 0}
   trailEffect: {fileID: 0}
