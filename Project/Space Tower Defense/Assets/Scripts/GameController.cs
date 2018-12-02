@@ -20,15 +20,17 @@ public class GameController : MonoBehaviour {
     public Transform EnemySpawnLocation;
 
     private string LevelData;
-    private int currentWaveNumber;
+    private int currentWaveNumber = 0;
     private int StandardEnemies = 0;
     private int SlowEnemies = 0;
     private int StealthyEnemies = 0;
     private int FastEnemies = 0;
     // Use this for initialization
     void Start () {
+        //for testing only
+        currentWaveNumber = 1;
         ReadLevelData();
-        ReadWaveData(1);
+        ReadWaveData(currentWaveNumber);
         CreateEnemies();
     }
 	
@@ -60,10 +62,10 @@ public class GameController : MonoBehaviour {
                 
                 if (b[i] == '\n' && (b[i + 1] - '0') == waveNumber)
                 {
-                    StandardEnemies = b[i + 3] - '0';
-                    SlowEnemies = b[i + 5] - '0';
-                    FastEnemies = b[i + 7] - '0';
-                    StealthyEnemies = b[i + 9] - '0';
+                    StandardEnemies = (((b[i + 3]-'0')*10)+ (b[i + 4]) - '0');
+                    SlowEnemies = (((b[i + 6] - '0') * 10) + (b[i + 7]) - '0');
+                    FastEnemies = (((b[i + 9] - '0') * 10) + (b[i + 10]) - '0');
+                    StealthyEnemies = (((b[i + 12] - '0') * 10) + (b[i + 13]) - '0');
                 }
             }
         }
