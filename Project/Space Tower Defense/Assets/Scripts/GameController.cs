@@ -32,28 +32,21 @@ public class GameController : MonoBehaviour {
         CreateEnemies();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     public void reduceHealth()
     {
         Health--;
     }
-
-    [MenuItem("Tools/Read file")]
+    
     void ReadLevelData()
     {
-        string path = "Assets/Resources/test.txt";
+        string path = "Assets/Resources/Level"+PlayerPrefs.GetInt("LevelNumber",1)+".txt";
 
         //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path);
         LevelData = reader.ReadToEnd();
         reader.Close();
-
-
-
     }
+
     void ReadWaveData(int waveNumber)
     {
         char[] b = new char[LevelData.Length];
@@ -61,12 +54,21 @@ public class GameController : MonoBehaviour {
         using (StringReader sr = new StringReader(LevelData))
         {
             sr.Read(b, 0, LevelData.Length);
-            StandardEnemies = b[2 + (waveNumber*10)] - '0';
-            SlowEnemies = b[4 + (waveNumber * 10)] - '0';
-            FastEnemies = b[6 + (waveNumber * 10)] - '0';
-            StealthyEnemies = b[8 + (waveNumber * 10)] - '0';
+
+            for (int i = 0; i < LevelData.Length; i++)
+            {
+                
+                if (b[i] == '\n' && (b[i + 1] - '0') == waveNumber)
+                {
+                    StandardEnemies = b[i + 3] - '0';
+                    SlowEnemies = b[i + 5] - '0';
+                    FastEnemies = b[i + 7] - '0';
+                    StealthyEnemies = b[i + 9] - '0';
+                }
+            }
         }
     }
+
     void CreateEnemies()
     {
         for (int i = 0; i < StandardEnemies; i++)
