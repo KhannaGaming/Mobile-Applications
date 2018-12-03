@@ -31,9 +31,17 @@ public class TowerContoller : MonoBehaviour
         GO.transform.localPosition = new Vector3(-18, 39, 0);
         GO.GetComponent<Button>().onClick.AddListener(CreateLaserTower);
 
-        Instantiate(rocketTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = new Vector3(21, 39, 0);
-        Instantiate(electricityTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = new Vector3(38, 2, 0);
-        Instantiate(sniperTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = new Vector3(2, -30, 0);
+        GO = Instantiate(rocketTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO.transform.localPosition = new Vector3(21, 39, 0);
+        GO.GetComponent<Button>().onClick.AddListener(CreateRocketTower);
+
+        GO = Instantiate(electricityTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO.transform.localPosition = new Vector3(38, 2, 0);
+        GO.GetComponent<Button>().onClick.AddListener(CreateElectricityTower);
+
+        GO = Instantiate(sniperTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO.transform.localPosition = new Vector3(2, -30, 0);
+        GO.GetComponent<Button>().onClick.AddListener(CreateSniperTower);
 
         foreach (var item in GameObject.FindGameObjectsWithTag("TowerButton"))
         {
