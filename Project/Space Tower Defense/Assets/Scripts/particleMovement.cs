@@ -32,27 +32,7 @@ public class particleMovement : MonoBehaviour {
 
         }
         int count = this.ps.GetParticles(this.pslist);
-        for (int i = 0; i < count; i++)
-        {
-        childNumber = Random.Range(0, 3);
-
-        pslist[i].position = Vector3.MoveTowards(pslist[i].position,transform.InverseTransformPoint(EndPath.transform.GetChild(childNumber).transform.position),speed);
-        }
-
-        if (pslist[0].position == transform.InverseTransformPoint(EndPath.transform.GetChild(childNumber).transform.position))
-        {
-            currentPathNode++;
-            EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
-        }
-        if(!EndPath)
-        {
-            currentPathNode = 1;
-            EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
-            for (int i = 0; i < count; i++)
-            {
-                pslist[i].position = Vector3.MoveTowards(pslist[i].position, transform.InverseTransformPoint(EndPath.transform.GetChild(childNumber).transform.position), speed);
-            }
-        }
+       
         this.ps.SetParticles(this.pslist, count);
     }
 }

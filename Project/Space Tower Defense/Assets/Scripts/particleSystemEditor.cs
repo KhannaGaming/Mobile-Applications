@@ -13,10 +13,28 @@ public class particleSystemEditor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(transform.parent.GetChild(1).name  == "Turret 1a")
+        if (transform.parent.childCount > 1)
         {
-            ParticleSystem.MainModule main = ps.main;
-            main.startColor =  Color.red;
+            if (transform.parent.GetChild(1).name == "Turret 1a")
+            {
+                ParticleSystem.MainModule main = ps.main;
+                main.startColor = Color.red;
+            }
+            else if (transform.parent.GetChild(1).name == "Turret 2a")
+            {
+                ParticleSystem.MainModule main = ps.main;
+                main.startColor = Color.blue;
+            }
+            else if (transform.parent.GetChild(1).name == "Turret 3a")
+            {
+                ParticleSystem.MainModule main = ps.main;
+                main.startColor = Color.yellow;
+            }
+            else if (transform.parent.GetChild(1).name == "Turret 4a")
+            {
+                ParticleSystem.MainModule main = ps.main;
+                main.startColor = Color.magenta;
+            }
         }
 	}
 }
