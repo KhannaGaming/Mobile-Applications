@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour {
 
     public Transform target;
     public float speed = 10f;
-    public float damage = 1f;
+    public float damage = 2f;
     public GameObject impactEffect;
     public GameObject launchEffect;
     public GameObject trailEffect;
@@ -63,7 +63,7 @@ public class Bullet : MonoBehaviour {
         
         //target.gameObject.HealthManager(2);
         //Destroy(target.gameObject);
-       // target.gameObject.SendMessage("TakeDamage", damage);
+        target.gameObject.SendMessage("damageHealth", damage);
         Destroy(gameObject);
     }
 
@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour {
         {
          Debug.Log("Hit");
             HitTarget();
-            other.GetComponent<EnemyController>().damageHealth(1);
+           // other.GetComponent<EnemyController>().damageHealth(damage);
         }
     }
 }

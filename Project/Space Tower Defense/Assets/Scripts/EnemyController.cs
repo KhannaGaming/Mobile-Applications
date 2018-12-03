@@ -3,28 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
-    public  NavMeshAgent NMA;
+    public NavMeshAgent NMA;
     public GameObject EndPath;
     public int currentPathNode = 1;
     public int childNumber = 0;
     public float health = 10;
 
-        // Use this for initialization
-    void Start ()
+    public float distanceLeft;
+    public bool inList = false;
+    public int currentPlace = -1;
+    public bool inRangeFirstTurret = false;
+    // Use this for initialization
+    void Start()
     {
         childNumber = Random.Range(0, 3);
         EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
         NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             Debug.Log("I died!");
+            GameController.Instance.Enemies.Remove(this.gameObject);
             Destroy(gameObject);
         }
         //Debug.Log("num children:"+EndPath.transform.childCount);
@@ -42,9 +48,12 @@ public class EnemyController : MonoBehaviour {
             else
             {
                 GameObject.Find("GameManager").GetComponent<GameController>().reduceHealth();
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
+                //Destroy(this.gameObject);
             }
         }
+
+        distanceLeft = Vector3.Distance(transform.position, NMA.destination);
     }
 
     ///   <summary>
@@ -56,5 +65,9 @@ public class EnemyController : MonoBehaviour {
     {
         health -= damage;
     }
- 
+    public void Targetable(bool inRange)
+    {
+        inRangeFirstTurret = inRange;
+    }
+
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Turret : MonoBehaviour {
 
     public Transform target;
+    public List<GameObject> enemies = null;
 
     [Header("Attributes")]
     public float range = 50f;
@@ -31,40 +33,162 @@ public class Turret : MonoBehaviour {
     public Transform[] firePoints;
     public bool fireFromAnimation = false;
 
+    float distanceToEnemy = 0f;
 
-    
+    public enum ShootStyle { First, Last, Strongest, Weakest};
+    public ShootStyle shootStyle;
+
+
+
+
     private Animator animator;
 
     // Use this for initialization
     void Start()
     {
         animator = GetComponent<Animator>();
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
+        transform.localPosition = Vector3.zero;
     }
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        switch(shootStyle)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
+            case ShootStyle.First:
+                FirstEnemy();
+                break;
+            case ShootStyle.Last:
+                LastEnemy();
+                break;
+            case ShootStyle.Strongest:
+                StrongestEnemy();
+                break;
+            case ShootStyle.Weakest:
+                WeakestEnemy();
+                break;
 
-        if (nearestEnemy != null && shortestDistance <= range)
-            target = nearestEnemy.transform;
-        else
-            target = null;
+        }
 
     }
 
+
+    void FirstEnemy()
+    {
+        //foreach (GameObject potentialTarget in GameController.Instance.Enemies)
+        //{
+        //    distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+        //    if (distanceToEnemy <= range)
+        //        target = potentialTarget.transform;
+
+        //    if (distanceToEnemy > range)
+        //        target = null;
+        //}
+        //float distanceToCurrentEnemy = Vector3.Distance(transform.position, GameController.Instance.Enemies[0].transform.position);
+        //if (distanceToCurrentEnemy <= range)
+        //    {
+        //        if(distanceToCurrentEnemy <=)
+        //    }
+        //    target = GameController.Instance.Enemies[0].transform;
+        //if (distanceToEnemy > range)
+        //    target = null;
+        //}
+        if (GameController.Instance.Enemies.Count != 0)
+        {
+            for (int i = 0; i < GameController.Instance.Enemies.Count; i++)
+            {
+                if (GameController.Instance.Enemies[i].GetComponent<EnemyController>().inRangeFirstTurret)
+                {
+                    target = GameController.Instance.Enemies[i].transform;
+                    break;
+                }
+                else
+                {
+                    target = null;
+                }
+            }
+        }
+    }
+
+    void LastEnemy()
+    {
+        if (GameController.Instance.EnemiesReversed.Count != 0)
+        {
+            for (int i = 0; i < GameController.Instance.EnemiesReversed.Count; i++)
+            {
+                if (GameController.Instance.EnemiesReversed[i].GetComponent<EnemyController>().inRangeFirstTurret)
+                {
+                    target = GameController.Instance.EnemiesReversed[i].transform;
+                    break;
+                }
+                else
+                {
+                    target = null;
+                }
+            }
+        }
+        //if (GameController.Instance.EnemiesReversed.Count != 0)
+        //{
+        //    distanceToEnemy = Vector3.Distance(transform.position, GameController.Instance.EnemiesReversed[0].transform.position);
+        //    if (distanceToEnemy <= range)
+        //        target = GameController.Instance.EnemiesReversed[0].transform;
+        //    if (distanceToEnemy > range)
+        //        target = null;
+
+        //}
+        //foreach (GameObject potentialTarget in GameController.Instance.EnemiesReversed)
+        //{
+
+        //    //Reverse 
+
+        //}
+    }
+
+    void StrongestEnemy()
+    {
+        foreach (GameObject potentialTarget in GameController.Instance.EnemiesHealth)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+                target = potentialTarget.transform;
+
+            if (distanceToEnemy > range)
+                target = null;
+        }
+
+        if (GameController.Instance.EnemiesHealthReversed.Count != 0)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, GameController.Instance.EnemiesHealthReversed[0].transform.position);
+            if (distanceToEnemy <= range)
+                target = GameController.Instance.EnemiesHealthReversed[0].transform;
+            if (distanceToEnemy > range)
+                target = null;
+
+        }
+    }
+
+    void WeakestEnemy()
+    {
+        if (GameController.Instance.EnemiesHealth.Count != 0)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, GameController.Instance.EnemiesHealth[0].transform.position);
+            if (distanceToEnemy <= range)
+                target = GameController.Instance.EnemiesHealth[0].transform;
+            if (distanceToEnemy > range)
+                target = null;
+
+        }
+        //foreach (GameObject potentialTarget in GameController.Instance.EnemiesHealthReversed)
+        //{
+        //    distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+        //    if (distanceToEnemy <= range)
+        //        target = potentialTarget.transform;
+
+        //    if (distanceToEnemy > range)
+        //        target = null;
+        //}
+    }
 
     void Shoot(int counter)
     {
@@ -89,6 +213,7 @@ public class Turret : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        UpdateEnemyRange();
         if (target == null)
         {
             animator.SetBool("ifInRange", false);
@@ -174,5 +299,24 @@ public class Turret : MonoBehaviour {
         //lightning.StartPosition = firePoints.position;
         //lightning.EndPosition = target.position;
     }
+
+    void UpdateEnemyRange()
+    {
+        foreach (GameObject potentialTarget in GameController.Instance.Enemies)
+        {
+            distanceToEnemy = Vector3.Distance(transform.position, potentialTarget.transform.position);
+            if (distanceToEnemy <= range)
+            {
+                potentialTarget.GetComponent<EnemyController>().Targetable(true);
+            }
+            else
+            {
+                potentialTarget.GetComponent<EnemyController>().Targetable(false);
+
+            }
+        }
+    }
+    
+
 }
 
