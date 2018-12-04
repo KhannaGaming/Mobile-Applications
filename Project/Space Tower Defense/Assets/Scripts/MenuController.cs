@@ -14,7 +14,11 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
+    public void LoadLevel(string sceneName)
+    {
+        PlayerPrefs.SetString("Level", sceneName);
+        SceneManager.LoadScene("Loading");
+    }
     // Used for the exit game button
     public void QuitGame()
     {
@@ -34,12 +38,12 @@ public class MenuController : MonoBehaviour
             musicToggle = false;
         }
 
-        MusicToggle.GetComponent<Toggle>().isOn = musicToggle;
+        //MusicToggle.GetComponent<Toggle>().isOn = musicToggle;
 
     }
     private void Update()
     {
-        MusicToggle.GetComponent<Toggle>().isOn = musicToggle;
+     //   MusicToggle.GetComponent<Toggle>().isOn = musicToggle;
 
     }
     public void toggleMusic()
@@ -47,4 +51,6 @@ public class MenuController : MonoBehaviour
         
         MusicToggle.GetComponent<Toggle>().isOn = !MusicToggle.GetComponent<Toggle>().isOn;
     }
+
+ 
 }

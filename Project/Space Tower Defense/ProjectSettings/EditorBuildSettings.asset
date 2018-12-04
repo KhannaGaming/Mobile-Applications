@@ -4,5 +4,29 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TitleMenu.unity
+    guid: 6f425b047470e5b44b8bce3dd5cda3ce
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 257ad080aa1078b46b7df52523c12882
+  - enabled: 1
+    path: Assets/Scenes/Overworld.unity
+    guid: bdde30d8672499643ba703beb28849a8
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: e98b9da2da54e1c4bbd8290123434093
+  - enabled: 1
+    path: Assets/Scenes/Highscores.unity
+    guid: 979c10f382f0d4c49aad6298cb00cb8d
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 22d5fdca1ec398748b93d1658213bfc4
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: b89e2760774e5eb47b12c5c9823be659
+  - enabled: 1
+    path: Assets/Scenes/Level01.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
