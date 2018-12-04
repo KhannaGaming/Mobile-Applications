@@ -8,6 +8,9 @@ using System.IO;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Database")]
+    //This needs the Database Controller object dragged and dropped onto it:
+    public Database_Control Database_Controller;
 
     [Header("StandardEnemy")]
     public GameObject StandardEnemyPrefab;
@@ -51,7 +54,9 @@ public class GameController : MonoBehaviour
 
     // Use this for initialization
     public void Awake()
-    {   
+    {
+     
+        //Database_Controller.LoadData();
         if (Instance == null)                   //if this instnace hasn't been made yet
         {
             Instance = this;                    //Make instance this
@@ -61,6 +66,14 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);                //Destroy duplicates 
         }
+        Database_Controller.GameState.Current_Medals = 10;
+        Database_Controller.GameState.Current_Gems = 2;
+        Database_Controller.GameState.Total_Medals_Earned = 28;
+        Database_Controller.GameState.Total_Gems_Earned = 38;
+        Database_Controller.GameState.Level_Data.Add(new Level_Info("Level01", 1, 3));
+        //Dictionary<string,float> temp_Leaderboard = Database_Controller.Leaderboard(10032.0f, "KhannaGaming");
+        Database_Controller.SaveData();
+        Database_Controller.LoadData();
     }
 
     void Start()
