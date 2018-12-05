@@ -9,7 +9,6 @@ public class MenuScript : MonoBehaviour {
 
     public void Open(string Menu_Item_Name)
     {
-        Debug.Log(Menu_Item_Name);
         foreach (GameObject item in MenuItems)
         {
             if (item.name == Menu_Item_Name)
