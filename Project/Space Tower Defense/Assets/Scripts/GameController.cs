@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour
 
         //Use this as an example on how to save the game state:
         //The level names can be changed if you like, I've just set them to whatever turret is newly unlocked, but if you do change it let me know and I will update it in the database
-        Database_Controller.GameState.Modified = DateTime.Now;
         Database_Controller.GameState.Current_Medals = 50;
         Database_Controller.GameState.Current_Gems = 1000;
         Database_Controller.GameState.Total_Gems_Earned = 10000;
@@ -30,10 +29,12 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
-        for (int i = 0; i < 15; i++)
-        {
-            Instantiate(EnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
-        }
+        Database_Controller.Print_Cache();
+        Database_Controller.SaveData();
+        Database_Controller.Print_Cache();
+        Database_Controller.LoadData();
+        Database_Controller.Print_Cache();
+        Database_Controller.GameState.
 
     }
 
