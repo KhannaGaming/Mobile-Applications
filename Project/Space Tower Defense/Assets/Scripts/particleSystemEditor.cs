@@ -15,25 +15,30 @@ public class particleSystemEditor : MonoBehaviour {
 	void Update () {
         if (transform.parent.childCount > 1)
         {
-            if (transform.parent.GetChild(1).name == "Turret 1a")
+            if (transform.parent.GetChild(1).tag == "StandardTurret")
             {
                 ParticleSystem.MainModule main = ps.main;
                 main.startColor = Color.red;
             }
-            else if (transform.parent.GetChild(1).name == "Turret 2a")
+            else if (transform.parent.GetChild(1).name == "ElectricityTurret")
             {
                 ParticleSystem.MainModule main = ps.main;
                 main.startColor = Color.blue;
             }
-            else if (transform.parent.GetChild(1).name == "Turret 3a")
+            else if (transform.parent.GetChild(1).name == "RocketTurret")
             {
                 ParticleSystem.MainModule main = ps.main;
                 main.startColor = Color.yellow;
             }
-            else if (transform.parent.GetChild(1).name == "Turret 4a")
+            else if (transform.parent.GetChild(1).name == "LaserTurret")
             {
                 ParticleSystem.MainModule main = ps.main;
                 main.startColor = Color.magenta;
+            }
+            else if (transform.parent.GetChild(1).name == "SniperTurret")
+            {
+                ParticleSystem.MainModule main = ps.main;
+                main.startColor = Color.white;
             }
         }
 	}

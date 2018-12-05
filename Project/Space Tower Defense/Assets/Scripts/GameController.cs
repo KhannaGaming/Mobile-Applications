@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 using System.IO;
 
 public class GameController : MonoBehaviour
 {
     [Header("Database")]
     //This needs the Database Controller object dragged and dropped onto it:
-    public Database_Control Database_Controller;
+    //public Database_Control Database_Controller;
 
     [Header("StandardEnemy")]
     public GameObject StandardEnemyPrefab;
@@ -25,18 +26,14 @@ public class GameController : MonoBehaviour
 
     [Header("Resources")]
 
-    [Header("Enemey")]
-    public List<GameObject> Enemies;
-    public List<GameObject> EnemiesReversed;
-    public List<GameObject> EnemiesHealth;
-    public List<GameObject> EnemiesHealthReversed;
-
     // public List<GameObject> Enemies2;
     [Header("Player Base")]
 
     public int Health = 10;
     public Transform EnemySpawnLocation;
 
+    [Header("Canvas")]
+    public GameObject NextWaveButton;
 
     private string LevelData;
     private int currentWaveNumber = 0;
@@ -44,14 +41,13 @@ public class GameController : MonoBehaviour
     private int SlowEnemies = 0;
     private int StealthyEnemies = 0;
     private int FastEnemies = 0;
-   
-	
 
     public GameObject CurrentEnemy = null;
     public bool wait = true;
 
     public static GameController Instance { get; private set; }
 
+    public List<GameObject> Enemies = null;
     // Use this for initialization
     public void Awake()
     {
@@ -79,26 +75,10 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //for testing only
-        currentWaveNumber = 1;
+        currentWaveNumber = 0;
         ReadLevelData();
-        ReadWaveData(currentWaveNumber);
-        //CreateEnemies();
-        InvokeRepeating("CreateStandardEnemies", 0f, 1.0f);
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        OrderEnemies();  
-    }
-
-    private void RemoveEnemies()
-    {
-        Enemies.RemoveAll(enemies => enemies == null);
-    }
+        //ReadNextWaveData(currentWaveNumber);
+    } 
 
     public void reduceHealth()
     {
@@ -116,118 +96,123 @@ public class GameController : MonoBehaviour
         reader.Close();
     }
 
-    void ReadWaveData(int waveNumber)
+    bool ReadNextWaveData(int waveNumber)
     {
         char[] b = new char[LevelData.Length];
-
-        using (StringReader sr = new StringReader(LevelData))
+        if (waveNumber <= 5)
         {
-            sr.Read(b, 0, LevelData.Length);
-
-            for (int i = 0; i < LevelData.Length; i++)
+            using (StringReader sr = new StringReader(LevelData))
             {
-                
-                if (b[i] == '\n' && (b[i + 1] - '0') == waveNumber)
+                sr.Read(b, 0, LevelData.Length);
+
+                for (int i = 1; i < LevelData.Length; i++)
                 {
-                    StandardEnemies = (((b[i + 3]-'0')*10)+ (b[i + 4]) - '0');
-                    SlowEnemies = (((b[i + 6] - '0') * 10) + (b[i + 7]) - '0');
-                    FastEnemies = (((b[i + 9] - '0') * 10) + (b[i + 10]) - '0');
-                    StealthyEnemies = (((b[i + 12] - '0') * 10) + (b[i + 13]) - '0');
+
+                    if (b[i] == '\n' && (b[i + 1] - '0') == waveNumber)
+                    {
+                        StandardEnemies = (((b[i + 3] - '0') * 10) + (b[i + 4]) - '0');
+                        SlowEnemies = (((b[i + 6] - '0') * 10) + (b[i + 7]) - '0');
+                        FastEnemies = (((b[i + 9] - '0') * 10) + (b[i + 10]) - '0');
+                        StealthyEnemies = (((b[i + 12] - '0') * 10) + (b[i + 13]) - '0');
+                    }
                 }
             }
+            return true;
         }
-    }
+        else
+        {
+            StandardEnemies = 0;
+            SlowEnemies = 0;
+            FastEnemies = 0;
+            StealthyEnemies = 0;
+            return false;
+        }
+}
 
     void CreateEnemies()
     {
-        //for (int i = 0; i < StandardEnemies; i++)
-        //{
-            InvokeRepeating("CreateStandardEnemies", 0f, 1.0f);
-        //}
-        for (int i = 0; i < SlowEnemies; i++)
+        InvokeRepeating("CreateStandardEnemies", 0f, 1.0f);       
+    }
+
+   
+
+
+    void CreateStandardEnemies()
+    {
+        if (StandardEnemies > 0)
+        {
+            CurrentEnemy = Instantiate(StandardEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            AddEnemy(CurrentEnemy);
+        }
+        if(--StandardEnemies <=0)
+        {
+            CancelInvoke("CreateStandardEnemies");
+            InvokeRepeating("CreateSlowEnemies",0.0f,0.8f);
+        }
+    }
+
+    void CreateSlowEnemies()
+    {
+        if (SlowEnemies > 0)
         {
             CurrentEnemy = Instantiate(SlowEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
-            CurrentEnemy.name = "SlowEnemy " + i;
+            AddEnemy(CurrentEnemy);
         }
-        for (int i = 0; i < StealthyEnemies; i++)
+        if (--SlowEnemies <= 0)
         {
-            CurrentEnemy = Instantiate(FastEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
-            CurrentEnemy.name = "FastEnemy " + i;
-        }
-        for (int i = 0; i < FastEnemies; i++)
-        {
-            CurrentEnemy = Instantiate(StealthyEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
-            CurrentEnemy.name = "StealthyEnemy " + i;
-        }
-    }
-
-
-    public void OrderEnemies()
-    {
-        PopulateEnemyList();
-        PopulateEnemyListReversed();
-        PopulateEnemyListStrongest();
-        PopulateEnemyListWeakest();
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            if (other.GetComponent<EnemyController>().inList == false)
-            {
-                Enemies.Add(other.gameObject);
-                other.GetComponent<EnemyController>().inList = true;
-            }
-           
-            //Debug.Log("Enemies in scene");
+            CancelInvoke("CreateSlowEnemies");
+            InvokeRepeating("CreateStealthyEnemies", 0f, 0.5f);
             
         }
     }
 
-    public void PopulateEnemyList()
+    void CreateStealthyEnemies()
     {
-        Enemies = Enemies.OrderByDescending(s => s.gameObject.GetComponent<EnemyController>().currentPathNode).ThenBy(s => s.gameObject.GetComponent<EnemyController>().distanceLeft).ToList();
-
-        int counter = 1; 
-        foreach (GameObject enemy in Enemies)
+        if (StealthyEnemies > 0)
         {
-            enemy.GetComponent<EnemyController>().currentPlace = counter;
-            counter++;
-        } 
-    }
-
-    public void PopulateEnemyListReversed()
-    {
-        EnemiesReversed = Enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().currentPathNode).ThenByDescending(s => s.gameObject.GetComponent<EnemyController>().distanceLeft).ToList();
-
-        int counter = 1;
-        foreach (GameObject enemy in Enemies)
+            CurrentEnemy = Instantiate(StealthyEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            AddEnemy(CurrentEnemy);
+        }
+        if (--StealthyEnemies <= 0)
         {
-            enemy.GetComponent<EnemyController>().currentPlace = counter;
-            counter++;
+            CancelInvoke("CreateStealthyEnemies");
+            InvokeRepeating("CreateFastEnemies", 0f, 1.2f);
         }
     }
 
-    public void PopulateEnemyListWeakest()
+    void CreateFastEnemies()
     {
-        EnemiesHealth = Enemies.OrderBy(s => s.gameObject.GetComponent<EnemyController>().health).ToList();
-    }
+        if (FastEnemies > 0)
+        { 
+            CurrentEnemy = Instantiate(FastEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            AddEnemy(CurrentEnemy);
+        }
 
-    public void PopulateEnemyListStrongest()
-    {
-        EnemiesHealthReversed = Enemies.OrderByDescending(s => s.gameObject.GetComponent<EnemyController>().health).ToList();
-    }
-
-    void CreateStandardEnemies()
-    {
-
-        CurrentEnemy = Instantiate(StandardEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
-            //CurrentEnemy.name = "StandardEnemy " + i;
-        if(--StandardEnemies ==0)
+        if (--FastEnemies <= 0)
         {
-            CancelInvoke("CreateStandardEnemies");
+            CancelInvoke("CreateFastEnemies");
+            NextWaveButton.GetComponent<Button>().interactable = true;
         }
     }
+    public void NextWave()
+    {
+            NextWaveButton.GetComponent<Button>().interactable = false;
 
+        currentWaveNumber++;
+        if (!ReadNextWaveData(currentWaveNumber))
+        {
+            EndOfWaves();
+        }
+        CreateEnemies();
+    }
+
+    void EndOfWaves()
+    {
+
+    }
+
+    public void AddEnemy(GameObject Enemy)
+    {
+        Enemies.Add(Enemy);
+    }
 }

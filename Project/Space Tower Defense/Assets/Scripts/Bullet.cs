@@ -19,11 +19,7 @@ public class Bullet : MonoBehaviour {
         target = _target;
         //targetHealth = target.gameObject;
     }
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
+
 	
 	// Update is called once per frame
 	void Update ()
@@ -51,19 +47,19 @@ public class Bullet : MonoBehaviour {
         }
         else if (isLaser)
         {
-            target.gameObject.SendMessage("TakeDamage", damage/100);
+            target.gameObject.SendMessage("damageHealth", damage);
         }
     }
 
     void HitTarget()
     {
 
-       // GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-       // Destroy(effectIns,2f);
-        
+        // GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        // Destroy(effectIns,2f);
+
         //target.gameObject.HealthManager(2);
         //Destroy(target.gameObject);
-        target.gameObject.SendMessage("damageHealth", damage);
+        target.gameObject.SendMessage("damageHealth", damage );
         Destroy(gameObject);
     }
 

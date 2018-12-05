@@ -29,8 +29,7 @@ public class EnemyController : MonoBehaviour
     {
         if (health <= 0)
         {
-            Debug.Log("I died!");
-            GameController.Instance.Enemies.Remove(this.gameObject);
+            Debug.Log("I died!");            
             Destroy(gameObject);
         }
         //Debug.Log("num children:"+EndPath.transform.childCount);
@@ -61,7 +60,7 @@ public class EnemyController : MonoBehaviour
     ///   </summary>
     ///<param name="damage">Amount to decrease health by.
     ///</param>
-    public void damageHealth(float damage)
+    void damageHealth(float damage)
     {
         health -= damage;
     }

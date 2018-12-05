@@ -7,22 +7,22 @@ public class RangeIndicatorController : MonoBehaviour {
     private float range = 0;
 
 
-	// Use this for initialization
-	void Start () {
-        adjustRangeIndicator();
-	}
+
 	
 	// Update is called once per frame
 	void Update () {
-        if(range != transform.parent.GetComponent<Turret>().range)
+        if (transform.parent.childCount > 2)
         {
-            adjustRangeIndicator();
+            if (range != transform.parent.GetChild(2).GetComponent<Turret>().range)
+            {
+                adjustRangeIndicator();
+            }
         }
 	}
 
     void adjustRangeIndicator()
     {
-        transform.localScale = new Vector3(transform.parent.GetComponent<Turret>().range*4.0f, transform.parent.GetComponent<Turret>().range*4.0f,0f);
-        range = transform.parent.GetComponent<Turret>().range;
+        transform.localScale = new Vector3(transform.parent.GetChild(2).GetComponent<Turret>().range*4, transform.parent.GetChild(2).GetComponent<Turret>().range*4,0f);
+        range = transform.parent.GetChild(2).GetComponent<Turret>().range;
     }
 }

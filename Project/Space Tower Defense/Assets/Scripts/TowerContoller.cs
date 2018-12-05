@@ -19,27 +19,29 @@ public class TowerContoller : MonoBehaviour
     public GameObject electricityTowerButtonPrefab;
     public GameObject sniperTowerButtonPrefab;
 
+    public GameObject TowerSlot;
+
     public List<GameObject> TowerButtons = new List<GameObject>();
 
     public void spawnButtons()
     {
-        GameObject GO = Instantiate(standardTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GameObject GO = Instantiate(standardTowerButtonPrefab, Vector3.zero, Quaternion.identity, this.transform);
         GO.transform.localPosition = new Vector3 (-35,0,0);
         GO.GetComponent<Button>().onClick.AddListener(CreateStandardTower);
 
-        GO = Instantiate(laserTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO = Instantiate(laserTowerButtonPrefab, Vector3.zero, Quaternion.identity, this.transform);
         GO.transform.localPosition = new Vector3(-18, 39, 0);
         GO.GetComponent<Button>().onClick.AddListener(CreateLaserTower);
 
-        GO = Instantiate(rocketTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO = Instantiate(rocketTowerButtonPrefab, Vector3.zero, Quaternion.identity, this.transform);
         GO.transform.localPosition = new Vector3(21, 39, 0);
         GO.GetComponent<Button>().onClick.AddListener(CreateRocketTower);
 
-        GO = Instantiate(electricityTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO = Instantiate(electricityTowerButtonPrefab, Vector3.zero, Quaternion.identity, this.transform);
         GO.transform.localPosition = new Vector3(38, 2, 0);
         GO.GetComponent<Button>().onClick.AddListener(CreateElectricityTower);
 
-        GO = Instantiate(sniperTowerButtonPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform);
+        GO = Instantiate(sniperTowerButtonPrefab, Vector3.zero, Quaternion.identity, this.transform);
         GO.transform.localPosition = new Vector3(2, -30, 0);
         GO.GetComponent<Button>().onClick.AddListener(CreateSniperTower);
 
@@ -51,31 +53,31 @@ public class TowerContoller : MonoBehaviour
 
     public void CreateStandardTower()
     {
-        Instantiate(standardTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        Instantiate(standardTowerPrefab, Vector3.zero, Quaternion.identity, TowerSlot.transform).transform.localPosition = Vector3.zero;
         DestroyButtons();
     }
 
     public void CreateLaserTower()
     {
-        Instantiate(laserTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        Instantiate(laserTowerPrefab, Vector3.zero, Quaternion.identity, TowerSlot.transform).transform.localPosition = Vector3.zero;
         DestroyButtons();
     }
 
     public void CreateRocketTower()
     {
-        Instantiate(rocketTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        Instantiate(rocketTowerPrefab, Vector3.zero, Quaternion.identity, TowerSlot.transform).transform.localPosition = Vector3.zero;
         DestroyButtons();
     }
 
     public void CreateElectricityTower()
     {
-        Instantiate(electricityTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        Instantiate(electricityTowerPrefab, Vector3.zero, Quaternion.identity, TowerSlot.transform).transform.localPosition = Vector3.zero;
         DestroyButtons();
     }
 
     public void CreateSniperTower()
     {
-        Instantiate(sniperTowerPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("TowerSlot").transform).transform.localPosition = Vector3.zero;
+        Instantiate(sniperTowerPrefab, Vector3.zero, Quaternion.identity, TowerSlot.transform).transform.localPosition = Vector3.zero;
         DestroyButtons();
     }
 
