@@ -10,17 +10,16 @@ using System.Runtime.CompilerServices;
 public class Database_Control : MonoBehaviour {
 
     public Game_State GameState = new Game_State();
-    
     private Debug_Log d = new Debug_Log();
     private Local_Cache LC;
+    public Store_Interaction Store;
+    public Leaderboard_Interaction Leaderboard;
     private Database_Interaction DB = new Database_Interaction();
 
     #region Save State Variables
     private string DUI = "";
     [HideInInspector]
     public int Save_ID = 0;
-    private byte Map_ID = 0;
-    private string Map_Name = "";
     #endregion    
 
     #region Save Data
@@ -132,10 +131,11 @@ public class Database_Control : MonoBehaviour {
     private void DB_Load()
     {
         d.Log("LoadData().Load() DB Save Load Started.", true);
-        d.Log("Saving game state from database data set..",true);
         MySqlDataReader reader;
         //Load main save data from database
         reader = DB.queryDatabase("SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
+        if (reader == null)
+            return;
         if (reader.Read())
         {
             Save_ID = (int)reader["Save_ID"];
@@ -153,6 +153,8 @@ public class Database_Control : MonoBehaviour {
             "LEFT JOIN tbl_Map_Data " + 
                 "ON tbl_Level_Save_Data.Map_ID = tbl_Map_Data.Map_ID " + 
             "WHERE tbl_Level_Save_Data.Save_ID = " + Save_ID + ";");
+        if (reader == null)
+            return;
         if (reader.Read())
             GameState.Level_Data.Clear();
         while (reader.Read())
@@ -166,64 +168,13 @@ public class Database_Control : MonoBehaviour {
     }
     #endregion
 
-    #region Leaderboard
-    /// <summary>
-    /// Submit Score and get the updated Leaderboard.
-    /// </summary>
-    /// <param name="Score">Score the Player achieved. (float)</param>
-    /// <param name="Player_Name">Player's name. (string)</param>
-    public Dictionary<string, float> Leaderboard(float Score, string Player_Name)
-    {
-        MySqlDataReader reader = DB.queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
-        if (reader.Read())
-        {
-            reader = DB.queryDatabase("UPDATE tbl_Highscores SET Score = " + Score + " WHERE Player_Name = '" + Player_Name + "';");
-        }
-        else
-        {
-            reader = DB.queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Score) SELECT '" + Player_Name + "', " + Score + ";");
-        }
-        LoadData(false, true, false);
-        return (LC.Leaderboard);
-    }
-    /// <summary>
-    /// Updates and returns the Leaderboard from the local cache, this can be updated using LoadData and selecting true for the Leaderboard bool.
-    /// </summary>
-    /// <returns>The local Leaderboard cache.</returns>
-    public Dictionary<string, float> Leaderboard()
-    {
-        LoadData(false, true, false);
-        return (LC.Leaderboard);
-    }
-    #endregion
-
-    #region Store
-    /// <summary>
-    /// Pulls the Store again and returns the cost of the Item passed via parameter.
-    /// </summary>
-    /// <param name="Item_Name">Name of the item you want to know the price for.</param>
-    /// <returns>The price of the item (float).</returns>
-    public float Store(string Item_Name)
-    {
-        LoadData(false, false, true);
-        return LC.Store[Item_Name];
-    }
-    /// <summary>
-    /// Pulls the Store again and returns the Dictionary.
-    /// </summary>
-    /// <returns>Dictionary[string,float]</returns>
-    public Dictionary<string, float> Store()
-    {
-        LoadData(false, false, true);
-        return (LC.Store);
-    }
-    #endregion
-
     #region General Initialisation
     private void Awake()
     {
         //Initialising the local cache in awake due to constructor
         LC = new Local_Cache(GameState, Application.persistentDataPath + "/", DB);
+        Store = new Store_Interaction(LC);
+        Leaderboard = new Leaderboard_Interaction(LC);
         DUI = SystemInfo.deviceUniqueIdentifier;
         Debug.Log("Unique Client ID: " + DUI);
     }
@@ -243,7 +194,6 @@ public class Database_Interaction
     private MySqlConnection connection = null;
     private MySqlCommand command = null;
     private string connectionString = "Server = den1.mysql5.gear.host; port = 3306; Database = stddb; User = stdclient; Password = '8ch8J5PPRRCFKp6!';";
-    private float defaultRefreshTime = 5.0f; //Amount of seconds between database refreshes
     #endregion
 
     #region Query Database
@@ -626,5 +576,72 @@ public class Level_Info
         name = Name_;
         number = Number_;
         medals = Medals_;
+    }
+}
+
+public class Store_Interaction : Database_Interaction
+{
+    private Local_Cache LC;
+    public Store_Interaction(Local_Cache LC_)
+    {
+        LC = LC_;
+    }
+    /// <summary>
+    /// Pulls the Store again and returns the cost of the Item passed via parameter.
+    /// </summary>
+    /// <param name="Item_Name">Name of the item you want to know the price for.</param>
+    /// <returns>The price of the item (float).</returns>
+    public float Store(string Item_Name)
+    {
+        LoadData(false, false, true);
+        return LC.Store[Item_Name];
+    }
+    /// <summary>
+    /// Pulls the Store again and returns the Dictionary.
+    /// </summary>
+    /// <returns>Dictionary[string,float]</returns>
+    public Dictionary<string, float> Store()
+    {
+        LoadData(false, false, true);
+        return (LC.Store);
+    }
+}
+public class Leaderboard_Interaction : Database_Interaction
+{
+    private Local_Cache LC;
+    public Leaderboard_Interaction(Local_Cache LC_)
+    {
+        LC = LC_;
+    }
+
+    /// <summary>
+    /// Submit Score and get the updated Leaderboard.
+    /// </summary>
+    /// <param name="Score">Score the Player achieved. (float)</param>
+    /// <param name="Player_Name">Player's name. (string)</param>
+    public Dictionary<string, float> Leaderboard(float Score, string Player_Name)
+    {
+        MySqlDataReader reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
+        if (reader == null)
+            return (LC.Leaderboard);
+        if (reader.Read())
+        {
+            reader = queryDatabase("UPDATE tbl_Highscores SET Score = " + Score + " WHERE Player_Name = '" + Player_Name + "';");
+        }
+        else
+        {
+            reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Score) SELECT '" + Player_Name + "', " + Score + ";");
+        }
+        LoadData(false, true, false);
+        return (LC.Leaderboard);
+    }
+    /// <summary>
+    /// Updates and returns the Leaderboard from the local cache, this can be updated using LoadData and selecting true for the Leaderboard bool.
+    /// </summary>
+    /// <returns>The local Leaderboard cache.</returns>
+    public Dictionary<string, float> Leaderboard()
+    {
+        LoadData(false, true, false);
+        return (LC.Leaderboard);
     }
 }

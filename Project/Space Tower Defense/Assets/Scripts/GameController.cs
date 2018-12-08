@@ -34,8 +34,6 @@ public class GameController : MonoBehaviour
         Database_Controller.Print_Cache();
         Database_Controller.LoadData();
         Database_Controller.Print_Cache();
-        Database_Controller.GameState.
-
     }
 
     // Update is called once per frame
