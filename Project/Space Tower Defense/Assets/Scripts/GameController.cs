@@ -29,11 +29,8 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
-        Database_Controller.Print_Cache();
-        Database_Controller.SaveData();
-        Database_Controller.Print_Cache();
-        Database_Controller.LoadData();
-        Database_Controller.Print_Cache();
+        Database_Controller.store.Load();
+        Database_Controller.store.Save();
     }
 
     // Update is called once per frame
