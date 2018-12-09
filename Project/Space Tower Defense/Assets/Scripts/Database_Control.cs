@@ -10,11 +10,10 @@ using System.Runtime.CompilerServices;
 public class Database_Control : MonoBehaviour {
 
     public Game_State GameState = new Game_State();
+    public Leaderboard leaderboard = new Leaderboard();
+    public Store store = new Store();
+
     private Debug_Log d = new Debug_Log();
-    private Local_Cache LC;
-    public Store_Interaction Store;
-    public Leaderboard_Interaction Leaderboard;
-    private Database_Interaction DB = new Database_Interaction();
 
     #region Save State Variables
     private string DUI = "";
@@ -32,13 +31,13 @@ public class Database_Control : MonoBehaviour {
         {
             //Check for existing save data in database:
             MySqlDataReader reader;
-            Save_ID = DB.getDatabaseValue<int>("Save_ID", "SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
+            Save_ID = getDatabaseValue<int>("Save_ID", "SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + DUI + "';");
             bool? Level_Save_Check;
             bool? Map_Exists_Check;
             if (Save_ID > 0)
             {
                 d.Log("Database save data found, updating record.", false);
-                reader = DB.queryDatabase("UPDATE tbl_Save_Data " +
+                reader = queryDatabase("UPDATE tbl_Save_Data " +
                     "SET Medals_Earned = " + GameState.Total_Medals_Earned + ", " +
                         "Current_Medals = " + GameState.Current_Medals + ", " +
                         "Current_Gems = " + GameState.Current_Gems + ", " +
@@ -172,9 +171,6 @@ public class Database_Control : MonoBehaviour {
     private void Awake()
     {
         //Initialising the local cache in awake due to constructor
-        LC = new Local_Cache(GameState, Application.persistentDataPath + "/", DB);
-        Store = new Store_Interaction(LC);
-        Leaderboard = new Leaderboard_Interaction(LC);
         DUI = SystemInfo.deviceUniqueIdentifier;
         Debug.Log("Unique Client ID: " + DUI);
     }
@@ -190,6 +186,8 @@ public class Database_Control : MonoBehaviour {
 
 public class Database_Interaction
 {
+    public Debug_Log d = new Debug_Log();
+
     #region Database Variables
     private MySqlConnection connection = null;
     private MySqlCommand command = null;
@@ -297,34 +295,19 @@ public class Debug_Log
         return temp;
     }
 }
-[Serializable]
-public class Local_Cache
+public class Local_Cache : Database_Interaction
 {
-    private Game_State GS;
-    private Database_Interaction DB;
     private GameController gameController;
-    private Debug_Log d = new Debug_Log();
-    public Dictionary<string, float> Leaderboard = new Dictionary<string, float>();
-    public Dictionary<string, float> Store = new Dictionary<string, float>();
 
-    private string Path = "";
-    private readonly List<string> File_Names = new List<string>() { "Player_Save.dat", "Leaderboard_Save.dat", "Store_Save.dat" };
-
-    public enum Setting
-    {
-        Player_Save,
-        Leadboard_Save,
-        Store_Save
-    }
+    internal string Path = "";
+    internal string File_Name = "";
 
     /// <summary>
     /// Constructor.
     /// </summary>
-    public Local_Cache(Game_State GS_, string Path_, Database_Interaction DB_)
+    public Local_Cache()
     {
-        GS = GS_;
-        Path = Path_;
-        DB = DB_;
+        Path = Application.persistentDataPath + "/";
     }
     /// <summary>
     /// Loads: Player_Save.dat
@@ -444,71 +427,73 @@ public class Local_Cache
     /// </summary>
     /// <param name="setting">Local_Cache.Setting.</param>
     /// <param name="reader">The MySqlDataReader recieved from the database. [OPTIONAL]</param>
-    public void Save(Setting setting, MySqlDataReader reader = null)
+    public virtual void Save()
     {
-        if (setting == Setting.Player_Save)
-        {
-            FileStream file;
-            if (!File.Exists(Path + File_Names[(int)Setting.Player_Save]))
-                file = File.Create(Path + File_Names[(int)Setting.Player_Save]);
-            else
-                file = File.Open(Path + File_Names[(int)Setting.Player_Save], FileMode.Open);
+        #region Old Save Code
+        //if (setting == Setting.Player_Save)
+        //{
+        //    FileStream file;
+        //    if (!File.Exists(Path + File_Names[(int)Setting.Player_Save]))
+        //        file = File.Create(Path + File_Names[(int)Setting.Player_Save]);
+        //    else
+        //        file = File.Open(Path + File_Names[(int)Setting.Player_Save], FileMode.Open);
 
-            try
-            {
-                d.Log("Creating save file with the following data:", false);
-                BinaryFormatter bf = new BinaryFormatter();
-                BinaryWriter bw = new BinaryWriter(file);
-                bw.Write(GS.Total_Medals_Earned);
-                bw.Write(GS.Current_Medals);
-                bw.Write(GS.Current_Gems);
-                bw.Write(GS.Total_Gems_Earned);
-                bw.Write(DateTime.Now.ToString());
-                d.Log("Total_Medals_Earned: " + GS.Total_Gems_Earned + ", Current_Medals: " + GS.Current_Medals + ", Current_Gems: " + GS.Current_Gems + ", Total_Gems_Earned: " + GS.Total_Gems_Earned + ", Modified: " + DateTime.Now.ToString(), true);
-                foreach (Level_Info level in GS.Level_Data)
-                {
-                    bf.Serialize(file, level);
-                    d.Log("   > Level #" + level.Number + ": " + level.Name + " (" + level.Medals + " Medals Earned)", true);
-                }
-            }
-            catch (SerializationException e)
-            {
-                d.Log(e.Message, true);
-            }
-            finally
-            {
-                file.Close();
-            }
-        }
-        else
-        {
-            while (reader.Read())
-            {
-                switch (setting)
-                {
+        //    try
+        //    {
+        //        d.Log("Creating save file with the following data:", false);
+        //        BinaryFormatter bf = new BinaryFormatter();
+        //        BinaryWriter bw = new BinaryWriter(file);
+        //        bw.Write(GS.Total_Medals_Earned);
+        //        bw.Write(GS.Current_Medals);
+        //        bw.Write(GS.Current_Gems);
+        //        bw.Write(GS.Total_Gems_Earned);
+        //        bw.Write(DateTime.Now.ToString());
+        //        d.Log("Total_Medals_Earned: " + GS.Total_Gems_Earned + ", Current_Medals: " + GS.Current_Medals + ", Current_Gems: " + GS.Current_Gems + ", Total_Gems_Earned: " + GS.Total_Gems_Earned + ", Modified: " + DateTime.Now.ToString(), true);
+        //        foreach (Level_Info level in GS.Level_Data)
+        //        {
+        //            bf.Serialize(file, level);
+        //            d.Log("   > Level #" + level.Number + ": " + level.Name + " (" + level.Medals + " Medals Earned)", true);
+        //        }
+        //    }
+        //    catch (SerializationException e)
+        //    {
+        //        d.Log(e.Message, true);
+        //    }
+        //    finally
+        //    {
+        //        file.Close();
+        //    }
+        //}
+        //else
+        //{
+        //    while (reader.Read())
+        //    {
+        //        switch (setting)
+        //        {
 
-                    case Setting.Leadboard_Save:
-                        {
-                            d.Log("Saving leaderboard data..", false);
-                            Leaderboard.Clear();
-                            Leaderboard.Add(reader["Player_Name"].ToString(), (float)reader["Score"]);
-                            break;
-                        }
-                    case Setting.Store_Save:
-                        {
-                            d.Log("Saving store data..", false);
-                            Store.Clear();
-                            Store.Add(reader["Item_Name"].ToString(), (float)reader["Item_Price"]);
-                            break;
-                        }
-                    default:
-                        {
-                            d.Log("Incorrect setting passed through.", true);
-                            break;
-                        }
-                }
-            }
-        }
+        //            case Setting.Leadboard_Save:
+        //                {
+        //                    d.Log("Saving leaderboard data..", false);
+        //                    Leaderboard.Clear();
+        //                    Leaderboard.Add(reader["Player_Name"].ToString(), (float)reader["Score"]);
+        //                    break;
+        //                }
+        //            case Setting.Store_Save:
+        //                {
+        //                    d.Log("Saving store data..", false);
+        //                    Store.Clear();
+        //                    Store.Add(reader["Item_Name"].ToString(), (float)reader["Item_Price"]);
+        //                    break;
+        //                }
+        //            default:
+        //                {
+        //                    d.Log("Incorrect setting passed through.", true);
+        //                    break;
+        //                }
+        //        }
+        //    }
+        //}
+#endregion
     }
     public string Cache()
     {
@@ -523,9 +508,126 @@ public class Local_Cache
         return temp;
     }
 }
-[Serializable]
-public class Game_State
+
+public class Store : Local_Cache
 {
+    public Dictionary<string, float> dict_Store = new Dictionary<string, float>();
+    /// <summary>
+    /// Pulls the Store again and returns the cost of the Item passed via parameter.
+    /// </summary>
+    /// <param name="Item_Name">Name of the item you want to know the price for.</param>
+    /// <returns>The price of the item (float).</returns>
+    public float Store(string Item_Name)
+    {
+        LoadData(false, false, true);
+        return dict_Store[Item_Name];
+    }
+    /// <summary>
+    /// Pulls the Store again and returns the Dictionary.
+    /// </summary>
+    /// <returns>Dictionary[string,float]</returns>
+    public Dictionary<string, float> Store()
+    {
+        LoadData(false, false, true);
+        return (dict_Store);
+    }
+}
+public class Leaderboard : Local_Cache
+{
+    public Dictionary<string, float> dict_Leaderboard = new Dictionary<string, float>();
+
+    public Leaderboard()
+    {
+        File_Name = "Leaderboard_Save.dat";
+    }
+
+    public override void Save()
+    {
+        MySqlDataReader reader = queryDatabase("SELECT * FROM tbl_Highscores;");
+        while (reader.Read())
+        {
+            d.Log("Saving leaderboard data..", false);
+            dict_Leaderboard.Clear();
+            dict_Leaderboard.Add(reader["Player_Name"].ToString(), (float)reader["Score"]);
+            break;
+        }
+    }
+
+    /// <summary>
+    /// Submit Score and get the updated Leaderboard.
+    /// </summary>
+    /// <param name="Score">Score the Player achieved. (float)</param>
+    /// <param name="Player_Name">Player's name. (string)</param>
+    public Dictionary<string, float> leaderboard(float Score, string Player_Name)
+    {
+        MySqlDataReader reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
+        if (reader == null)
+            return (dict_Leaderboard);
+        if (reader.Read())
+        {
+            reader = queryDatabase("UPDATE tbl_Highscores SET Score = " + Score + " WHERE Player_Name = '" + Player_Name + "';");
+        }
+        else
+        {
+            reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Score) SELECT '" + Player_Name + "', " + Score + ";");
+        }
+        LoadData(false, true, false);
+        return (dict_Leaderboard);
+    }
+    /// <summary>
+    /// Updates and returns the Leaderboard from the local cache, this can be updated using LoadData and selecting true for the Leaderboard bool.
+    /// </summary>
+    /// <returns>The local Leaderboard cache.</returns>
+    public Dictionary<string, float> leaderboard()
+    {
+        LoadData(false, true, false);
+        return (dict_Leaderboard);
+    }
+}
+[Serializable]
+public class Game_State : Local_Cache
+{
+    public Game_State()
+    {
+        File_Name = "Game_Save.dat";
+    }
+
+    public override void Save()
+    {
+        FileStream file;
+        if (!File.Exists(Path + File_Name))
+            file = File.Create(Path + File_Name);
+        else
+            file = File.Open(Path + File_Name, FileMode.Open);
+
+        try
+        {
+            d.Log("Creating save file with the following data:", false);
+            BinaryFormatter bf = new BinaryFormatter();
+            BinaryWriter bw = new BinaryWriter(file);
+            bw.Write(Total_Medals_Earned);
+            bw.Write(Current_Medals);
+            bw.Write(Current_Gems);
+            bw.Write(Total_Gems_Earned);
+            bw.Write(DateTime.Now.ToString());
+            d.Log("Total_Medals_Earned: " + Total_Gems_Earned + ", Current_Medals: " + Current_Medals + ", Current_Gems: " + Current_Gems + ", Total_Gems_Earned: " + 
+                Total_Gems_Earned + ", Modified: " + DateTime.Now.ToString(), true);
+            foreach (Level_Info level in Level_Data)
+            {
+                bf.Serialize(file, level);
+                d.Log("   > Level #" + level.Number + ": " + level.Name + " (" + level.Medals + " Medals Earned)", true);
+            }
+        }
+        catch (SerializationException e)
+        {
+            d.Log(e.Message, true);
+        }
+        finally
+        {
+            file.Close();
+        }
+    }
+
     // This is the time of the last game state update.
     private DateTime modified = new DateTime();
     public DateTime Modified { get { return this.modified; } }
@@ -576,72 +678,5 @@ public class Level_Info
         name = Name_;
         number = Number_;
         medals = Medals_;
-    }
-}
-
-public class Store_Interaction : Database_Interaction
-{
-    private Local_Cache LC;
-    public Store_Interaction(Local_Cache LC_)
-    {
-        LC = LC_;
-    }
-    /// <summary>
-    /// Pulls the Store again and returns the cost of the Item passed via parameter.
-    /// </summary>
-    /// <param name="Item_Name">Name of the item you want to know the price for.</param>
-    /// <returns>The price of the item (float).</returns>
-    public float Store(string Item_Name)
-    {
-        LoadData(false, false, true);
-        return LC.Store[Item_Name];
-    }
-    /// <summary>
-    /// Pulls the Store again and returns the Dictionary.
-    /// </summary>
-    /// <returns>Dictionary[string,float]</returns>
-    public Dictionary<string, float> Store()
-    {
-        LoadData(false, false, true);
-        return (LC.Store);
-    }
-}
-public class Leaderboard_Interaction : Database_Interaction
-{
-    private Local_Cache LC;
-    public Leaderboard_Interaction(Local_Cache LC_)
-    {
-        LC = LC_;
-    }
-
-    /// <summary>
-    /// Submit Score and get the updated Leaderboard.
-    /// </summary>
-    /// <param name="Score">Score the Player achieved. (float)</param>
-    /// <param name="Player_Name">Player's name. (string)</param>
-    public Dictionary<string, float> Leaderboard(float Score, string Player_Name)
-    {
-        MySqlDataReader reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Player_Name = '" + Player_Name + "';");
-        if (reader == null)
-            return (LC.Leaderboard);
-        if (reader.Read())
-        {
-            reader = queryDatabase("UPDATE tbl_Highscores SET Score = " + Score + " WHERE Player_Name = '" + Player_Name + "';");
-        }
-        else
-        {
-            reader = queryDatabase("INSERT INTO tbl_Highscores (Player_Name, Score) SELECT '" + Player_Name + "', " + Score + ";");
-        }
-        LoadData(false, true, false);
-        return (LC.Leaderboard);
-    }
-    /// <summary>
-    /// Updates and returns the Leaderboard from the local cache, this can be updated using LoadData and selecting true for the Leaderboard bool.
-    /// </summary>
-    /// <returns>The local Leaderboard cache.</returns>
-    public Dictionary<string, float> Leaderboard()
-    {
-        LoadData(false, true, false);
-        return (LC.Leaderboard);
     }
 }
