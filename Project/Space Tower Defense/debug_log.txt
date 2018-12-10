@@ -1,1 +1,615 @@
 23 November 2018: The input stream is not a valid binary format. The starting contents (in bytes) are: 02-02-02-00-00-00-06-03-00-00-00-06-53-6E-69-70-65 ...
+10/12/2018 18:55:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 18:55:53 // Caller: Open_Binary_File, Line Number: 514: Binary File doesn't exist, creating: Game_State_Save.dat
+10/12/2018 18:55:53 // Caller: Open_Binary_File, Line Number: 523: Binary File already open: Game_State_Save.dat
+10/12/2018 18:55:53 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Game_State_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 18:55:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 18:55:53 // Caller: Open_Binary_File, Line Number: 514: Binary File doesn't exist, creating: Leaderboard_Save.dat
+10/12/2018 18:55:54 // Caller: Open_Binary_File, Line Number: 523: Binary File already open: Leaderboard_Save.dat
+10/12/2018 18:55:54 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Leaderboard_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 18:55:54 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 18:55:54 // Caller: Open_Binary_File, Line Number: 514: Binary File doesn't exist, creating: Store_Save.dat
+10/12/2018 18:55:54 // Caller: Open_Binary_File, Line Number: 523: Binary File already open: Store_Save.dat
+10/12/2018 18:55:54 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Store_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 18:57:59 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 18:57:59 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 18:57:59 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 18:57:59 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Game_State_Save.dat
+10/12/2018 18:57:59 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Store_Save.dat
+10/12/2018 18:57:59 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Store_Save.dat
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Game_State_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Leaderboard_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 18:58:00 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Store_Save.dat
+10/12/2018 18:58:01 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Store_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:01:52 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:01:52 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:01:52 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:01:52 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:01:52 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:01:52 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Store_Save.dat
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Game_State_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Leaderboard_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:01:53 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:01:54 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Store_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Game_State_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Game_State_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Leaderboard_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Leaderboard_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Store_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Store_Save.dat
+10/12/2018 19:01:58 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:01:58 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:01:58 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:01:58 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:01:58 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:01:58 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Store_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 514: Binary File doesn't exist, creating: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 523: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:01:58 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:02:01 // Caller: Load, Line Number: 602: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:02:01 // Caller: Load, Line Number: 622: Loading from local cache failed: Unable to read beyond the end of the stream. Attempting to load from database instead.
+10/12/2018 19:02:02 // Caller: Load, Line Number: 636: Loading from database successful.
+10/12/2018 19:02:02 // Caller: Load, Line Number: 643: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:02:02 // Caller: Save, Line Number: 573: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:02:02 // Caller: Save, Line Number: 586: Save Store contents to binary file successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:02:46 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:02:46 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:02:46 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Game_State_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:02:46 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:02:46 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:02:47 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Leaderboard_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:02:47 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:02:47 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:02:47 // Caller: Open_Binary_File, Line Number: 531: Binary File open failed: Store_Save.dat > Unable to read beyond the end of the stream.
+10/12/2018 19:02:47 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:02:47 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:02:47 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:02:47 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:08:36 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:08:36 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Store_Save.dat
+10/12/2018 19:08:36 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:08:36 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:08:36 // Caller: Close_Binary_File, Line Number: 538: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:08:36 // Caller: Close_Binary_File, Line Number: 542: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:08:37 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:08:37 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:08:37 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:08:37 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:08:37 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:08:37 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:08:51 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:08:51 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Store_Save.dat
+10/12/2018 19:08:51 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:08:51 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:08:51 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:08:51 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:08:52 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:08:53 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:08:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:08:53 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:08:53 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:08:53 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:08:56 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:08:56 // Caller: Open_Binary_File, Line Number: 534: Binary File open failed: Game_State_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Game_State_Save.dat
+10/12/2018 19:08:56 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:08:56 // Caller: Open_Binary_File, Line Number: 534: Binary File open failed: Leaderboard_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Leaderboard_Save.dat
+10/12/2018 19:08:56 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:08:56 // Caller: Open_Binary_File, Line Number: 534: Binary File open failed: Store_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Store_Save.dat
+10/12/2018 19:08:57 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:08:57 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:08:57 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:08:57 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Store_Save.dat
+10/12/2018 19:08:57 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:08:57 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:08:57 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:08:57 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:08:57 // Caller: Open_Binary_File, Line Number: 534: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:08:59 // Caller: Load, Line Number: 605: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:08:59 // Caller: Load, Line Number: 625: Loading from local cache failed: String was not recognized as a valid DateTime. Attempting to load from database instead.
+10/12/2018 19:09:01 // Caller: Load, Line Number: 639: Loading from database successful.
+10/12/2018 19:09:01 // Caller: Load, Line Number: 646: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:09:01 // Caller: Save, Line Number: 576: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:09:01 // Caller: Save, Line Number: 589: Save Store contents to binary file successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:09:33 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:09:33 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:09:33 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:09:33 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:09:33 // Caller: Open_Binary_File, Line Number: 510: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:09:33 // Caller: Open_Binary_File, Line Number: 519: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:09:33 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:09:33 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:09:33 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:09:33 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:18:42 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:18:42 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Store_Save.dat
+10/12/2018 19:18:42 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:18:42 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:18:42 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:18:42 // Caller: Close_Binary_File, Line Number: 545: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:18:43 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:18:43 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:18:43 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:18:43 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:18:43 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:18:43 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:19:01 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:19:01 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:19:01 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:19:01 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Store_Save.dat
+10/12/2018 19:19:01 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:19:01 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:19:02 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:19:02 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:19:02 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:19:02 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:19:02 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:19:02 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: Game_State_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Game_State_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: Leaderboard_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Leaderboard_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: Store_Save.dat > Sharing violation on path C:\Users\James Coyle\Documents\GitHub\Mobile-Applications\Project\Space Tower Defense\Store_Save.dat
+10/12/2018 19:19:06 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:19:06 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:19:06 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:19:06 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:19:06 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:19:06 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Store_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:06 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:19:09 // Caller: Load, Line Number: 605: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:19:09 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:19:09 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Load, Line Number: 648: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Save, Line Number: 574: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:09 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:19:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Game_State_Save.dat
+10/12/2018 19:19:20 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Game_State_Save.dat
+10/12/2018 19:19:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Leaderboard_Save.dat
+10/12/2018 19:19:20 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Leaderboard_Save.dat
+10/12/2018 19:19:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: Store_Save.dat
+10/12/2018 19:19:20 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: Store_Save.dat
+10/12/2018 19:19:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:19:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:19:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:19:20 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:03 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:20:03 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Leaderboard_Save.dat
+10/12/2018 19:20:03 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:20:03 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Store_Save.dat
+10/12/2018 19:20:03 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:20:03 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: Game_State_Save.dat
+10/12/2018 19:20:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:20:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:20:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:20:17 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:20:17 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:20:17 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:20:17 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:17 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:17 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:20:20 // Caller: Load, Line Number: 604: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:20:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:20:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Load, Line Number: 647: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Save, Line Number: 573: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:20 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:20:59 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:20:59 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:59 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:20:59 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:23:55 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:23:55 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:23:55 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:24:04 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:24:04 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:24:04 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:24:09 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:24:09 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:24:09 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:24:09 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:09 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:10 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:24:11 // Caller: Load, Line Number: 608: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:24:11 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:11 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:11 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:24:11 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:11 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:11 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:11 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:12 // Caller: Load, Line Number: 655: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:12 // Caller: Save, Line Number: 573: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:12 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:12 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:12 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:24:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:12 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:42 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:42 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:24:42 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:24:42 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:28:04 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:28:04 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:28:04 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:28:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:28:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:28:12 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:28:17 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:28:17 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:28:17 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:28:17 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:17 // Caller: Open_Binary_File, Line Number: 517: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:17 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:28:20 // Caller: Load, Line Number: 610: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:28:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:28:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Load, Line Number: 657: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Save, Line Number: 573: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Open_Binary_File, Line Number: 508: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Open_Binary_File, Line Number: 521: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Open_Binary_File, Line Number: 532: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:28:20 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:20 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:34 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:28:34 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:34 // Caller: Close_Binary_File, Line Number: 543: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:28:34 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:42:02 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:42:02 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:42:02 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:42:16 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:42:16 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:42:16 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:42:21 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:42:21 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:42:21 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:42:21 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:21 // Caller: Open_Binary_File, Line Number: 518: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:21 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:42:24 // Caller: Load, Line Number: 613: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:42:24 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Open_Binary_File, Line Number: 522: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:42:24 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Load, Line Number: 660: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Save, Line Number: 574: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Open_Binary_File, Line Number: 522: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:42:24 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:24 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:39 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:42:39 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:39 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:42:39 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:47:40 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:47:40 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:47:40 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:48:05 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:48:05 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:48:05 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:48:14 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:48:14 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:48:14 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:48:14 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:48:14 // Caller: Open_Binary_File, Line Number: 518: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:48:14 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:51:29 // Caller: Load, Line Number: 613: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:51:29 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Open_Binary_File, Line Number: 522: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:51:29 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Load, Line Number: 660: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Save, Line Number: 574: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Open_Binary_File, Line Number: 522: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:51:29 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:29 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:32 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:32 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:32 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 19:51:32 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:51:34 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:51:34 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:51:34 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:51:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 19:51:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 19:51:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 19:51:43 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:43 // Caller: Open_Binary_File, Line Number: 518: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:51:43 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:54:54 // Caller: Load, Line Number: 613: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 19:54:54 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Open_Binary_File, Line Number: 522: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 19:54:54 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Load, Line Number: 660: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Save, Line Number: 574: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Open_Binary_File, Line Number: 509: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Open_Binary_File, Line Number: 522: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Open_Binary_File, Line Number: 533: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 19:54:54 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:54 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 19:54:58 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 19:54:58 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 20:31:43 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:31:43 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:31:43 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:31:43 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:31:43 // Caller: Close_Binary_File, Line Number: 544: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:14 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:32:14 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:32:14 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:32:20 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:32:20 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:32:20 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:32:20 // Caller: Open_Binary_File, Line Number: 512: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:20 // Caller: Open_Binary_File, Line Number: 521: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:20 // Caller: Open_Binary_File, Line Number: 536: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:32:23 // Caller: Load, Line Number: 616: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 20:32:23 // Caller: Open_Binary_File, Line Number: 512: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Open_Binary_File, Line Number: 525: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Open_Binary_File, Line Number: 536: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:32:23 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Close_Binary_File, Line Number: 547: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Close_Binary_File, Line Number: 547: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Load, Line Number: 663: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Save, Line Number: 577: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Open_Binary_File, Line Number: 512: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Open_Binary_File, Line Number: 525: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Open_Binary_File, Line Number: 536: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 20:32:23 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:23 // Caller: Close_Binary_File, Line Number: 547: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:40 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 20:32:40 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:40 // Caller: Close_Binary_File, Line Number: 547: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:32:40 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 20:33:35 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:33:35 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:33:35 // Caller: Close_Binary_File, Line Number: 543: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:33:50 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:33:50 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:33:50 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:33:55 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:33:55 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:33:55 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:33:55 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:55 // Caller: Open_Binary_File, Line Number: 520: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:55 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:33:59 // Caller: Load, Line Number: 616: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 20:33:59 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Open_Binary_File, Line Number: 524: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:33:59 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Load, Line Number: 663: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Save, Line Number: 576: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Open_Binary_File, Line Number: 524: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 20:33:59 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:33:59 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:34:16 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 20:34:16 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:34:16 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:34:16 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 20:37:03 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:37:03 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:37:04 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:37:12 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:37:12 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:37:12 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:37:17 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:37:17 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:37:17 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:37:17 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:17 // Caller: Open_Binary_File, Line Number: 520: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:17 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:37:21 // Caller: Load, Line Number: 616: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 01/01/0001 00:00:00 | Attempting to restore Store from local cache.
+10/12/2018 20:37:21 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Open_Binary_File, Line Number: 524: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:37:21 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Load, Line Number: 663: Loading from local cache successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Save, Line Number: 576: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Open_Binary_File, Line Number: 524: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 20:37:21 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:21 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:34 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 20:37:34 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:34 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:37:34 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 20:39:08 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:39:08 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:39:08 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:39:20 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:39:20 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:39:20 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:39:25 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:39:25 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:39:25 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:39:25 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:25 // Caller: Open_Binary_File, Line Number: 520: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:25 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:39:28 // Caller: Load, Line Number: 616: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 09/12/2018 19:43:00 | Attempting to restore Store from database.
+10/12/2018 20:39:30 // Caller: Save, Line Number: 576: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Open_Binary_File, Line Number: 524: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:39:30 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Save, Line Number: 591: Save Store contents to binary file successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Load, Line Number: 709: Loading from database successful.
+10/12/2018 20:39:30 // Caller: Save, Line Number: 576: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Open_Binary_File, Line Number: 511: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Open_Binary_File, Line Number: 524: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Open_Binary_File, Line Number: 535: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 20:39:30 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:30 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:48 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 20:39:48 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:48 // Caller: Close_Binary_File, Line Number: 546: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:39:48 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 20:42:29 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:42:29 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:42:29 // Caller: Close_Binary_File, Line Number: 542: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:43:15 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:43:15 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:43:15 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:43:20 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:43:20 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:43:20 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:43:22 // Caller: Load, Line Number: 602: Loading Store : Local Cache > 01/01/0001 00:00:00, Database > 09/12/2018 19:43:00 | Attempting to restore Store from database.
+10/12/2018 20:43:24 // Caller: Save, Line Number: 570: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Open_Binary_File, Line Number: 505: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Open_Binary_File, Line Number: 514: Binary File opened successfully: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Open_Binary_File, Line Number: 529: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > String was not recognized as a valid DateTime.
+10/12/2018 20:43:24 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Close_Binary_File, Line Number: 540: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Save, Line Number: 584: Save Store contents to binary file successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Close_Binary_File, Line Number: 540: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Load, Line Number: 695: Loading from database successful.
+10/12/2018 20:43:24 // Caller: Save, Line Number: 570: Attempting to save Store contents to binary file: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Open_Binary_File, Line Number: 505: Attempting to open Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Open_Binary_File, Line Number: 518: Binary File already open: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Open_Binary_File, Line Number: 529: Binary File open failed: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat > Stream was not readable.
+10/12/2018 20:43:24 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:24 // Caller: Close_Binary_File, Line Number: 540: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:31 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:31 // Caller: Close_Binary_File, Line Number: 540: Binary file close successful: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Store_Save.dat
+10/12/2018 20:43:31 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Leaderboard_Save.dat
+10/12/2018 20:43:31 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: C:/Users/James Coyle/AppData/LocalLow/A4/Space Tower Defense/Game_State_Save.dat
+10/12/2018 20:47:14 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:47:14 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:47:14 // Caller: Close_Binary_File, Line Number: 536: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:47:23 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:47:23 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:47:23 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:47:28 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+10/12/2018 20:47:28 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:47:28 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:58:59 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+10/12/2018 20:58:59 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+10/12/2018 20:58:59 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+|10/12/2018 21:02:24 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+|10/12/2018 21:02:24 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+|10/12/2018 21:02:24 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+|10/12/2018 21:02:29 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+|10/12/2018 21:02:29 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+|10/12/2018 21:02:29 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+|10/12/2018 21:03:28 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+|10/12/2018 21:03:28 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+|10/12/2018 21:03:28 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:03:41 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:03:41 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:03:41 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:03:45 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:03:45 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:03:45 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:13:42 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:13:42 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:13:42 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:14:06 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:14:06 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:14:06 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:14:11 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:14:11 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:14:11 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:19:15 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:19:15 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:19:15 // Caller: Close_Binary_File, Line Number: 539: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:19:29 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:19:29 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:19:29 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:19:33 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:19:33 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:19:33 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:24:28 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:24:28 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:24:28 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:24:37 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:24:37 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:24:38 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:24:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:24:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:24:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:34:31 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:34:31 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:34:31 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:34:36 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:34:36 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:34:36 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:38:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:38:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:38:42 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:38:47 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:38:47 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:38:47 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:39:46 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:39:46 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:39:46 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:39:51 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:39:51 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:39:51 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:42:01 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:42:01 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:42:01 // Caller: Close_Binary_File, Line Number: 540: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:42:13 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:42:13 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:42:13 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:42:17 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:42:17 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:42:17 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Game_State_Save.dat
+ 10/12/2018 21:44:26 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Store_Save.dat
+ 10/12/2018 21:44:26 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Leaderboard_Save.dat
+ 10/12/2018 21:44:26 // Caller: Close_Binary_File, Line Number: 541: Attempting to close Binary File: Game_State_Save.dat

@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System;
 using System.Runtime.CompilerServices;
+using System.Globalization;
 
 public class Database_Control : MonoBehaviour {
 
@@ -168,20 +169,24 @@ public class Database_Control : MonoBehaviour {
     #endregion
 
     #region General Initialisation
-    private void Awake()
+    void Awake()
     {
         //Initialising the local cache in awake due to constructor
         DUI = SystemInfo.deviceUniqueIdentifier;
         Debug.Log("Unique Client ID: " + DUI);
-        store.Save();
-        Path = Application.persistentDataPath + "/";
+        d.Path = Application.persistentDataPath + "/";
+        store.Path = Application.persistentDataPath + "/";
+        store.d = d;
+        leaderboard.Path = Application.persistentDataPath + "/";
+        leaderboard.d = d;
+        GameState.Path = Application.persistentDataPath + "/";
+        GameState.d = d;
     }
     #endregion
 }
 
 public class Database_Interaction
 {
-    public Debug_Log d = new Debug_Log();
 
     #region Database Variables
     private MySqlConnection connection = null;
@@ -246,14 +251,16 @@ public class Database_Interaction
             command = new MySqlCommand(query, connection);
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.Read())
+            {
                 return (T)reader[value];
+            }
             else
                 return default(T);
         }
         catch (MySqlException SQLex)
         {
             Debug.Log("Database get failed (SQL Exception), query: " + query);
-            Debug.Log("Exception Message: " + SQLex.Message);
+            Debug.Log("Exception Message: " + SQLex.Message);   
             return default(T);
         }
         catch (System.Exception ex)
@@ -269,21 +276,23 @@ public class Database_Interaction
 public class Debug_Log
 {
     static bool Allow_Logs = true;//Change this to false if you no longer want anything to be logged at all
+    private bool Override = true;//Change this to true if you want to print all logs to the debug_log text file
+    internal string Path = "";
 
-    public void Log(string output, bool toConsole, [CallerLineNumber] int LineNumber = 0, [CallerMemberName] string Caller = null)
+    public void Log(bool success, string output, bool toConsole, [CallerLineNumber] int LineNumber = 0, [CallerMemberName] string Caller = null)
     {
         if (!Allow_Logs) return;
-        if (toConsole) Debug.Log(output);
-        using (StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/debug_log.txt", true))
+        if (toConsole || Override) Debug.Log(output);
+        using (StreamWriter writer = new StreamWriter(Path + "debug_log.txt", true))
         {
-            writer.WriteLine(DateTime.Now + " // Caller: " + Caller + ", Line Number: " + LineNumber + ": " + output);
+            writer.WriteLine(((success) ? " " : "!") + DateTime.Now + " // Caller: " + Caller + ", Line Number: " + LineNumber + ": " + output);
         }
     }
     public List<string> Retrieve()
     {
         if (!Allow_Logs) return null;
         List<string> temp = new List<string>();
-        using (StreamReader reader = new StreamReader(Application.persistentDataPath + "/debug_log.txt"))
+        using (StreamReader reader = new StreamReader(Path + "debug_log.txt"))
         {
             temp.Add(reader.ReadLine());
         }
@@ -292,7 +301,7 @@ public class Debug_Log
 }
 public class Local_Cache : Database_Interaction
 {
-    private GameController gameController;
+    internal Debug_Log d = new Debug_Log();
 
     internal string Path = "";
     internal string File_Name = "";
@@ -304,9 +313,6 @@ public class Local_Cache : Database_Interaction
 
     public virtual void Save()
     {
-        // Open binary file if necessary.
-        if (file == null)
-            Open_Binary_File();
         // Save data to binary file.
         // ( Overidden by derived class )
         #region Old Save Code
@@ -380,9 +386,6 @@ public class Local_Cache : Database_Interaction
     /// </summary>
     public virtual void Load()
     {
-        // Open binary file if necessary
-        if (file == null)
-            Open_Binary_File();
         // Load from either the database or binary file (whichever is the most up to date).
         // ( Overidden by derived class )
         #region Old Load Code
@@ -503,44 +506,48 @@ public class Local_Cache : Database_Interaction
     {
         try
         {
-            d.Log("Attempting to open Binary File: " + Path + File_Name, false);
+            d.Log(true, "Attempting to open Binary File: " + Path + File_Name, false);
             if (!File.Exists(Path + File_Name))
             {
-                file = File.Create(Path + File_Name);
-                d.Log("Binary File doesn't exist, creating: " + Path + File_Name, false);
+                File.Create(Path + File_Name);
+                d.Log(true, "Binary File doesn't exist, creating: " + Path + File_Name, false);
             }
             if (file == null)
             {
-                file = File.Open(Path + File_Name, FileMode.Open);
-                d.Log("Binary File opened successfully: " + Path + File_Name, false);
+                file = new FileStream(Path + File_Name, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+                d.Log(true, "Binary File opened successfully: " + Path + File_Name, false);
             }
             else
             {
-                d.Log("Binary File already open: " + Path + File_Name, false);
+                d.Log(false,"Binary File already open: " + Path + File_Name, false);
+                return;
             }
             BinaryReader br = new BinaryReader(file);
-            Modified = Convert.ToDateTime(br.ReadString());
+            while (br.BaseStream.Position != br.BaseStream.Length)
+            {
+                DateTime.TryParseExact(br.ReadString(),"yyyy-MM-dd hh:mm:ss",CultureInfo.InvariantCulture, DateTimeStyles.None, out Modified);
+            }
             br = null;
         }
         catch (Exception e)
         {
-            d.Log("Binary File open failed: " + Path + File_Name + " > " + e.Message, true);
+            d.Log(false,"Binary File open failed: " + Path + File_Name + " > " + e.Message, true);
         }
     }
     internal void Close_Binary_File()
     {
         try
         {
-            d.Log("Attempting to close Binary File: " + Path + File_Name, false);
+            d.Log(true, "Attempting to close Binary File: " + Path + File_Name, false);
             if (file != null)
             {
                 file.Close();
-                d.Log("Binary file close successful: " + Path + File_Name, false);
+                d.Log(true, "Binary file close successful: " + Path + File_Name, false);
             }
         }
         catch (Exception e)
         {
-            d.Log("Binary File close failed: " + Path + File_Name + " > " + e.Message, true);
+            d.Log(false, "Binary File close failed: " + Path + File_Name + " > " + e.Message, true);
         }
     }
 }
@@ -550,7 +557,6 @@ public class Store : Local_Cache
     public Store()
     {
         File_Name = "Store_Save.dat";
-        Open_Binary_File();
     }
     ~Store()
     {
@@ -566,11 +572,11 @@ public class Store : Local_Cache
     /// </summary>
     public override void Save()
     {
-        d.Log("Attempting to save Store contents to binary file: " + Path + File_Name, false);
-        base.Save();
+        d.Log(true, "Attempting to save Store contents to binary file: " + Path + File_Name, false);
         // Save Store to binary file
         try
         {
+            Open_Binary_File();
             BinaryWriter bw = new BinaryWriter(file);
             bw.Write(Modified.ToString());
             bw.Write(d_Store.Count);
@@ -579,11 +585,16 @@ public class Store : Local_Cache
                 bw.Write(pair.Key);
                 bw.Write(pair.Value);
             }
-            d.Log("Save Store contents to binary file successful: " + Path + File_Name, false);
+            Close_Binary_File();
+            d.Log(true, "Save Store contents to binary file successful: " + Path + File_Name, false);
         }
         catch (SerializationException sEx)
         {
-            d.Log("Save Store contents to binary file failed: " + Path + File_Name + " > " + sEx.Message, true);
+            d.Log(false, "Save Store contents to binary file failed: " + Path + File_Name + " > " + sEx.Message, true);
+        }
+        finally
+        {
+            Close_Binary_File();
         }
     }
     /// <summary>
@@ -592,16 +603,15 @@ public class Store : Local_Cache
     public override void Load()
     {
         int Record_Count = 0;
-        base.Load();
-        // Load Store from database if more up to date than local cache
-        DateTime DB_Date = Convert.ToDateTime(getDatabaseValue<string>("Store_Updated","SELECT Store_Updated FROM tbl_Last_Updated;"));
-        d.Log("Loading Store : Local Cache > " + Modified + ", Database > " + DB_Date + ((Modified >= DB_Date) ? 
+        DateTime DB_Date = getDatabaseValue<DateTime>("Store_Updated", "SELECT Store_Updated FROM tbl_Last_Updated;");
+        d.Log(true, "Loading Store : Local Cache > " + Modified + ", Database > " + DB_Date + ((Modified >= DB_Date) ? 
             " | Attempting to restore Store from local cache." : " | Attempting to restore Store from database."), false);
         if (Modified >= DB_Date)
         {
             #region Use local cache data
             try
             {
+                Open_Binary_File();
                 BinaryReader br = new BinaryReader(file);
                 Modified = Convert.ToDateTime(br.ReadString());
                 Record_Count = br.ReadInt32();
@@ -612,16 +622,17 @@ public class Store : Local_Cache
                     d_Store.Add(br.ReadString(), br.ReadSingle());
                 }
                 br = null;
+                Close_Binary_File();
             }
             catch (Exception e)
             {
-                d.Log("Loading from local cache failed: " + e.Message + " Attempting to load from database instead.", true);
+                d.Log(false, "Loading from local cache failed: " + e.Message + " Attempting to load from database instead.", true);
                 try
                 {
                     reader = queryDatabase("SELECT * FROM tbl_Store WHERE In_Use = 1;");
                     if (reader == null)
                     {
-                        d.Log("Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! " +
+                        d.Log(false,"Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! " +
                             "| UNABLE TO LOAD STORE!", true);
                         return;
                     }
@@ -629,14 +640,18 @@ public class Store : Local_Cache
                     {
                         d_Store.Add(reader["Item_Name"].ToString(), (float)reader["Item_Price"]);
                     }
-                    d.Log("Loading from database successful.", false);
+                    d.Log(true,"Loading from database successful.", false);
                 }
                 catch (Exception ex)
                 {
-                    d.Log("Loading from database failed: " + ex.Message + " | UNABLE TO LOAD STORE!", true);
+                    d.Log(false,"Loading from database failed: " + ex.Message + " | UNABLE TO LOAD STORE!", true);
                 }
             }
-            d.Log("Loading from local cache successful: " + Path + File_Name, false);
+            finally
+            {
+                Close_Binary_File();
+            }
+            d.Log(true,"Loading from local cache successful: " + Path + File_Name, false);
             #endregion
         }
         else
@@ -647,11 +662,12 @@ public class Store : Local_Cache
                 reader = queryDatabase("SELECT * FROM tbl_Store WHERE In_Use = 1;");
                 if (reader == null)
                 {
-                    d.Log("Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! " + 
+                    d.Log(false,"Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! " + 
                         "Attempting to load from local cache instead.", true);
                     try
                     {
                         // Use local cache data instead
+                        Open_Binary_File();
                         BinaryReader br = new BinaryReader(file);
                         Modified = Convert.ToDateTime(br.ReadString());
                         Record_Count = br.ReadInt32();
@@ -662,10 +678,15 @@ public class Store : Local_Cache
                             d_Store.Add(br.ReadString(), br.ReadSingle());
                         }
                         br = null;
+                        Close_Binary_File();
                     }
                     catch (Exception e)
                     {
-                        d.Log("Loading from local cache failed: " + e.Message + " | UNABLE TO LOAD STORE!", true);
+                        d.Log(false,"Loading from local cache failed: " + e.Message + " | UNABLE TO LOAD STORE!", true);
+                    }
+                    finally
+                    {
+                        Close_Binary_File();
                     }
                     return;
                 }
@@ -676,11 +697,11 @@ public class Store : Local_Cache
                 // Set the Modified date to reflect the new data set and save it to binary
                 Modified = DB_Date;
                 Save();
-                d.Log("Loading from database successful.", false);
+                d.Log(true,"Loading from database successful.", false);
             }
             catch (Exception e)
             {
-                d.Log("Loading from database failed: " + e.Message, true);
+                d.Log(false,"Loading from database failed: " + e.Message, true);
             }
             #endregion
         }
@@ -692,7 +713,6 @@ public class Leaderboard : Local_Cache
     public Leaderboard()
     {
         File_Name = "Leaderboard_Save.dat";
-        Open_Binary_File();
     }
     ~Leaderboard()   
     {
@@ -705,14 +725,12 @@ public class Leaderboard : Local_Cache
 
     public override void Save()
     {
-        base.Save();
         reader = queryDatabase("SELECT * FROM tbl_Highscores;");
         while (reader.Read())
         {
-            d.Log("Saving leaderboard data..", false);
+            d.Log(true,"Saving leaderboard data..", false);
             d_Leaderboard.Clear();
             d_Leaderboard.Add(reader["Player_Name"].ToString(), (float)reader["Score"]);
-            break;
         }
     }
     public override void Load()
@@ -757,7 +775,6 @@ public class Game_State : Local_Cache
     public Game_State()
     {
         File_Name = "Game_State_Save.dat";
-        Open_Binary_File();
     }
     ~Game_State()
     {
@@ -774,7 +791,7 @@ public class Game_State : Local_Cache
 
         try
         {
-            d.Log("Creating save file with the following data:", false);
+            d.Log(true,"Creating save file with the following data:", false);
             BinaryFormatter bf = new BinaryFormatter();
             BinaryWriter bw = new BinaryWriter(file);
             bw.Write(Total_Medals_Earned);
@@ -782,17 +799,17 @@ public class Game_State : Local_Cache
             bw.Write(Current_Gems);
             bw.Write(Total_Gems_Earned);
             bw.Write(DateTime.Now.ToString());
-            d.Log("Total_Medals_Earned: " + Total_Gems_Earned + ", Current_Medals: " + Current_Medals + ", Current_Gems: " + Current_Gems + ", Total_Gems_Earned: " + 
+            d.Log(true,"Total_Medals_Earned: " + Total_Gems_Earned + ", Current_Medals: " + Current_Medals + ", Current_Gems: " + Current_Gems + ", Total_Gems_Earned: " + 
                 Total_Gems_Earned + ", Modified: " + DateTime.Now.ToString(), true);
             foreach (Level_Info level in Level_Data)
             {
                 bf.Serialize(file, level);
-                d.Log("   > Level #" + level.Number + ": " + level.Name + " (" + level.Medals + " Medals Earned)", true);
+                d.Log(true,"   > Level #" + level.Number + ": " + level.Name + " (" + level.Medals + " Medals Earned)", true);
             }
         }
         catch (SerializationException e)
         {
-            d.Log(e.Message, true);
+            d.Log(false, e.Message, true);
         }
         finally
         {
