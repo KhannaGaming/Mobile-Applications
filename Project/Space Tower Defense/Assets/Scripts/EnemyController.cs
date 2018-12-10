@@ -69,12 +69,4 @@ public class EnemyController : MonoBehaviour
         inRangeFirstTurret = inRange;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "StandardTurret")
-        {
-            Debug.Log("My name is" + this.gameObject);
-            Debug.Log("I left the turret radius at" + transform.position);
-        }
-    }
 }

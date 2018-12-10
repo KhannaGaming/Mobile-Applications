@@ -157,14 +157,7 @@ public class Turret : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < EnemiesInRange.Count; i++)
-        {
-            if (EnemiesInRange[i] == null)
-            {
-                EnemiesInRange.RemoveAt(i);
-            }
-        }
-
+       
         if (target == null)
         {
             animator.SetBool("ifInRange", false);
@@ -250,20 +243,35 @@ public class Turret : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-
-        if (other.tag == "Enemy" && EnemiesInRange.Contains(other.gameObject))
+        for (int i = 0; i < EnemiesInRange.Count; i++)
         {
-            EnemiesInRange.Remove(other.gameObject);
+            if (other.gameObject == EnemiesInRange[i])
+            {
+                 //EnemiesInRange.Remove(other.gameObject);
+            }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        if(other.tag == "Enemy" && !EnemiesInRange.Contains(other.gameObject))
-        {
-            EnemiesInRange.Add(other.gameObject);
-        }
+
+        //bool hasInList = false;
+
+        //for (int i = 0; i < EnemiesInRange.Count; i++)
+        //{
+        //    if (other.gameObject == EnemiesInRange[i])
+        //    {
+        //        hasInList = true;
+        //        break;
+        //    }
+        //}
+
+        //if (!hasInList)
+        //{
+        //    EnemiesInRange.Add(other.gameObject);
+        //    //Debug.Log(Vector3.Distance(transform.position, EnemiesInRange[0].transform.position));
+        //}
     }
 
 }

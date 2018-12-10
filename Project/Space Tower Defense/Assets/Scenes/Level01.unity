@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427182, b: 0.56452405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12006,8 +12006,7 @@ Prefab:
       propertyPath: scrollSpeed
       value: 0.04
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 65853063477569062, guid: 3e85348ace0eb7544bedea0717b98b19, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e85348ace0eb7544bedea0717b98b19, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1419631200
@@ -12177,10 +12176,6 @@ Prefab:
     - target: {fileID: 4000011507836700, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013877162466, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
-      propertyPath: m_TagString
-      value: StandardTurret
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
