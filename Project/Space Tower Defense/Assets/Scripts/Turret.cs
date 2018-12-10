@@ -157,7 +157,7 @@ public class Turret : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       
+        RemoveDeadEnemies();
         if (target == null)
         {
             animator.SetBool("ifInRange", false);
@@ -241,37 +241,33 @@ public class Turret : MonoBehaviour {
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        for (int i = 0; i < EnemiesInRange.Count; i++)
-        {
-            if (other.gameObject == EnemiesInRange[i])
-            {
-                 //EnemiesInRange.Remove(other.gameObject);
-            }
-        }
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {
+        RemoveDeadEnemies();
+        if (other.tag == "Enemy" && !EnemiesInRange.Contains(other.gameObject))
+        {
+            EnemiesInRange.Add(other.gameObject);
+        }
+    }
 
-        //bool hasInList = false;
-
-        //for (int i = 0; i < EnemiesInRange.Count; i++)
-        //{
-        //    if (other.gameObject == EnemiesInRange[i])
-        //    {
-        //        hasInList = true;
-        //        break;
-        //    }
-        //}
-
-        //if (!hasInList)
-        //{
-        //    EnemiesInRange.Add(other.gameObject);
-        //    //Debug.Log(Vector3.Distance(transform.position, EnemiesInRange[0].transform.position));
-        //}
+    private void OnTriggerExit(Collider other)
+    {
+        RemoveDeadEnemies();
+        if(other.tag == "Enemy" && EnemiesInRange.Contains(other.gameObject))
+        {
+            EnemiesInRange.Remove(other.gameObject);
+        }
+    }
+    public void RemoveDeadEnemies()
+    {
+        for (int i = 0; i < EnemiesInRange.Count; i++)
+        {
+            if(EnemiesInRange[i] == null)
+            {
+                EnemiesInRange.RemoveAt(i);
+            }
+        }
     }
 
 }

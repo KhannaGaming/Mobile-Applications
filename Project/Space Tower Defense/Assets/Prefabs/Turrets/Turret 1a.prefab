@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 1000013877162466}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.0058858, y: 0, z: 0.066}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010142869368}
   m_Father: {fileID: 0}
@@ -540,6 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 2
+  range2: 2
   rotateSpeed: 10
   fireRate: 1
   bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
