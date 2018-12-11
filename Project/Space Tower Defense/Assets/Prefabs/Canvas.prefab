@@ -1293,6 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c67cc8846330624a8099b459aa9ad3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavesInLevel: 0
 --- !u!114 &114006584099619004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1736,6 +1737,8 @@ MonoBehaviour:
   - {fileID: 1046704804675782}
   - {fileID: 1011565155533178}
   TowerParent: {fileID: 0}
+  goldController: {fileID: 0}
+  StandardTurrets: []
 --- !u!114 &114092441338899050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3093,7 +3096,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: DELETE
+  m_text: SELL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d62a573c923f5cb47b8ff65261033b90, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: d62a573c923f5cb47b8ff65261033b90, type: 2}
@@ -3354,7 +3357,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: DELETE
+  m_text: SELL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d62a573c923f5cb47b8ff65261033b90, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: d62a573c923f5cb47b8ff65261033b90, type: 2}
@@ -3497,6 +3500,8 @@ MonoBehaviour:
   - {fileID: 1845761909001362}
   - {fileID: 1123383460312362}
   TowerParent: {fileID: 0}
+  goldController: {fileID: 0}
+  StandardTurrets: []
 --- !u!114 &114247258191520120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5115,7 +5120,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: DELETE
+  m_text: SELL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d62a573c923f5cb47b8ff65261033b90, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: d62a573c923f5cb47b8ff65261033b90, type: 2}
@@ -5258,6 +5263,12 @@ MonoBehaviour:
   - {fileID: 1971945505736610}
   - {fileID: 1818151722128032}
   TowerParent: {fileID: 0}
+  goldController: {fileID: 0}
+  StandardTurrets:
+  - {fileID: 1000013877162466, guid: 8a4fca54c9faa3449bcff12193992420, type: 2}
+  - {fileID: 1000010376817026, guid: c36865a7da8627b42a5d8dae1b1a98bb, type: 2}
+  - {fileID: 1000011378158488, guid: 9b3a643ca887918468955b42c4531666, type: 2}
+  - {fileID: 1000011378158488, guid: 9b3a643ca887918468955b42c4531666, type: 2}
 --- !u!114 &114596443910151554
 MonoBehaviour:
   m_ObjectHideFlags: 1

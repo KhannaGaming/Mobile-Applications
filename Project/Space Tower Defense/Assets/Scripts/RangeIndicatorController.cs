@@ -18,6 +18,11 @@ public class RangeIndicatorController : MonoBehaviour {
                 adjustRangeIndicator();
             }
         }
+        else
+        {
+            transform.localScale = Vector3.zero;
+            range = 0;
+        }
 	}
 
     void adjustRangeIndicator()

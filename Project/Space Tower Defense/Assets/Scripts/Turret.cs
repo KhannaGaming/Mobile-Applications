@@ -50,7 +50,7 @@ public class Turret : MonoBehaviour {
         animator = GetComponent<Animator>();
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         transform.localPosition = Vector3.zero;
-    }
+}
 
     void UpdateTarget()
     {

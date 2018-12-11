@@ -48,6 +48,8 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     public List<GameObject> Enemies = null;
+    public GameObject waveController;
+
     // Use this for initialization
     public void Awake()
     {
@@ -94,6 +96,7 @@ public class GameController : MonoBehaviour
         StreamReader reader = new StreamReader(path);
         LevelData = reader.ReadToEnd();
         reader.Close();
+        ReadNextWaveData(1);
     }
 
     bool ReadNextWaveData(int waveNumber)
@@ -104,10 +107,10 @@ public class GameController : MonoBehaviour
             using (StringReader sr = new StringReader(LevelData))
             {
                 sr.Read(b, 0, LevelData.Length);
-
+                int maxWaveNumber = 0;
                 for (int i = 1; i < LevelData.Length; i++)
                 {
-
+                    
                     if (b[i] == '\n' && (b[i + 1] - '0') == waveNumber)
                     {
                         StandardEnemies = (((b[i + 3] - '0') * 10) + (b[i + 4]) - '0');
@@ -115,7 +118,12 @@ public class GameController : MonoBehaviour
                         FastEnemies = (((b[i + 9] - '0') * 10) + (b[i + 10]) - '0');
                         StealthyEnemies = (((b[i + 12] - '0') * 10) + (b[i + 13]) - '0');
                     }
+                    if (b[i] == '\n')
+                    {
+                        maxWaveNumber++;
+                    }
                 }
+                waveController.GetComponent<WaveController>().maxWave(maxWaveNumber-1);
             }
             return true;
         }
@@ -196,7 +204,8 @@ public class GameController : MonoBehaviour
     }
     public void NextWave()
     {
-            NextWaveButton.GetComponent<Button>().interactable = false;
+        waveController.GetComponent<WaveController>().increaseWave();
+        NextWaveButton.GetComponent<Button>().interactable = false;
 
         currentWaveNumber++;
         if (!ReadNextWaveData(currentWaveNumber))

@@ -9,7 +9,7 @@ public class WaveController : MonoBehaviour
     // Variables
     public static int waveValue = 0; // Used to keep track of the amount of waves the player has completed
     Text waves; // Variable needed to make a connection to the wave counter text object
-
+    public int wavesInLevel = 0;
     // Use this for initialization
     void Start()
     {
@@ -21,6 +21,15 @@ public class WaveController : MonoBehaviour
     void Update()
     {
         // Sets the text value to "Waves Completed: waveValue variable"
-        waves.text = "Waves Completed: " + waveValue;
+        waves.text = "Current wave: " + waveValue + "/" + wavesInLevel;
+    }
+
+    public void increaseWave()
+    {
+        waveValue++;
+    }
+    public void maxWave(int maxWave)
+    {
+        wavesInLevel = maxWave;
     }
 }

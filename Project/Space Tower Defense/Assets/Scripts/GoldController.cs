@@ -7,7 +7,7 @@ public class GoldController : MonoBehaviour
 {
 
     // Variables
-    public static int goldAmount = 100; // Used to keep track of the players gold value
+    public static int goldAmount = 1000; // Used to keep track of the players gold value
     Text gold; // Variable needed to make a connection to the gold text object
 
     // Use this for initialization
@@ -23,4 +23,13 @@ public class GoldController : MonoBehaviour
         // Sets the text value to "Gold: goldAmount variable"
         gold.text = "Gold: " + goldAmount;
 	}
+
+    public void ChangeGoldAmount(int changeAmount)
+    {
+        goldAmount += changeAmount;
+    }
+    public int GetGoldAmount()
+    {
+        return goldAmount;
+    }
 }

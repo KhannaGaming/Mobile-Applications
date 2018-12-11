@@ -317,41 +317,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114230547773070300, guid: a9adf10045820d34c98bf65e141e3bef,
-        type: 2}
-      propertyPath: TowerParent
-      value: 
-      objectReference: {fileID: 1912137434}
-    - target: {fileID: 114090238510272970, guid: a9adf10045820d34c98bf65e141e3bef,
-        type: 2}
-      propertyPath: TowerParent
-      value: 
-      objectReference: {fileID: 1218982092}
-    - target: {fileID: 114595961886389180, guid: a9adf10045820d34c98bf65e141e3bef,
-        type: 2}
-      propertyPath: TowerParent
-      value: 
-      objectReference: {fileID: 1304321138}
     - target: {fileID: 114624822966263106, guid: a9adf10045820d34c98bf65e141e3bef,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1031708815}
-    - target: {fileID: 114515866771765234, guid: a9adf10045820d34c98bf65e141e3bef,
+    - target: {fileID: 114595961886389180, guid: a9adf10045820d34c98bf65e141e3bef,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: TowerParent
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114106650583170674, guid: a9adf10045820d34c98bf65e141e3bef,
+      objectReference: {fileID: 1304321138}
+    - target: {fileID: 114090238510272970, guid: a9adf10045820d34c98bf65e141e3bef,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: TowerParent
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114876912775887796, guid: a9adf10045820d34c98bf65e141e3bef,
+      objectReference: {fileID: 1218982092}
+    - target: {fileID: 114230547773070300, guid: a9adf10045820d34c98bf65e141e3bef,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: TowerParent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1912137434}
     - target: {fileID: 114657675587878828, guid: a9adf10045820d34c98bf65e141e3bef,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -372,6 +357,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114595961886389180, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: StandardTurrets.Array.data[2]
+      value: 
+      objectReference: {fileID: 1000010854009954, guid: 913c474af4fed6e45bc3725b21e84f11,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9adf10045820d34c98bf65e141e3bef, type: 2}
   m_IsPrefabParent: 0
@@ -928,6 +919,7 @@ MonoBehaviour:
   CurrentEnemy: {fileID: 0}
   wait: 1
   Enemies: []
+  waveController: {fileID: 1517856709}
 --- !u!1001 &1105126546
 Prefab:
   m_ObjectHideFlags: 0
@@ -5992,6 +5984,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4a18b50fefe9b544bb0b8cd81fe4b61, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1517856709 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1768765109573538, guid: a9adf10045820d34c98bf65e141e3bef,
+    type: 2}
+  m_PrefabInternal: {fileID: 200188206}
 --- !u!1001 &1648842807
 Prefab:
   m_ObjectHideFlags: 0
