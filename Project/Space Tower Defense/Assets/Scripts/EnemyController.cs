@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
     public bool inList = false;
     public int currentPlace = -1;
     public bool inRangeFirstTurret = false;
+    public float speed;
+
     // Use this for initialization
     void Start()
     {
@@ -60,7 +62,7 @@ public class EnemyController : MonoBehaviour
     ///   </summary>
     ///<param name="damage">Amount to decrease health by.
     ///</param>
-    void damageHealth(float damage)
+    public void damageHealth(float damage)
     {
         health -= damage;
     }
