@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a8c6e25dbe7497546ab46293a70e2db6, type: 2}
+  - {fileID: 2100000, guid: 36ad84e600f6ed743ad640c897b197b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,6 +119,12 @@ MonoBehaviour:
   launchEffect: {fileID: 0}
   trailEffect: {fileID: 0}
   targetHealth: {fileID: 0}
+  InstantiateThis: {fileID: 0}
+  shootStyle: 0
+  staticShock: []
+  staticBullet: {fileID: 0}
+  electricBounce: 3
+  shockWeaknesFactor: 2
   isLaser: 0
 --- !u!135 &135812867623586270
 SphereCollider:

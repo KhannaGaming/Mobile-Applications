@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    public enum TurretType { Standard, Laser, Rocket, Electric, Sniper };
     public Transform target;
     public float speed = 10f;
     public float damage = 2f;
+
+    [Header("Effects")]
     public GameObject impactEffect;
     public GameObject launchEffect;
     public GameObject trailEffect;
-    public HealthManager targetHealth;
 
-    public bool isLaser = false;
+    [Header("Turret Type")]
+    public TurretType shootStyle;
+    
+    public List<GameObject> staticShock = null;
+    public GameObject staticBullet = null;
+    public int electricBounce = 3;
+    public float shockWeaknesFactor = 2.0f;
     public void Chase(Transform _target)
     {
-        //instantiate sposion effect
         target = _target;
-        //targetHealth = target.gameObject;
     }
 
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (!isLaser)
-        {
+       
             if (target == null)
             {
                 Destroy(gameObject);
@@ -37,40 +42,41 @@ public class Bullet : MonoBehaviour {
             transform.rotation = look;
             float distanceThisFrame = speed * Time.deltaTime;
 
-            //if (dir.magnitude <= distanceThisFrame)
-            //{
-            //    HitTarget();
-            //    return;
-            //}
+          
 
             transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-        }
-        else if (isLaser)
-        {
-            target.gameObject.SendMessage("damageHealth", damage);
-        }
+      
     }
 
     void HitTarget()
     {
 
-        // GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        // Destroy(effectIns,2f);
+        switch (shootStyle)
+        {
+            case TurretType.Standard:
+                target.gameObject.SendMessage("damageHealth", damage);
+                Destroy(gameObject);
+                break;
+            case TurretType.Electric:
+                ThunderStrike(transform.GetChild(0).GetComponent<Shock>().staticShock);
+                target.gameObject.SendMessage("damageHealth", damage);
+                Destroy(gameObject);
+                break;
+            case TurretType.Rocket:
+                Debug.Log("Rocket Hit");
+                target.gameObject.SendMessage("damageHealth", damage);
+                Destroy(gameObject);
+                break;
+            case TurretType.Laser:
+                target.gameObject.SendMessage("damageHealth", damage);
+                Destroy(gameObject);
+                break;
+            case TurretType.Sniper:
+                target.gameObject.SendMessage("damageHealth", damage);
+                Destroy(gameObject);
+                break;
 
-        //target.gameObject.HealthManager(2);
-        //Destroy(target.gameObject);
-        target.gameObject.SendMessage("damageHealth", damage );
-        Destroy(gameObject);
-    }
-
-    void FaceDirection()
-    {
-       
-
-    }
-    void MoveBullet()
-    {
-
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,7 +85,37 @@ public class Bullet : MonoBehaviour {
         {
          Debug.Log("Hit");
             HitTarget();
-           // other.GetComponent<EnemyController>().damageHealth(damage);
+        }
+    }
+    public void ThunderStrike(List<GameObject> targets)
+    {
+        electricBounce += 1;
+
+        for (int i = 0; i < staticShock.Count; i++)
+        {
+            if (staticShock[i] == null)
+                staticShock.RemoveAt(i);
+        }
+
+        Debug.Log("Begining lightning Attack");
+
+        if (targets.Count < electricBounce) //if potential bounce targets less than amout of times we can bouce 
+            electricBounce = targets.Count; //set to smaller number
+
+        for (int i = 1; i < electricBounce; i++)    //create bullet for each bounce
+        {
+            GameObject staticGo = null;
+            staticGo = Instantiate(staticBullet, this.transform.position, this.transform.rotation);   //
+            Bullet sBullet = staticGo.GetComponent<Bullet>();
+
+            if (sBullet != null)
+            {
+
+                sBullet.damage = damage / shockWeaknesFactor;
+                sBullet.Chase(targets[i].transform);
+
+            }
+
         }
     }
 }

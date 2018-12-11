@@ -118,6 +118,7 @@ MonoBehaviour:
   currentPathNode: 1
   childNumber: 0
   health: 10
+  goldOnDeath: 2
   distanceLeft: 0
   inList: 0
   currentPlace: -1

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Update()
     {
         if (PlayerPrefs.GetInt("MusicToggle", 1) == 1)

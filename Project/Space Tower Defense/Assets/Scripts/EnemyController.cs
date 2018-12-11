@@ -11,17 +11,21 @@ public class EnemyController : MonoBehaviour
     public int currentPathNode = 1;
     public int childNumber = 0;
     public float health = 10;
-
+    private float enemySpeed = 0;
+    public int goldOnDeath = 0;
     public float distanceLeft;
     public bool inList = false;
     public int currentPlace = -1;
     public bool inRangeFirstTurret = false;
+    private GameObject goldController;
     // Use this for initialization
     void Start()
     {
         childNumber = Random.Range(0, 3);
         EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
         NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
+        enemySpeed = NMA.speed;
+        goldController = GameObject.Find("GoldText");
     }
 
     // Update is called once per frame
@@ -29,6 +33,7 @@ public class EnemyController : MonoBehaviour
     {
         if (health <= 0)
         {
+            goldController.GetComponent<GoldController>().ChangeGoldAmount(goldOnDeath);
             Debug.Log("I died!");            
             Destroy(gameObject);
         }
@@ -68,5 +73,12 @@ public class EnemyController : MonoBehaviour
     {
         inRangeFirstTurret = inRange;
     }
-
+    public void changeSpeed(float speed)
+    {
+        NMA.speed /= speed;
+    }
+    void resetSpeed()
+    {
+        NMA.speed = enemySpeed;
+    }
 }

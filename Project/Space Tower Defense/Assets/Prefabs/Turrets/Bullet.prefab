@@ -97,13 +97,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 2
+  speed: 5
   damage: 1
   impactEffect: {fileID: 0}
   launchEffect: {fileID: 0}
   trailEffect: {fileID: 0}
-  targetHealth: {fileID: 0}
-  isLaser: 0
+  shootStyle: 0
+  staticShock: []
+  staticBullet: {fileID: 0}
+  electricBounce: 3
+  shockWeaknesFactor: 2
 --- !u!135 &135812867623586270
 SphereCollider:
   m_ObjectHideFlags: 1

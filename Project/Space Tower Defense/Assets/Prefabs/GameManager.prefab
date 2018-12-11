@@ -11,22 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1180439334247346}
   m_IsPrefabParent: 1
---- !u!1 &1057559870815094
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4709034789863114}
-  - component: {fileID: 114012276615268894}
-  m_Layer: 0
-  m_Name: Database_Control
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1180439334247346
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,22 +37,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4709034789863114}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4709034789863114
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057559870815094}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.625829, y: -1.9252791, z: -7.3004255}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4401421961507606}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &65416837336946116
@@ -83,20 +53,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 5, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114012276615268894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1057559870815094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff3ce5ee8c304a749a1cd5db01b4e77b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameState:
-    Level_Data: []
-  Save_ID: 0
 --- !u!114 &114547978370195016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,7 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc346964571ae04dbd9320b555150bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Database_Controller: {fileID: 114012276615268894}
   StandardEnemyPrefab: {fileID: 1109324523691788, guid: 1f15d22a2d321d244882fc32e7de170c,
     type: 2}
   SlowEnemyPrefab: {fileID: 1109324523691788, guid: 6a3fcfe097fd3fc40b367990b8ae0efa,
@@ -117,11 +72,10 @@ MonoBehaviour:
     type: 2}
   FastEnemyPrefab: {fileID: 1109324523691788, guid: 1a5850f030835f64cb9e6f41ed826cba,
     type: 2}
-  Enemies: []
-  EnemiesReversed: []
-  EnemiesHealth: []
-  EnemiesHealthReversed: []
   Health: 10
   EnemySpawnLocation: {fileID: 0}
+  NextWaveButton: {fileID: 0}
   CurrentEnemy: {fileID: 0}
   wait: 1
+  Enemies: []
+  waveController: {fileID: 0}

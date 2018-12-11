@@ -9,9 +9,8 @@ public class Turret : MonoBehaviour {
 
     [Header("Attributes")]
     public float range = 2f;
-    public float range2 = 2f;
     public float rotateSpeed = 10f;
-
+    public int damage = 0;
     [Header("Use Bullets")]
     public float fireRate = 1f;
     private float fireCountdown = 0f;
@@ -40,7 +39,7 @@ public class Turret : MonoBehaviour {
 
     public List<GameObject> EnemiesInRange = null;
 
-
+    public int swivelSpeed = 8;
 
     private Animator animator;
 
@@ -50,12 +49,13 @@ public class Turret : MonoBehaviour {
         animator = GetComponent<Animator>();
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         transform.localPosition = Vector3.zero;
+        swivelSpeed = 8;
 }
 
     void UpdateTarget()
     {
-
-        switch(shootStyle)
+        RemoveDeadEnemies();
+        switch (shootStyle)
         {
             case ShootStyle.First:
                 FirstEnemy();
@@ -132,19 +132,31 @@ public class Turret : MonoBehaviour {
     void Shoot(int counter)
     {
         // Debug.Log("Shoot");
-       
+        
             GameObject bulletGo = null;
 
+        if (target != null)
+        {
+            Vector3 dir = target.position - transform.position; // postion of target minus current position to find directions
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 tmp;
+            float offset = 5.0f;
+            tmp = lookRotation.eulerAngles;
+            tmp.y -= 90;                            // fix the rotation
+            tmp.z = (tmp.x * -1) - offset;          // uses the x value to aim vertically and iff offset so it aims at the center of the target
+            tmp.x = 0;                              // stops the turret from rotating in the wrong axis
 
-
-            bulletGo = Instantiate(bulletPrefab, firePoints[counter].position, firePoints[counter].rotation, this.transform);   //casting as a game object to store
+            Quaternion newRot = Quaternion.Euler(tmp);
+            bulletGo = Instantiate(bulletPrefab, firePoints[counter].position, newRot, this.transform);   //casting as a game object to store
             Bullet bullet = bulletGo.GetComponent<Bullet>();
 
             if (bullet != null)
-               bullet.Chase(target);
-        
-        
+            {
+                bullet.damage = damage;
+                bullet.Chase(target);
+            }
 
+        }
 
 
     }
@@ -158,6 +170,8 @@ public class Turret : MonoBehaviour {
     void Update()
     {
         RemoveDeadEnemies();
+        if (EnemiesInRange.Count == 0)
+            target = null;
         if (target == null)
         {
             animator.SetBool("ifInRange", false);
@@ -173,6 +187,10 @@ public class Turret : MonoBehaviour {
             animator.SetBool("ifInRange", true);
         }
 
+        if(!fireFromAnimation)
+        {
+            Fire();
+        }
         LockOnTarget();
 
         if (useLaser)
@@ -192,10 +210,20 @@ public class Turret : MonoBehaviour {
     {
         ///Target lock
         Vector3 dir = target.position - transform.position; // postion of target minus current position to find directions
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = lookRotation.eulerAngles;
-        //Vector3 rotation = Quaternion.Lerp(turretHead.rotation, lookRotation, rotateSpeed * Time.deltaTime).eulerAngles;
-        turretHead.rotation = Quaternion.Euler(0f, rotation.y - 90, 0f);
+        Quaternion lookRotation= Quaternion.LookRotation(dir);
+        Vector3 tmp;
+        float offset = 5.0f;
+        tmp = lookRotation.eulerAngles;
+        tmp.y -= 90;                            // fix the rotation
+        tmp.z = (tmp.x * -1) - offset;          // uses the x value to aim vertically and iff offset so it aims at the center of the target
+        tmp.x = 0;                              // stops the turret from rotating in the wrong axis
+
+        Quaternion newRot = Quaternion.Euler(tmp);
+        //Vector3 rotation = lookRotation.eulerAngles;
+        turretHead.rotation = Quaternion.RotateTowards(turretHead.rotation, newRot, swivelSpeed);
+        
+        //turretHead.Rotate(0, -90.0f, 0);//rotation ;// Quaternion.Lerp(turretHead.rotation, lookRotation, rotateSpeed * Time.deltaTime).eulerAngles;
+        //turretHead.rotation = Quaternion.Euler(0f, rotation.y - 90, 0f);
     }
 
     void Fire()

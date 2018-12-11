@@ -18,8 +18,11 @@ public class TowerController : MonoBehaviour
     public GameObject TowerParent;
 
     public GameObject goldController;
-    //private int currentGold = 0;
     public List<GameObject> StandardTurrets;
+    public List<GameObject> RocketTurrets;
+    public List<GameObject> SniperTurrets;
+    public List<GameObject> ElectricityTurrets;
+    public List<GameObject> LaserTurrets;
     private void Start()
     {
         goldController = GameObject.Find("GoldText");
@@ -34,7 +37,7 @@ public class TowerController : MonoBehaviour
             {
                 if (Upgrade_Level == 0 && btn.tag != "Upgrade")
                     btn.SetActive(!btn.activeInHierarchy);
-                else if (Upgrade_Level > 0 && Upgrade_Level < 3 && btn.tag == "Upgrade")
+                else if (Upgrade_Level > 0 && Upgrade_Level < Max_Upgrade_Level && btn.tag == "Upgrade")
                     btn.SetActive(!btn.activeInHierarchy);
                 else if (Upgrade_Level == Max_Upgrade_Level && btn.name == "Delete")
                     btn.SetActive(!btn.activeInHierarchy);

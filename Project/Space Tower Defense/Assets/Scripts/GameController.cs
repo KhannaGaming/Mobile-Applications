@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class GameController : MonoBehaviour
     private int SlowEnemies = 0;
     private int StealthyEnemies = 0;
     private int FastEnemies = 0;
-
+    private int maxWaveNumber;
     public GameObject CurrentEnemy = null;
     public bool wait = true;
 
@@ -80,8 +81,16 @@ public class GameController : MonoBehaviour
         currentWaveNumber = 0;
         ReadLevelData();
         //ReadNextWaveData(currentWaveNumber);
-    } 
+    }
 
+    private void Update()
+    {
+        if (Health <= 0)
+        {
+            PlayerPrefs.SetString("Level", "MainMenu");
+            SceneManager.LoadScene("Loading");
+        }
+    }
     public void reduceHealth()
     {
         Health--;
@@ -107,7 +116,7 @@ public class GameController : MonoBehaviour
             using (StringReader sr = new StringReader(LevelData))
             {
                 sr.Read(b, 0, LevelData.Length);
-                int maxWaveNumber = 0;
+                maxWaveNumber = 0;
                 for (int i = 1; i < LevelData.Length; i++)
                 {
                     
@@ -200,6 +209,7 @@ public class GameController : MonoBehaviour
         {
             CancelInvoke("CreateFastEnemies");
             NextWaveButton.GetComponent<Button>().interactable = true;
+            waveController.GetComponent<WaveController>().lastEnemySent = true;
         }
     }
     public void NextWave()
@@ -223,5 +233,18 @@ public class GameController : MonoBehaviour
     public void AddEnemy(GameObject Enemy)
     {
         Enemies.Add(Enemy);
+    }
+    
+    public int checkEnemies()
+    {
+        int enemiesLeft = 0;
+        for (int i = 0; i < Enemies.Count; i++)
+        {
+            if(Enemies[i] != null)
+            {
+                enemiesLeft++;
+            }
+        }
+        return enemiesLeft;
     }
 }

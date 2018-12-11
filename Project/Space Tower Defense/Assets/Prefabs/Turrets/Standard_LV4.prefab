@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4000012842068394}
   - component: {fileID: 95345735365644392}
   - component: {fileID: 114475132924718050}
+  - component: {fileID: 135749371307687496}
   m_Layer: 0
   m_Name: Standard_LV4
   m_TagString: Untagged
@@ -539,8 +540,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 2
-  range2: 2
   rotateSpeed: 10
+  damage: 2
   fireRate: 1
   bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
     type: 2}
@@ -552,6 +553,19 @@ MonoBehaviour:
   useElectric: 0
   firePoints:
   - {fileID: 4908135988319920}
-  fireFromAnimation: 0
+  fireFromAnimation: 1
   shootStyle: 0
   EnemiesInRange: []
+  swivelSpeed: 8
+--- !u!135 &135749371307687496
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011378158488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 0}

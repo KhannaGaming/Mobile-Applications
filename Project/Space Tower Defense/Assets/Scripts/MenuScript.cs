@@ -73,7 +73,7 @@ public class MenuScript : MonoBehaviour {
     {
         foreach (GameObject Tower_Slot in TowerSlots)
         {
-            foreach (GameObject btn in Tower_Slot.transform.GetChild(1).transform.GetChild(0).GetComponent<TowerController>().Buttons_)
+            foreach (GameObject btn in Tower_Slot.transform.GetChild(0).transform.GetChild(0).GetComponent<TowerController>().Buttons_)
                 btn.SetActive(false);
         }
     }

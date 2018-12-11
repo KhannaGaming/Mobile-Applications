@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4409563534433204}
   - component: {fileID: 135421911011696324}
-  - component: {fileID: 114045305677187372}
+  - component: {fileID: 114086334569522864}
   m_Layer: 0
   m_Name: 'Spawner '
   m_TagString: Untagged
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896124671962892}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.2560802, y: 2.824, z: -1.7913942}
+  m_LocalPosition: {x: -3.061269, y: 0.251, z: 1.0162473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4409563534433204}
@@ -89,7 +89,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a8c6e25dbe7497546ab46293a70e2db6, type: 2}
+  - {fileID: 2100000, guid: 36ad84e600f6ed743ad640c897b197b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896124671962892}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114045305677187372
+--- !u!114 &114086334569522864
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1809842832492778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5158e7a2cbc416241a8e7d87c3a27978, type: 3}
+  m_Script: {fileID: 11500000, guid: 6339f597955dea541aa2d684d805e469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   staticShock: []
@@ -146,6 +146,13 @@ MonoBehaviour:
   launchEffect: {fileID: 0}
   trailEffect: {fileID: 0}
   targetHealth: {fileID: 0}
+  InstantiateThis: {fileID: 0}
+  shootStyle: 3
+  staticShock: []
+  staticBullet: {fileID: 1896124671962892, guid: d3477163af7393544b1c600b197dfdb2,
+    type: 2}
+  electricBounce: 3
+  shockWeaknesFactor: 2
   isLaser: 0
 --- !u!135 &135421911011696324
 SphereCollider:
