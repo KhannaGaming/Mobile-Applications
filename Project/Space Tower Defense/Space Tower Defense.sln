@@ -1,11 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space Tower Defense", "Space Tower Defense.csproj", "{0B7A521D-E677-EA3C-4CDA-1548B0F66EC0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Space Tower Defense.Editor", "Space Tower Defense.Editor.csproj", "{D1B578C0-AB14-9D5C-CB43-49A87E4D3A67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{1C76FCF2-D4F6-42B4-07D4-9A9E384F3514}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0B7A521D-E677-EA3C-4CDA-1548B0F66EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B7A521D-E677-EA3C-4CDA-1548B0F66EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B7A521D-E677-EA3C-4CDA-1548B0F66EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B7A521D-E677-EA3C-4CDA-1548B0F66EC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1B578C0-AB14-9D5C-CB43-49A87E4D3A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1B578C0-AB14-9D5C-CB43-49A87E4D3A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1B578C0-AB14-9D5C-CB43-49A87E4D3A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1B578C0-AB14-9D5C-CB43-49A87E4D3A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C76FCF2-D4F6-42B4-07D4-9A9E384F3514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C76FCF2-D4F6-42B4-07D4-9A9E384F3514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C76FCF2-D4F6-42B4-07D4-9A9E384F3514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C76FCF2-D4F6-42B4-07D4-9A9E384F3514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {435294FD-D4F8-4DD9-A078-6AE111C1DFEE}
 	EndGlobalSection
 EndGlobal

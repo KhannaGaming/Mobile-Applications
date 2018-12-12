@@ -30,7 +30,10 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Database_Controller.store.Load();
-        Database_Controller.store.Save();
+        Database_Controller.leaderboard.Load();
+        Database_Controller.leaderboard.leaderboard(9001.0f, "Pavelow");
+        Database_Controller.leaderboard.Load();
+        Database_Controller.GameState.Load();
     }
 
     // Update is called once per frame
