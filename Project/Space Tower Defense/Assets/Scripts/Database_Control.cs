@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System;
 using System.Runtime.CompilerServices;
 using System.Globalization;
+using UnityEngine.UI;
 
 public class Database_Control : MonoBehaviour {
 
@@ -14,20 +15,30 @@ public class Database_Control : MonoBehaviour {
     public Leaderboard leaderboard = new Leaderboard();
     public Store store = new Store();
 
-    private Debug_Log d;
+    internal Debug_Log d;
+
+    [Header("In-Game Debugging")]
+    public Text text;
 
     #region General Initialisation
     void Awake()
     {
-        d = new Debug_Log(Application.persistentDataPath + "/");
+        d = new Debug_Log(text, Application.persistentDataPath + "/");
+        text.text = text.text + "\n" + Application.persistentDataPath + "/";
         //Initialising the local cache in awake due to constructor
         d.DUI = SystemInfo.deviceUniqueIdentifier;
         Debug.Log("Unique Client ID: " + d.DUI);
+        text.text = text.text + "\n" + d.DUI;
         store.d = d;
+        text.text = text.text + "\n" + (store != null).ToString();
         leaderboard.d = d;
+        text.text = text.text + "\n" + (leaderboard != null).ToString();
         GameState.d = d;
+        text.text = text.text + "\n" + (GameState != null).ToString();
+        text.text = text.text + "\n" + (File.Exists(Application.persistentDataPath + "/" + store.File_Name)).ToString();
         if (!File.Exists(Application.persistentDataPath + "/" + store.File_Name))
             File.Create(Application.persistentDataPath + "/" + store.File_Name);
+        text.text = text.text + "\n" + (File.Exists(Application.persistentDataPath + "/" + store.File_Name)).ToString();
         if (!File.Exists(Application.persistentDataPath + "/" + leaderboard.File_Name))
             File.Create(Application.persistentDataPath + "/" + leaderboard.File_Name);
         if (!File.Exists(Application.persistentDataPath + "/" + GameState.File_Name))
@@ -122,17 +133,20 @@ public class Database_Interaction
     }
     #endregion
 }
-
 public class Debug_Log
 {
     static bool Allow_Logs = true;//Change this to false if you no longer want anything to be logged at all
     private bool Override = false;//Change this to true if you want to print all logs to the debug_log text file
-    private bool Reset_On_Start = true;
+    private bool Reset_On_Start = true;//Change this to true if you want the debug log file to clear each time it's run (recommended for ease of reading)
+
     internal string Path = "";
     internal string DUI = "";
 
-    public Debug_Log(string Path_ = "")
+    public Text TextOutput;
+  
+    public Debug_Log(Text text_ = null, string Path_ = "")
     {
+        TextOutput = text_;
         Path = Path_;
         if (Reset_On_Start)
             File.WriteAllText(Path + "debug_log.txt", String.Empty);
@@ -140,6 +154,7 @@ public class Debug_Log
 
     public void Log(bool success, string output, bool toConsole, [CallerLineNumber] int LineNumber = 0, [CallerMemberName] string Caller = null)
     {
+        TextOutput.text = TextOutput.text + "\n" + ((success) ? " " : "!") + DateTime.Now + " > Caller: " + Caller + ", Line Number: " + LineNumber + ": " + output;
         if (!Allow_Logs) return;
         if (toConsole || Override) Debug.Log(output);
         using (StreamWriter writer = new StreamWriter(Path + "debug_log.txt", true))

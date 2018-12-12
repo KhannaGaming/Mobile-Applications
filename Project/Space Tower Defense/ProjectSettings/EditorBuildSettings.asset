@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level01.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/dawdadsd.unity
     guid: 1599a369c262cc54c96a2b57057db4f1
   m_configObjects: {}
