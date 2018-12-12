@@ -26,6 +26,12 @@ public class Database_Control : MonoBehaviour {
         store.d = d;
         leaderboard.d = d;
         GameState.d = d;
+        if (!File.Exists(Application.persistentDataPath + "/" + store.File_Name))
+            File.Create(Application.persistentDataPath + "/" + store.File_Name);
+        if (!File.Exists(Application.persistentDataPath + "/" + leaderboard.File_Name))
+            File.Create(Application.persistentDataPath + "/" + leaderboard.File_Name);
+        if (!File.Exists(Application.persistentDataPath + "/" + GameState.File_Name))
+            File.Create(Application.persistentDataPath + "/" + GameState.File_Name);
     }
     #endregion
 }
@@ -528,7 +534,7 @@ public class Leaderboard : Local_Cache
                                             "Score = " + Value + ", " +
                                             "DT_Stamp = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " + 
                                             "WHERE Unique_Identifier = '" + d.DUI + "';");
-                d.Log(true, "Leaderboard data successfull updated > Player Name: " + Key + ", Score: " + Value + ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Unique Identifier: " + d.DUI, false);
+                d.Log(true, "Leaderboard data successfully updated > Player Name: " + Key + ", Score: " + Value + ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Unique Identifier: " + d.DUI, false);
             }
             else
             {
@@ -608,7 +614,12 @@ public class Game_State : Local_Cache
                     " | Total_Gems_Earned: " + Total_Gems_Earned + " | Current_Gems: " + Current_Gems + "] to binary file: " + d.Path + File_Name, false);
                 foreach (Level_Info level in Level_Data)
                 {
-                    bf.Serialize(file, level);
+                    if (level.Name == "" || level.Number == 0 || level.Medals == 0)
+                    {
+                        d.Log(false, "Level #" + level.Number + " Serialization failure, a value was null > Name: " + level.Name + ", Number: " + level.Number + ", Medals: " + level.Medals + ". Skipping this level.", true);
+                        continue;
+                    }
+                    bf.Serialize(bw.BaseStream, level);
                     d.Log(true, "Level #" + level.Number + " - " + level.Name + " (" + level.Medals + " Medals Earned) saved to binary file: " + d.Path + File_Name, true);
                 }
             }
@@ -618,6 +629,8 @@ public class Game_State : Local_Cache
         {
             d.Log(false, "Save Game State contents to binary file failed: " + d.Path + File_Name + " > " + e.Message, true);
         }
+        // Now update the database to reflect this
+        Update();
     }
     /// <summary>
     /// Load from database unless the local cache has the data
@@ -645,7 +658,7 @@ public class Game_State : Local_Cache
                     int Level_Count = br.ReadInt32();
                     for (int i = 0; i < Level_Count; i++)
                     {
-                        Level_Data.Add((Level_Info)bf.Deserialize(file));
+                        Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
                     }
                 }
             }
@@ -725,7 +738,7 @@ public class Game_State : Local_Cache
                             int Level_Count = br.ReadInt32();
                             for (int i = 0; i < Level_Count; i++)
                             {
-                                Level_Data.Add((Level_Info)bf.Deserialize(file));
+                                Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
                             }
                             d.Log(true, "Loading from local cache successful.", false);
                         }
@@ -781,6 +794,104 @@ public class Game_State : Local_Cache
         foreach (Level_Info level in Level_Data)
         {
             d.Log(true, "Level #" + level.Number + ", '" + level.Name + "', Medals: " + level.Medals, false);
+        }
+    }
+    /// <summary>
+    /// Update database records
+    /// </summary>
+    /// <param name="Key">Unused</param>
+    /// <param name="Value">Unused</param>
+    public override void Update(string Key = "", float Value = 0.0f)
+    {
+        try
+        {
+            d.Log(true, "Attempting to update the database with the Game State data.", false);
+            // Check database to see if we already hold records with this players information
+            reader = queryDatabase("SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + d.DUI + "';");
+            int Save_ID = 0;
+            if (reader == null)
+            {
+                d.Log(false, "The MySqlDataReader returned null, please ensure you have data in the database and you are connected to the internet! | UNABLE TO UPDATE DATABASE!", true);
+                return;
+            }
+            if (reader.HasRows)
+            {
+                Save_ID = reader.GetInt32("Save_ID");
+                // Data was found, update it
+                d.Log(true, "Game State data for Unique ID: " + d.DUI + " was found, updating record.", false);
+                reader = queryDatabase("UPDATE tbl_Save_Data " +
+                                       "SET Current_Medals = " + Current_Medals + ", " +
+                                            "Total_Medals_Earned = " + Total_Medals_Earned + ", " +
+                                            "Current_Gems = " + Current_Gems + ", " +
+                                            "Total_Gems_Earned = " + Total_Gems_Earned + ", " +
+                                            "DT_Stamp = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " " +
+                                       "WHERE Unique_Identifier = '" + d.DUI + "';");
+                d.Log(true, "The following Game State data was saved successfully > Current_Medals: " + Current_Medals + ", Total_Medals_Earned: " + Total_Medals_Earned + 
+                    ", Current_Gems: " + Current_Gems + ", Total_Gems_Earned: " + Total_Gems_Earned + 
+                    ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Attempting to save the " + Level_Data.Count + " individual levels.", false);
+                foreach (Level_Info level in Level_Data)
+                {
+                    try
+                    {
+                        d.Log(true, "Starting save of level #" + level.Number, false);
+                        bool? L_Exists = checkDatabase("SELECT * FROM tbl_Level_Save_Data WHERE Save_ID = " + Save_ID + " AND Map_ID = " + level.Number + ";");
+                        if (L_Exists == true)
+                        {
+                            d.Log(true, "Data found in tbl_Level_Save_Data for level #" + level.Number + ", Updating record", false);
+                            reader = queryDatabase("UPDATE tbl_Level_Save_Data " +
+                                                    "SET Medals_Earned = " + level.Medals + " " +
+                                                    "WHERE Save_ID = " + Save_ID + " AND Map_ID = " + level.Number + ";");
+                        }
+                        else if (L_Exists == false || L_Exists == null)
+                        {
+                            d.Log(true, "Data not found in tbl_Level_Save_Data for level #" + level.Number + ", Inserting record", false);
+                            reader = queryDatabase("INSERT INTO tbl_Level_Save_Data " +
+                                                            "(Map_ID, Save_ID, Medals_Earned) " +
+                                                       "VALUES (" + level.Number + ", " + Save_ID + ", " + level.Medals + ");");
+                            d.Log(true, "Level #" + level.Number + " saved successfully.", false);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        d.Log(false, "Saving level #" + level.Number + " failed: " + e.Message + ". Attempting to save the next level (if applicable).", true);
+                        continue;
+                    }
+                }
+                d.Log(true, "Game State data successfully updated.", false);
+            }
+            else
+            {
+                // No data was found, insert into
+                d.Log(true, "Game State data for Unique ID: " + d.DUI + " not was found, updating record.", false);
+                reader = queryDatabase("INSERT INTO tbl_Save_Data " +
+                                            "(Current_Medals, Total_Medals_Earned, Current_Gems, Total_Gems_Earned, Unique_Identifier, DT_Stamp) " +
+                                       "VALUES (" + Current_Medals + ", " + Total_Medals_Earned + ", " + Current_Gems + ", " + Total_Gems_Earned + ", '" + d.DUI + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');");
+                Save_ID = getDatabaseValue<int>("Save_ID", "SELECT Save_ID FROM tbl_Save_Data WHERE Unique_Identifier = '" + d.DUI + "';");
+                d.Log(true, "The following Game State data was saved successfully > Current_Medals: " + Current_Medals + ", Total_Medals_Earned: " + Total_Medals_Earned +
+                    ", Current_Gems: " + Current_Gems + ", Total_Gems_Earned: " + Total_Gems_Earned +
+                    ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Attempting to save the " + Level_Data.Count + " individual levels.", false);
+                foreach (Level_Info level in Level_Data)
+                {
+                    try
+                    {
+                        d.Log(true, "Attempting to insert record for level #" + level.Number, false);
+                        reader = queryDatabase("INSERT INTO tbl_Level_Save_Data " +
+                                                "(Map_ID, Save_ID, Medals_Earned) " +
+                                           "VALUES (" + level.Number + ", " + Save_ID + ", " + level.Medals + ");");
+                        d.Log(true, "Level #" + level.Number + " saved successfully.", false);
+                    }
+                    catch (Exception e)
+                    {
+                        d.Log(false, "Saving level #" + level.Number + " failed: " + e.Message + ". Attempting to save the next level (if applicable).", true);
+                        continue;
+                    }
+                }
+                d.Log(true, "Game State data successfull inserted > ", false);
+            }
+        }
+        catch (Exception e)
+        {
+            d.Log(false, "Update Game State data failed: " + e.Message, true);
         }
     }
 

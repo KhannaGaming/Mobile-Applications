@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
         Database_Controller.leaderboard.leaderboard(9001.0f, "Pavelow");
         Database_Controller.leaderboard.Load();
         Database_Controller.GameState.Load();
+        Database_Controller.GameState.Save();
     }
 
     // Update is called once per frame
