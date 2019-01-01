@@ -1,0 +1,160 @@
+01-01 15:21:06.109: D/ViewRootImpl@407d922[UnityPlayerActivity](22025): ViewPostIme pointer 0
+01-01 15:21:06.204: D/ViewRootImpl@407d922[UnityPlayerActivity](22025): ViewPostIme pointer 1
+01-01 15:21:06.972: D/ViewRootImpl@407d922[UnityPlayerActivity](22025): MSG_WINDOW_FOCUS_CHANGED 0
+01-01 15:21:07.126: D/ViewRootImpl@407d922[UnityPlayerActivity](22025): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x5 surface={valid=false 0} changed=true
+01-01 15:21:07.166: D/ViewRootImpl@407d922[UnityPlayerActivity](22025): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=false 0} changed=false
+01-01 15:21:07.183: D/ViewRootImpl@407d922[UnityPlayerActivity](22025): Relayout returned: old=[0,0][2220,1080] new=[0,0][1080,2220] result=0x1 surface={valid=false 0} changed=false
+01-01 15:21:10.890: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): setView = DecorView@dcbffb3[UnityPlayerActivity] TM=true MM=false
+01-01 15:21:10.897: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): dispatchAttachedToWindow
+01-01 15:21:10.917: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): Relayout returned: old=[0,0][0,0] new=[0,0][2220,1080] result=0x27 surface={valid=true 3595563008} changed=true
+01-01 15:21:10.932: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): MSG_RESIZED_REPORT: frame=Rect(0, 0 - 2220, 1080) ci=Rect(0, 0 - 126, 0) vi=Rect(0, 63 - 126, 0) or=2
+01-01 15:21:10.932: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): MSG_WINDOW_FOCUS_CHANGED 1
+01-01 15:21:10.940: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x7 surface={valid=true 3343396864} changed=true
+01-01 15:21:10.953: I/Unity(23761): SystemInfo CPU = ARMv7 VFPv3 NEON, Cores = 8, Memory = 5339mb
+01-01 15:21:10.953: I/Unity(23761): SystemInfo ARM big.LITTLE configuration: 4 big (mask: 0xf0), 4 little (mask: 0xf)
+01-01 15:21:10.954: I/Unity(23761): ApplicationInfo com.A4.SpaceTowerDefense version 0.2 build 1e50051f-a261-464c-aa31-bb4d94b63995
+01-01 15:21:10.954: I/Unity(23761): Built from '2018.2/staging' branch, Version '2018.2.16f1 (39a4ac3d51f6)', Build type 'Release', Scripting Backend 'mono'
+01-01 15:21:11.010: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=true 3343396864} changed=false
+01-01 15:21:11.047: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x3 surface={valid=true 3343396864} changed=false
+01-01 15:21:11.057: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): MSG_RESIZED_REPORT: frame=Rect(0, 0 - 2220, 1080) ci=Rect(0, 0 - 126, 0) vi=Rect(0, 63 - 0, 0) or=2
+01-01 15:21:11.058: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): MSG_RESIZED_REPORT: frame=Rect(0, 0 - 2220, 1080) ci=Rect(0, 0 - 126, 0) vi=Rect(0, 0 - 0, 0) or=2
+01-01 15:21:11.098: D/Unity(23761):  GL_EXT_debug_marker GL_ARM_rgba8 GL_ARM_mali_shader_binary GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_packed_depth_stencil GL_OES_rgb8_rgba8 GL_EXT_read_format_bgra GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_standard_derivatives GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_texture_npot GL_OES_vertex_half_float GL_OES_required_internalformat GL_OES_vertex_array_object GL_OES_mapbuffer GL_EXT_texture_format_BGRA8888 GL_EXT_texture_rg GL_EXT_texture_type_2_10_10_10_REV GL_OES_fbo_render_mipmap GL_OES_element_index_uint GL_EXT_shadow_samplers GL_OES_texture_compression_astc GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_hdr GL_KHR_texture_compression_astc_sliced_3d GL_KHR_debug GL_EXT_occlusion_query_boolean GL_EXT_disjoint_timer_query GL_EXT_blend_minmax GL_EXT_discard_framebuffer GL_OES_get_program_binary GL_OES_texture_3D GL_EXT_texture_storage GL_EXT_multisampled_render_
+01-01 15:21:11.098: D/Unity(23761): to_texture GL_OES_surfaceless_context GL_OES_texture_stencil8 GL_EXT_shader_pixel_local_storage GL_ARM_shader_framebuffer_fetch GL_ARM_shader_framebuffer_fetch_depth_stencil GL_ARM_mali_program_binary GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_texture_sRGB_decode GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_OES_texture_storage_multisample_2d_array GL_OES_shader_image_atomic GL_EXT_robustness GL_EXT_draw_buffers_indexed GL_OES_draw_buffers_indexed GL_EXT_texture_border_clamp GL_OES_texture_border_clamp GL_EXT_texture_cube_map_array GL_OES_texture_cube_map_array GL_OES_sample_variables GL_OES_sample_shading GL_OES_shader_multisample_interpolation GL_EXT_shader_io_blocks GL_OES_shader_io_blocks GL_EXT_tessellation_shader GL_OES_tessellation_shader GL_EXT_primitive_bounding_box GL_OES_primitive_bounding_box GL_EXT_geometry_shader GL_OES_geometry_shader GL_ANDROID_extension_pack_es31a GL_EXT_gpu_shader5 GL_OES_gpu_shader5 GL_EXT_texture
+01-01 15:21:11.098: D/Unity(23761): _buffer GL_OES_texture_buffer GL_EXT_copy_image GL_OES_copy_image GL_EXT_shader_non_constant_global_initializers GL_EXT_color_buffer_half_float GL_EXT_color_buffer_float GL_EXT_YUV_target GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture GL_KHR_robustness GL_KHR_robust_buffer_access_behavior GL_EXT_draw_elements_base_vertex GL_OES_draw_elements_base_vertex GL_EXT_protected_textures
+01-01 15:21:11.712: W/Unity(23761): The referenced script on this Behaviour (Game Object 'Canvas') is missing!
+01-01 15:21:11.712: W/Unity(23761):  
+01-01 15:21:11.712: W/Unity(23761): (Filename:  Line: 1775)
+01-01 15:21:13.994: I/Unity(23761): Save path being used: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files
+01-01 15:21:13.994: I/Unity(23761):  
+01-01 15:21:13.994: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.004: I/Unity(23761): Unique Client ID: 4bd2725eaf0e87ce3f6b396f3cbe71d9
+01-01 15:21:14.004: I/Unity(23761):  
+01-01 15:21:14.004: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.007: I/Unity(23761): GameController Awake Initialisation Complete
+01-01 15:21:14.007: I/Unity(23761):  
+01-01 15:21:14.007: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.055: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=true 3343396864} changed=false
+01-01 15:21:14.080: D/ViewRootImpl@407d922[UnityPlayerActivity](23761): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=true 3343396864} changed=false
+01-01 15:21:14.141: I/Unity(23761): Reading Modified date from .dat file failed > Unable to read beyond the end of the stream.
+01-01 15:21:14.141: I/Unity(23761):  
+01-01 15:21:14.141: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.829: I/Unity(23761): Database get failed (System Exception), query: SELECT MAX(DT_Stamp) FROM tbl_Store;
+01-01 15:21:14.829: I/Unity(23761):  
+01-01 15:21:14.829: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.829: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.829: I/Unity(23761):  
+01-01 15:21:14.829: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.830: I/Unity(23761): Loading from local cache failed: Unable to read beyond the end of the stream. Attempting to load from database instead.
+01-01 15:21:14.830: I/Unity(23761):  
+01-01 15:21:14.830: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.837: I/Unity(23761): Database query failed (SQL Exception), query: SELECT * FROM tbl_Store WHERE In_Use = 1;
+01-01 15:21:14.837: I/Unity(23761):  
+01-01 15:21:14.837: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.837: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.837: I/Unity(23761):  
+01-01 15:21:14.837: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.837: I/Unity(23761): Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! | UNABLE TO LOAD STORE!
+01-01 15:21:14.837: I/Unity(23761):  
+01-01 15:21:14.837: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.842: I/Unity(23761): Reading Modified date from .dat file failed > Unable to read beyond the end of the stream.
+01-01 15:21:14.842: I/Unity(23761):  
+01-01 15:21:14.842: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.848: I/Unity(23761): Database get failed (System Exception), query: SELECT MAX(DT_Stamp) FROM tbl_Highscores;
+01-01 15:21:14.848: I/Unity(23761):  
+01-01 15:21:14.848: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.848: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.848: I/Unity(23761):  
+01-01 15:21:14.848: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.850: I/Unity(23761): Loading from local cache failed: Sharing violation on path /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Leaderboard_Save.dat Attempting to load from database instead.
+01-01 15:21:14.850: I/Unity(23761):  
+01-01 15:21:14.850: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.856: I/Unity(23761): Database query failed (SQL Exception), query: SELECT * FROM tbl_Highscores ORDER BY Score ASC;
+01-01 15:21:14.856: I/Unity(23761):  
+01-01 15:21:14.856: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.856: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.856: I/Unity(23761):  
+01-01 15:21:14.856: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.856: I/Unity(23761): Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! | UNABLE TO LOAD LEADERBOARD!
+01-01 15:21:14.856: I/Unity(23761):  
+01-01 15:21:14.856: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.870: I/Unity(23761): Database query failed (SQL Exception), query: SELECT * FROM tbl_Highscores WHERE Unique_Identifier = '4bd2725eaf0e87ce3f6b396f3cbe71d9';
+01-01 15:21:14.870: I/Unity(23761):  
+01-01 15:21:14.870: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.870: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.870: I/Unity(23761):  
+01-01 15:21:14.870: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.870: I/Unity(23761): The MySqlDataReader returned null, please ensure you have data in the database and you are connected to the internet! | UNABLE TO UPDATE DATABASE!
+01-01 15:21:14.870: I/Unity(23761):  
+01-01 15:21:14.870: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.871: I/Unity(23761): Reading Modified date from .dat file failed > Unable to read beyond the end of the stream.
+01-01 15:21:14.871: I/Unity(23761):  
+01-01 15:21:14.871: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.877: I/Unity(23761): Database get failed (System Exception), query: SELECT MAX(DT_Stamp) FROM tbl_Highscores;
+01-01 15:21:14.877: I/Unity(23761):  
+01-01 15:21:14.877: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.877: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.877: I/Unity(23761):  
+01-01 15:21:14.877: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.878: I/Unity(23761): Loading from local cache failed: Sharing violation on path /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Leaderboard_Save.dat Attempting to load from database instead.
+01-01 15:21:14.878: I/Unity(23761):  
+01-01 15:21:14.878: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.883: I/Unity(23761): Database query failed (SQL Exception), query: SELECT * FROM tbl_Highscores ORDER BY Score ASC;
+01-01 15:21:14.883: I/Unity(23761):  
+01-01 15:21:14.883: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.883: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.883: I/Unity(23761):  
+01-01 15:21:14.883: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.883: I/Unity(23761): Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! | UNABLE TO LOAD LEADERBOARD!
+01-01 15:21:14.883: I/Unity(23761):  
+01-01 15:21:14.883: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.884: I/Unity(23761): Reading Modified date from .dat file failed > Sharing violation on path /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Leaderboard_Save.dat
+01-01 15:21:14.884: I/Unity(23761):  
+01-01 15:21:14.884: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.892: I/Unity(23761): Database get failed (System Exception), query: SELECT MAX(DT_Stamp) FROM tbl_Highscores;
+01-01 15:21:14.892: I/Unity(23761):  
+01-01 15:21:14.892: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.892: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.892: I/Unity(23761):  
+01-01 15:21:14.892: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.893: I/Unity(23761): Loading from local cache failed: Unable to read beyond the end of the stream. Attempting to load from database instead.
+01-01 15:21:14.893: I/Unity(23761):  
+01-01 15:21:14.893: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.898: I/Unity(23761): Database query failed (SQL Exception), query: SELECT * FROM tbl_Highscores ORDER BY Score ASC;
+01-01 15:21:14.898: I/Unity(23761):  
+01-01 15:21:14.898: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.898: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.898: I/Unity(23761):  
+01-01 15:21:14.898: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.898: I/Unity(23761): Loading from database failed: The MySqlDataReader returned null, please check the SQL Syntax is correct and ensure there is data to pull! | UNABLE TO LOAD LEADERBOARD!
+01-01 15:21:14.898: I/Unity(23761):  
+01-01 15:21:14.898: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.981: I/Unity(23761): Database get failed (System Exception), query: SELECT MAX(DT_Stamp) FROM tbl_Save_Data WHERE Unique_Identifier = '4bd2725eaf0e87ce3f6b396f3cbe71d9';
+01-01 15:21:14.981: I/Unity(23761):  
+01-01 15:21:14.981: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:14.981: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:14.981: I/Unity(23761):  
+01-01 15:21:14.981: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.169: I/Unity(23761): Level #1 - Standard (3 Medals Earned) saved to binary file: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Game_State_Save.dat
+01-01 15:21:15.169: I/Unity(23761):  
+01-01 15:21:15.169: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.170: I/Unity(23761): Level #2 - Lasers (3 Medals Earned) saved to binary file: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Game_State_Save.dat
+01-01 15:21:15.170: I/Unity(23761):  
+01-01 15:21:15.170: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.170: I/Unity(23761): Level #3 - Electricity (3 Medals Earned) saved to binary file: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Game_State_Save.dat
+01-01 15:21:15.170: I/Unity(23761):  
+01-01 15:21:15.170: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.171: I/Unity(23761): Level #4 - Sniper (3 Medals Earned) saved to binary file: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Game_State_Save.dat
+01-01 15:21:15.171: I/Unity(23761):  
+01-01 15:21:15.171: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.171: I/Unity(23761): Level #5 - Rockets (3 Medals Earned) saved to binary file: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files/Game_State_Save.dat
+01-01 15:21:15.171: I/Unity(23761):  
+01-01 15:21:15.171: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.185: I/Unity(23761): Database query failed (SQL Exception), query: SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '4bd2725eaf0e87ce3f6b396f3cbe71d9';
+01-01 15:21:15.185: I/Unity(23761):  
+01-01 15:21:15.185: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.185: I/Unity(23761): Exception Message: Index was outside the bounds of the array.
+01-01 15:21:15.185: I/Unity(23761):  
+01-01 15:21:15.185: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-01 15:21:15.187: I/Unity(23761): Update Game State data failed: Object reference not set to an instance of an object
+01-01 15:21:15.187: I/Unity(23761):  
+01-01 15:21:15.187: I/Unity(23761): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)

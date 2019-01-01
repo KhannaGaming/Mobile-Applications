@@ -5,8 +5,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System;
-using System.Runtime.CompilerServices;
-using System.Globalization;
 using UnityEngine.UI;
 
 public class Database_Control : MonoBehaviour {
@@ -23,26 +21,21 @@ public class Database_Control : MonoBehaviour {
     #region General Initialisation
     void Awake()
     {
-        d = new Debug_Log(text, Application.persistentDataPath + "/");
-        text.text = text.text + "\n" + Application.persistentDataPath + "/";
+        string Save_Path = Application.persistentDataPath;
+        d = new Debug_Log(text, Save_Path);
+        d.Log(true, "Save path being used: " + Save_Path, true);
         //Initialising the local cache in awake due to constructor
         d.DUI = SystemInfo.deviceUniqueIdentifier;
-        Debug.Log("Unique Client ID: " + d.DUI);
-        text.text = text.text + "\n" + d.DUI;
-        store.d = d;
-        text.text = text.text + "\n" + (store != null).ToString();
-        leaderboard.d = d;
-        text.text = text.text + "\n" + (leaderboard != null).ToString();
-        GameState.d = d;
-        text.text = text.text + "\n" + (GameState != null).ToString();
-        text.text = text.text + "\n" + (File.Exists(Application.persistentDataPath + "/" + store.File_Name)).ToString();
-        if (!File.Exists(Application.persistentDataPath + "/" + store.File_Name))
-            File.Create(Application.persistentDataPath + "/" + store.File_Name);
-        text.text = text.text + "\n" + (File.Exists(Application.persistentDataPath + "/" + store.File_Name)).ToString();
-        if (!File.Exists(Application.persistentDataPath + "/" + leaderboard.File_Name))
-            File.Create(Application.persistentDataPath + "/" + leaderboard.File_Name);
-        if (!File.Exists(Application.persistentDataPath + "/" + GameState.File_Name))
-            File.Create(Application.persistentDataPath + "/" + GameState.File_Name);
+        d.Log(true, "Unique Client ID: " + d.DUI, true);
+        store.d.Clone(d);
+        leaderboard.d.Clone(d);
+        GameState.d.Clone(d);
+        if (!File.Exists(Save_Path + "/" + store.File_Name))
+            File.Create(Save_Path + "/" + store.File_Name);
+        if (!File.Exists(Save_Path + "/" + leaderboard.File_Name))
+            File.Create(Save_Path + "/" + leaderboard.File_Name);
+        if (!File.Exists(Save_Path + "/" + GameState.File_Name))
+            File.Create(Save_Path + "/" + GameState.File_Name);
     }
     #endregion
 }
@@ -52,7 +45,8 @@ public class Database_Interaction
     #region Database Variables
     private MySqlConnection connection = null;
     private MySqlCommand command = null;
-    private string connectionString = "Server = den1.mysql5.gear.host; port = 3306; Database = stddb; User = stdclient; Password = '8ch8J5PPRRCFKp6!'; SslMode=none;";
+    //private string connectionString = "Server = den1.mysql5.gear.host; port = 3306; Database = stddb; User = stdclient; Password = '8ch8J5PPRRCFKp6!';";
+    private string connectionString = "Server=den1.mysql5.gear.host;Port=3306;Database=stddb;Uid=stdclient;Pwd=8ch8J5PPRRCFKp6!;";
     #endregion
 
     #region Query Database
@@ -73,7 +67,7 @@ public class Database_Interaction
         }
         catch (System.Exception ex)
         {
-            Debug.Log("Database query failed (SQL Exception), query: " + query);
+            Debug.Log("Database query failed (System Exception), query: " + query);
             Debug.Log("Exception Message: " + ex.Message);
             return null;
         }
@@ -139,38 +133,62 @@ public class Debug_Log
     private bool Override = false;//Change this to true if you want to print all logs to the debug_log text file
     private bool Reset_On_Start = true;//Change this to true if you want the debug log file to clear each time it's run (recommended for ease of reading)
 
-    internal string Path = "";
+    internal string path = "";
     internal string DUI = "";
+    private string Debug_File_Name = "debug_log";
+    private string Debug_File_Ext = ".txt";
 
     public Text TextOutput;
-  
-    public Debug_Log(Text text_ = null, string Path_ = "")
+
+    public Debug_Log()
+    {
+    }
+    public Debug_Log(Text text_, string Path_)
     {
         TextOutput = text_;
-        Path = Path_;
+        path = Path_;
         if (Reset_On_Start)
-            File.WriteAllText(Path + "debug_log.txt", String.Empty);
+            File.WriteAllText(Path.Combine(path, Debug_File_Name + Debug_File_Ext), String.Empty);
     }
 
-    public void Log(bool success, string output, bool toConsole, [CallerLineNumber] int LineNumber = 0, [CallerMemberName] string Caller = null)
+    //public void Log(bool success, string output, bool toConsole, [CallerLineNumber] int LineNumber = 0, [CallerMemberName] string Caller = null)
+    public void Log(bool success, string output, bool toConsole)
     {
-        TextOutput.text = TextOutput.text + "\n" + ((success) ? " " : "!") + DateTime.Now + " > Caller: " + Caller + ", Line Number: " + LineNumber + ": " + output;
+        TextOutput.text = TextOutput.text + "\n" + ((success) ? " " : "!") + DateTime.Now + ": " + output;
         if (!Allow_Logs) return;
         if (toConsole || Override) Debug.Log(output);
-        using (StreamWriter writer = new StreamWriter(Path + "debug_log.txt", true))
+        try
         {
-            writer.WriteLine(((success) ? " " : "!") + DateTime.Now + " > Caller: " + Caller + ", Line Number: " + LineNumber + ": " + output);
+            StreamWriter writer = new StreamWriter(path + "/" + Debug_File_Name + Debug_File_Ext, true);
+            writer.WriteLine(((success) ? " " : "!") + DateTime.Now + ": " + output);
+            writer.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Debug logging failed > " + e.Message);
         }
     }
     public List<string> Retrieve()
     {
         if (!Allow_Logs) return null;
         List<string> temp = new List<string>();
-        using (StreamReader reader = new StreamReader(Path + "debug_log.txt"))
+        try
         {
+            StreamReader reader = new StreamReader(path + "/" + Debug_File_Name + Debug_File_Ext);
             temp.Add(reader.ReadLine());
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Reading from debug log file failed! > " + e.Message);
         }
         return temp;
+    }
+    public void Clone(Debug_Log dl)
+    {
+        path = dl.path;
+        DUI = dl.DUI;
+        TextOutput = dl.TextOutput;
     }
 }
 public class Local_Cache : Database_Interaction
@@ -204,18 +222,33 @@ public class Local_Cache : Database_Interaction
     }
     internal void Get_Modified_Date()
     {
-        try
+        if (!File.Exists(d.path + "/" + File_Name))
+        {
+            try
+            {
+                File.Create(d.path + "/" + File_Name);
+            }
+            catch (Exception e)
+            {
+                d.Log(false, "Creating new file for path: " + d.path + "/" + File_Name + " failed! > " + e.Message, true);
+            }
+        }
+        else
         {
             d.Log(true, "Attempting to get Modified date from local cache file.", false);
-            using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+            try
             {
+                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(fs);
                 Modified = Convert.ToDateTime(br.ReadString());
+                br.Close();
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                d.Log(false, "Reading Modified date from .dat file failed > " + e.Message, true);
             }
             d.Log(true, "Successfully read Modified date from local cache file.", false);
-        }
-        catch (Exception e)
-        {
-            d.Log(false, "Couldn't get Modified date from local cache file: " + d.Path + File_Name + " > " + e.Message, true);
         }
     }
 }
@@ -236,12 +269,14 @@ public class Store : Local_Cache
     /// </summary>
     public override void Save()
     {
-        d.Log(true, "Attempting to save Store contents to binary file: " + d.Path + File_Name, false);
+        d.Log(true, "Attempting to save Store contents to binary file: " + Path.Combine(d.path, File_Name), false);
         // Save Store to binary file
         try
         {
-            using (BinaryWriter bw = new BinaryWriter(File.OpenWrite(d.Path + File_Name)))
+            try
             {
+                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryWriter bw = new BinaryWriter(fs);
                 bw.Write(Modified.ToString());
                 bw.Write(d_Store.Count);
                 foreach (var pair in d_Store)
@@ -249,12 +284,18 @@ public class Store : Local_Cache
                     bw.Write(pair.Key);
                     bw.Write(pair.Value);
                 }
+                bw.Close();
+                fs.Close();
             }
-            d.Log(true, "Save Store contents to binary file successful: " + d.Path + File_Name, false);
+            catch (Exception e)
+            {
+                d.Log(false, "Writing to the store .dat file failed!", true);
+            }
+            d.Log(true, "Save Store contents to binary file successful: " + Path.Combine(d.path, File_Name), false);
         }
         catch (SerializationException sEx)
         {
-            d.Log(false, "Save Store contents to binary file failed: " + d.Path + File_Name + " > " + sEx.Message, true);
+            d.Log(false, "Save Store contents to binary file failed: " + Path.Combine(d.path, File_Name) + " > " + sEx.Message, true);
         }
     }
     /// <summary>
@@ -272,17 +313,18 @@ public class Store : Local_Cache
             #region Use local cache data
             try
             {
-                using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(fs);
+                Modified = Convert.ToDateTime(br.ReadString());
+                Record_Count = br.ReadInt32();
+                if (Record_Count > 0)
+                    d_Store.Clear();
+                for (int i = 0; i < Record_Count; i++)
                 {
-                    Modified = Convert.ToDateTime(br.ReadString());
-                    Record_Count = br.ReadInt32();
-                    if (Record_Count > 0)
-                        d_Store.Clear();
-                    for (int i = 0; i < Record_Count; i++)
-                    {
-                        d_Store.Add(br.ReadString(), (float)br.ReadSingle());
-                    }
+                    d_Store.Add(br.ReadString(), (float)br.ReadSingle());
                 }
+                br.Close();
+                fs.Close();
             }
             catch (Exception e)
             {
@@ -309,7 +351,7 @@ public class Store : Local_Cache
                     d.Log(false,"Loading from database failed: " + ex.Message + " | UNABLE TO LOAD STORE!", true);
                 }
             }
-            d.Log(true,"Loading from local cache successful: " + d.Path + File_Name, false);
+            d.Log(true,"Loading from local cache successful: " + Path.Combine(d.path, File_Name), false);
             #endregion
         }
         else
@@ -325,17 +367,18 @@ public class Store : Local_Cache
                     try
                     {
                         // Use local cache data instead
-                        using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+                        FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                        BinaryReader br = new BinaryReader(fs);
+                        Modified = Convert.ToDateTime(br.ReadString());
+                        Record_Count = br.ReadInt32();
+                        if (Record_Count > 0)
+                            d_Store.Clear();
+                        for (int i = 0; i < Record_Count; i++)
                         {
-                            Modified = Convert.ToDateTime(br.ReadString());
-                            Record_Count = br.ReadInt32();
-                            if (Record_Count > 0)
-                                d_Store.Clear();
-                            for (int i = 0; i < Record_Count; i++)
-                            {
-                                d_Store.Add(br.ReadString(), (float)br.ReadSingle());
-                            }
+                            d_Store.Add(br.ReadString(), (float)br.ReadSingle());
                         }
+                        br.Close();
+                        fs.Close();
                         d.Log(true, "Loading from local cache successful.", false);
                     }
                     catch (Exception e)
@@ -391,25 +434,26 @@ public class Leaderboard : Local_Cache
     /// </summary>
     public override void Save()
     {
-        d.Log(true, "Attempting to save Leaderboad contents to binary file: " + d.Path + File_Name, false);
+        d.Log(true, "Attempting to save Leaderboad contents to binary file: " + d.path + "/" + File_Name, false);
         // Save Leaderboard to binary file
         try
         {
-            using (BinaryWriter bw = new BinaryWriter(File.OpenWrite(d.Path + File_Name)))
+            FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(Modified.ToString());
+            bw.Write(d_Leaderboard.Count);
+            foreach (var pair in d_Leaderboard)
             {
-                bw.Write(Modified.ToString());
-                bw.Write(d_Leaderboard.Count);
-                foreach (var pair in d_Leaderboard)
-                {
-                    bw.Write(pair.Key);
-                    bw.Write(pair.Value);
-                }
+                bw.Write(pair.Key);
+                bw.Write(pair.Value);
             }
-            d.Log(true, "Save Leaderboard contents to binary file successful: " + d.Path + File_Name, false);
+            bw.Close();
+            fs.Close();
+            d.Log(true, "Save Leaderboard contents to binary file successful: " + d.path + "/" + File_Name, false);
         }
         catch (Exception e)
         {
-            d.Log(false, "Save Leaderboard contents to binary file failed: " + d.Path + File_Name + " > " + e.Message, true);
+            d.Log(false, "Save Leaderboard contents to binary file failed: " + d.path + "/" + File_Name + " > " + e.Message, true);
         }
     }
     /// <summary>
@@ -427,17 +471,18 @@ public class Leaderboard : Local_Cache
             #region Use Local cache data
             try
             {
-                using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(fs);
+                Modified = Convert.ToDateTime(br.ReadString());
+                Record_Count = br.ReadInt32();
+                if (Record_Count > 0)
+                    d_Leaderboard.Clear();
+                for (int i = 0; i < Record_Count; i++)
                 {
-                    Modified = Convert.ToDateTime(br.ReadString());
-                    Record_Count = br.ReadInt32();
-                    if (Record_Count > 0)
-                        d_Leaderboard.Clear();
-                    for (int i = 0; i < Record_Count; i++)
-                    {
-                        d_Leaderboard.Add(br.ReadString(), (float)br.ReadSingle());
-                    }
+                    d_Leaderboard.Add(br.ReadString(), (float)br.ReadSingle());
                 }
+                br.Close();
+                fs.Close();
             }
             catch (Exception e)
             {
@@ -465,7 +510,7 @@ public class Leaderboard : Local_Cache
                     d.Log(false, "Loading from database failed: " + ex.Message + " | UNABLE TO LOAD LEADERBOARD!", true);
                 }
             }
-            d.Log(true, "Loading from local cache successful: " + d.Path + File_Name, false);
+            d.Log(true, "Loading from local cache successful: " + Path.Combine(d.path, File_Name), false);
             #endregion
         }
         else
@@ -481,17 +526,18 @@ public class Leaderboard : Local_Cache
                     try
                     {
                         // Use local cache data instead
-                        using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+                        FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                        BinaryReader br = new BinaryReader(fs);
+                        Modified = Convert.ToDateTime(br.ReadString());
+                        Record_Count = br.ReadInt32();
+                        if (Record_Count > 0)
+                            d_Leaderboard.Clear();
+                        for (int i = 0; i < Record_Count; i++)
                         {
-                            Modified = Convert.ToDateTime(br.ReadString());
-                            Record_Count = br.ReadInt32();
-                            if (Record_Count > 0)
-                                d_Leaderboard.Clear();
-                            for (int i = 0; i < Record_Count; i++)
-                            {
-                                d_Leaderboard.Add(br.ReadString(), (float)br.ReadSingle());
-                            }
+                            d_Leaderboard.Add(br.ReadString(), (float)br.ReadSingle());
                         }
+                        br.Close();
+                        fs.Close();
                         d.Log(true, "Loading from local cache successful.", false);
                     }
                     catch (Exception e)
@@ -599,8 +645,6 @@ public class Game_State : Local_Cache
     public Game_State()
     {
         File_Name = "Game_State_Save.dat";
-        if (!File.Exists(d.Path + File_Name))
-            File.Create(d.Path + File_Name);
     }
 
     MySqlDataReader reader = null;
@@ -612,37 +656,38 @@ public class Game_State : Local_Cache
     /// </summary>
     public override void Save()
     {
-        d.Log(true, "Attempting to save Game State contents to binary file: " + d.Path + File_Name, false);
+        d.Log(true, "Attempting to save Game State contents to binary file: " + d.path + "/" + File_Name, false);
         // Save Game State to binary file
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
-            using (BinaryWriter bw = new BinaryWriter(File.OpenWrite(d.Path + File_Name)))
+            FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(Modified.ToString());
+            bw.Write(Current_Medals);
+            bw.Write(Total_Medals_Earned);
+            bw.Write(Current_Gems);
+            bw.Write(Total_Gems_Earned);
+            bw.Write(Level_Data.Count);
+            d.Log(true, "Successfully saved Game State of > [Total_Medals_Earned: " + Total_Medals_Earned + " | Current_Medals: " + Current_Medals +
+                " | Total_Gems_Earned: " + Total_Gems_Earned + " | Current_Gems: " + Current_Gems + "] to binary file: " + Path.Combine(d.path, File_Name), false);
+            foreach (Level_Info level in Level_Data)
             {
-                bw.Write(Modified.ToString());
-                bw.Write(Current_Medals);
-                bw.Write(Total_Medals_Earned);
-                bw.Write(Current_Gems);
-                bw.Write(Total_Gems_Earned);
-                bw.Write(Level_Data.Count);
-                d.Log(true, "Successfully saved Game State of > [Total_Medals_Earned: " + Total_Medals_Earned + " | Current_Medals: " + Current_Medals +
-                    " | Total_Gems_Earned: " + Total_Gems_Earned + " | Current_Gems: " + Current_Gems + "] to binary file: " + d.Path + File_Name, false);
-                foreach (Level_Info level in Level_Data)
+                if (level.Name == "" || level.Number == 0 || level.Medals == 0)
                 {
-                    if (level.Name == "" || level.Number == 0 || level.Medals == 0)
-                    {
-                        d.Log(false, "Level #" + level.Number + " Serialization failure, a value was null > Name: " + level.Name + ", Number: " + level.Number + ", Medals: " + level.Medals + ". Skipping this level.", true);
-                        continue;
-                    }
-                    bf.Serialize(bw.BaseStream, level);
-                    d.Log(true, "Level #" + level.Number + " - " + level.Name + " (" + level.Medals + " Medals Earned) saved to binary file: " + d.Path + File_Name, true);
+                    d.Log(false, "Level #" + level.Number + " Serialization failure, a value was null > Name: " + level.Name + ", Number: " + level.Number + ", Medals: " + level.Medals + ". Skipping this level.", true);
+                    continue;
                 }
+                bf.Serialize(bw.BaseStream, level);
+                d.Log(true, "Level #" + level.Number + " - " + level.Name + " (" + level.Medals + " Medals Earned) saved to binary file: " + Path.Combine(d.path, File_Name), true);
             }
-            d.Log(true, "Save Game State contents to binary file successful: " + d.Path + File_Name, false);
+            bw.Close();
+            fs.Close();
+            d.Log(true, "Save Game State contents to binary file successful: " + Path.Combine(d.path, File_Name), false);
         }
         catch (SerializationException e)
         {
-            d.Log(false, "Save Game State contents to binary file failed: " + d.Path + File_Name + " > " + e.Message, true);
+            d.Log(false, "Save Game State contents to binary file failed: " + Path.Combine(d.path, File_Name) + " > " + e.Message, true);
         }
         // Now update the database to reflect this
         Update();
@@ -662,20 +707,21 @@ public class Game_State : Local_Cache
             try
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(fs);
+                Modified = Convert.ToDateTime(br.ReadString());
+                Current_Medals = br.ReadByte();
+                Total_Medals_Earned = br.ReadByte();
+                Current_Gems = br.ReadInt32();
+                Total_Gems_Earned = br.ReadInt32();
+                Level_Data.Clear();
+                int Level_Count = br.ReadInt32();
+                for (int i = 0; i < Level_Count; i++)
                 {
-                    Modified = Convert.ToDateTime(br.ReadString());
-                    Current_Medals = br.ReadByte();
-                    Total_Medals_Earned = br.ReadByte();
-                    Current_Gems = br.ReadInt32();
-                    Total_Gems_Earned = br.ReadInt32();
-                    Level_Data.Clear();
-                    int Level_Count = br.ReadInt32();
-                    for (int i = 0; i < Level_Count; i++)
-                    {
-                        Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
-                    }
+                    Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
                 }
+                br.Close();
+                fs.Close();
             }
             catch (Exception e)
             {
@@ -725,7 +771,7 @@ public class Game_State : Local_Cache
                     d.Log(false, "Loading from database failed: " + ex.Message + " | UNABLE TO LOAD GAME STATE!", true);
                 }
             }
-            d.Log(true, "Loading from local cache successful: " + d.Path + File_Name, false);
+            d.Log(true, "Loading from local cache successful: " + Path.Combine(d.path, File_Name), false);
             #endregion
         }
         else
@@ -742,21 +788,22 @@ public class Game_State : Local_Cache
                     {
                         // Use local cache data instead
                         BinaryFormatter bf = new BinaryFormatter();
-                        using (BinaryReader br = new BinaryReader(File.OpenRead(d.Path + File_Name)))
+                        FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                        BinaryReader br = new BinaryReader(fs);
+                        Modified = Convert.ToDateTime(br.ReadString());
+                        Current_Medals = br.ReadByte();
+                        Total_Medals_Earned = br.ReadByte();
+                        Current_Gems = br.ReadInt32();
+                        Total_Gems_Earned = br.ReadInt32();
+                        Level_Data.Clear();
+                        int Level_Count = br.ReadInt32();
+                        for (int i = 0; i < Level_Count; i++)
                         {
-                            Modified = Convert.ToDateTime(br.ReadString());
-                            Current_Medals = br.ReadByte();
-                            Total_Medals_Earned = br.ReadByte();
-                            Current_Gems = br.ReadInt32();
-                            Total_Gems_Earned = br.ReadInt32();
-                            Level_Data.Clear();
-                            int Level_Count = br.ReadInt32();
-                            for (int i = 0; i < Level_Count; i++)
-                            {
-                                Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
-                            }
-                            d.Log(true, "Loading from local cache successful.", false);
+                            Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
                         }
+                        d.Log(true, "Loading from local cache successful.", false);
+                        br.Close();
+                        fs.Close();
                     }
                     catch (Exception e)
                     {
@@ -824,6 +871,7 @@ public class Game_State : Local_Cache
             // Check database to see if we already hold records with this players information
             reader = queryDatabase("SELECT * FROM tbl_Save_Data WHERE Unique_Identifier = '" + d.DUI + "';");
             int Save_ID = 0;
+            reader.Read();
             if (reader == null)
             {
                 d.Log(false, "The MySqlDataReader returned null, please ensure you have data in the database and you are connected to the internet! | UNABLE TO UPDATE DATABASE!", true);
@@ -839,7 +887,7 @@ public class Game_State : Local_Cache
                                             "Total_Medals_Earned = " + Total_Medals_Earned + ", " +
                                             "Current_Gems = " + Current_Gems + ", " +
                                             "Total_Gems_Earned = " + Total_Gems_Earned + ", " +
-                                            "DT_Stamp = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " " +
+                                            "DT_Stamp = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
                                        "WHERE Unique_Identifier = '" + d.DUI + "';");
                 d.Log(true, "The following Game State data was saved successfully > Current_Medals: " + Current_Medals + ", Total_Medals_Earned: " + Total_Medals_Earned + 
                     ", Current_Gems: " + Current_Gems + ", Total_Gems_Earned: " + Total_Gems_Earned + 
