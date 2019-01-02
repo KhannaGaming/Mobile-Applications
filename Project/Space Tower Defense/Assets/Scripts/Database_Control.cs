@@ -7,6 +7,17 @@ using System.Runtime.Serialization;
 using System;
 using UnityEngine.UI;
 
+public enum ReturnCode
+{
+    True,
+    False,
+    Invalid,
+    Correct,
+    Incorrect,
+    Incorrect_Format,
+    Incorrect_Syntax
+}
+
 public class Database_Control : MonoBehaviour {
 
     public Game_State GameState = new Game_State();
@@ -45,11 +56,15 @@ public class Database_Interaction
     #region Database Variables
     private MySqlConnection connection = null;
     private MySqlCommand command = null;
-    //private string connectionString = "Server = den1.mysql5.gear.host; port = 3306; Database = stddb; User = stdclient; Password = '8ch8J5PPRRCFKp6!';";
     private string connectionString = "Server=den1.mysql5.gear.host;Port=3306;Database=stddb;Uid=stdclient;Pwd=8ch8J5PPRRCFKp6!;";
     #endregion
 
     #region Query Database
+    /// <summary>
+    /// Returns the data set related to the query submitted.
+    /// </summary>
+    /// <param name="query">The query being submitted.</param>
+    /// <returns></returns>
     public MySqlDataReader queryDatabase(string query)
     {
         try
@@ -72,7 +87,12 @@ public class Database_Interaction
             return null;
         }
     }
-    public bool? checkDatabase(string query)
+    /// <summary>
+    /// Returns a ReturnCode enum value with the response from the database.
+    /// </summary>
+    /// <param name="query">Query to be checked</param>
+    /// <returns>ReturnCode enum value</returns>
+    public ReturnCode checkDatabase(string query)
     {
         try
         {
@@ -80,23 +100,30 @@ public class Database_Interaction
             connection.Open();
             command = new MySqlCommand(query, connection);
             if (command.ExecuteReader().Read())
-                return true;
+                return ReturnCode.True;
             else
-                return false;
+                return ReturnCode.False;
         }
         catch (MySqlException SQLex)
         {
             Debug.Log("Database check failed (SQL Exception), query: " + query);
             Debug.Log("Exception Message: " + SQLex.Message);
-            return null;
+            return ReturnCode.Incorrect_Syntax;
         }
         catch (System.Exception ex)
         {
             Debug.Log("Database check failed (System Exception), query: " + query);
             Debug.Log("Exception Message: " + ex.Message);
-            return null;
+            return ReturnCode.Invalid;
         }
     }
+    /// <summary>
+    /// Queries the database for type T and returns it.
+    /// </summary>
+    /// <typeparam name="T">The type of the value you want to return.</typeparam>
+    /// <param name="value">The name of the field you would like returned.</param>
+    /// <param name="query">The query to submit to the database.</param>
+    /// <returns>The value with the name that you request, converted to the type you requested.</returns>
     public T getDatabaseValue<T>(string value, string query)
     {
         try
@@ -215,10 +242,11 @@ public class Local_Cache : Database_Interaction
         // Load from either the database or binary file (whichever is the most up to date).
         // ( Overidden by derived class )
     }
-    public virtual void Update(string Key, float Value)
+    public virtual bool Update(string Key, float Value)
     {
         // Update the database with current data.
         // ( Overidden by derived class )
+        return false;
     }
     internal void Get_Modified_Date()
     {
@@ -574,46 +602,63 @@ public class Leaderboard : Local_Cache
     /// </summary>
     /// <param name="Key">The name of the player.</param>
     /// <param name="Value">The score achieved.</param>
-    public override void Update(string Key, float Value)
+    /// <returns>True if updated successfully, false if key was taken.</returns>
+    public override bool Update(string Key, float Value)
     {
         try
         {
-            d.Log(true, "Attempting to update the database with the following data > Player_Name: '" + Key + "', Score: " + Value, false);
-            // Check database to see if we already hold records with this players information
-            reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Unique_Identifier = '" + d.DUI + "';");
-            if (reader == null)
+            ReturnCode check = checkDatabase("SELECT Player_Name FROM tbl_Highscores WHERE Player_Name = '" + Key + "';");
+            if (check != ReturnCode.Invalid || check != ReturnCode.Incorrect_Format || check != ReturnCode.Incorrect_Syntax)
             {
-                d.Log(false, "The MySqlDataReader returned null, please ensure you have data in the database and you are connected to the internet! | UNABLE TO UPDATE DATABASE!", true);
-                return;
-            }
-            if (reader.HasRows)
-            {
-                // Data was found, update it
-                d.Log(true, "Leaderboard data for user: " + Key + " was found, updating record with a new Score of " + Value, false);
-                reader = queryDatabase("UPDATE tbl_Highscores " + 
-                                        "SET Player_Name = '" + Key + "', " +
-                                            "Score = " + Value + ", " +
-                                            "DT_Stamp = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " + 
-                                            "WHERE Unique_Identifier = '" + d.DUI + "';");
-                d.Log(true, "Leaderboard data successfully updated > Player Name: " + Key + ", Score: " + Value + ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Unique Identifier: " + d.DUI, false);
-            }
-            else
-            {
-                // No data was found, insert into
-                d.Log(true, "Leaderboard data for user: " + Key + " was not found, inserting a new record with a new Score of " + Value, false);
-                reader = queryDatabase("INSERT INTO tbl_Highscores " +
-                                            "(Player_Name, Score, DT_Stamp, Unique_Identifier) " +
-                                        "SELECT '" + Key + "', " +
-                                            Value + ", " +
-                                            "'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', " + 
-                                            "'" + d.DUI + "';");
-                d.Log(true, "Leaderboard data successfull inserted > Player Name: " + Key + ", Score: " + Value + ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Unique Identifier: " + d.DUI, false);
+                if (check == ReturnCode.False)
+                {
+                    d.Log(true, "Attempting to update the database with the following data > Player_Name: '" + Key + "', Score: " + Value, false);
+                    // Check database to see if we already hold records with this players information
+                    reader = queryDatabase("SELECT * FROM tbl_Highscores WHERE Unique_Identifier = '" + d.DUI + "';");
+                    if (reader == null)
+                    {
+                        d.Log(false, "The MySqlDataReader returned null, please ensure you have data in the database and you are connected to the internet! | UNABLE TO UPDATE DATABASE!", true);
+                        return false;
+                    }
+                    if (reader.HasRows)
+                    {
+                        // Data was found, update it
+                        d.Log(true, "Leaderboard data for user: " + Key + " was found, updating record with a new Score of " + Value, false);
+                        reader = queryDatabase("UPDATE tbl_Highscores " +
+                                                "SET Player_Name = '" + Key + "', " +
+                                                    "Score = " + Value + ", " +
+                                                    "DT_Stamp = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' " +
+                                                    "WHERE Unique_Identifier = '" + d.DUI + "';");
+                        d.Log(true, "Leaderboard data successfully updated > Player Name: " + Key + ", Score: " + Value + ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Unique Identifier: " + d.DUI, false);
+                        return true;
+                    }
+                    else
+                    {
+                        // No data was found, insert into
+                        d.Log(true, "Leaderboard data for user: " + Key + " was not found, inserting a new record with a new Score of " + Value, false);
+                        reader = queryDatabase("INSERT INTO tbl_Highscores " +
+                                                    "(Player_Name, Score, DT_Stamp, Unique_Identifier) " +
+                                                "SELECT '" + Key + "', " +
+                                                    Value + ", " +
+                                                    "'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', " +
+                                                    "'" + d.DUI + "';");
+                        d.Log(true, "Leaderboard data successfull inserted > Player Name: " + Key + ", Score: " + Value + ", Date Time Stamp: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ", Unique Identifier: " + d.DUI, false);
+                        return true;
+                    }
+                }
+                else
+                {
+                    // The check showed that there is already someone with that name on the Leaderboard.
+                    return false;
+                }
             }
         }
         catch (Exception e)
         {
             d.Log(false,"Update Leaderboard data failed: " + e.Message, true);
+            return false;
         }
+        return false;
     }
 
     // Access functions
@@ -863,7 +908,7 @@ public class Game_State : Local_Cache
     /// </summary>
     /// <param name="Key">Unused</param>
     /// <param name="Value">Unused</param>
-    public override void Update(string Key = "", float Value = 0.0f)
+    public override bool Update(string Key = "", float Value = 0.0f)
     {
         try
         {
@@ -875,7 +920,7 @@ public class Game_State : Local_Cache
             if (reader == null)
             {
                 d.Log(false, "The MySqlDataReader returned null, please ensure you have data in the database and you are connected to the internet! | UNABLE TO UPDATE DATABASE!", true);
-                return;
+                return false;
             }
             if (reader.HasRows)
             {
@@ -897,15 +942,15 @@ public class Game_State : Local_Cache
                     try
                     {
                         d.Log(true, "Starting save of level #" + level.Number, false);
-                        bool? L_Exists = checkDatabase("SELECT * FROM tbl_Level_Save_Data WHERE Save_ID = " + Save_ID + " AND Map_ID = " + level.Number + ";");
-                        if (L_Exists == true)
+                        ReturnCode L_Exists = checkDatabase("SELECT * FROM tbl_Level_Save_Data WHERE Save_ID = " + Save_ID + " AND Map_ID = " + level.Number + ";");
+                        if (L_Exists == ReturnCode.True)
                         {
                             d.Log(true, "Data found in tbl_Level_Save_Data for level #" + level.Number + ", Updating record", false);
                             reader = queryDatabase("UPDATE tbl_Level_Save_Data " +
                                                     "SET Medals_Earned = " + level.Medals + " " +
                                                     "WHERE Save_ID = " + Save_ID + " AND Map_ID = " + level.Number + ";");
                         }
-                        else if (L_Exists == false || L_Exists == null)
+                        else
                         {
                             d.Log(true, "Data not found in tbl_Level_Save_Data for level #" + level.Number + ", Inserting record", false);
                             reader = queryDatabase("INSERT INTO tbl_Level_Save_Data " +
@@ -950,12 +995,15 @@ public class Game_State : Local_Cache
                     }
                 }
                 d.Log(true, "Game State data successfull inserted > ", false);
+                return true;
             }
         }
         catch (Exception e)
         {
             d.Log(false, "Update Game State data failed: " + e.Message, true);
+            return false;
         }
+        return false;
     }
 
     // The amount of Medals the Player currently has.
