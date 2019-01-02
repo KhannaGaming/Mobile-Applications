@@ -16,18 +16,19 @@ public class WaveController : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
+
         // Makes a reference to the wave counter text object
         waves = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         // Sets the text value to "Waves Completed: waveValue variable"
         waves.text = "Current wave: " + waveValue + "/" + wavesInLevel;
         if (lastEnemySent)
         {
-            if (waveValue == wavesInLevel)
+            if (waveValue >= wavesInLevel)
             {
                 if (gameManager.GetComponent<GameController>().checkEnemies() == 0)
                 {
@@ -35,12 +36,17 @@ public class WaveController : MonoBehaviour
                     SceneManager.LoadScene("Loading");
                 }
             }
+            lastEnemySent = false;
         }
     }
 
     public void increaseWave()
     {
         waveValue++;
+        if(waveValue > wavesInLevel)
+        {
+            waveValue = wavesInLevel;
+        }
     }
     public void maxWave(int maxWave)
     {

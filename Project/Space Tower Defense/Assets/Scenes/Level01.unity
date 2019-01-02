@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427182, b: 0.56452405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -997,6 +997,66 @@ Prefab:
         type: 2}
       propertyPath: goldAmount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114584344491996796, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125226126662388, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114769785667107950, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114431359811709220, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320590864769630, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132904759221268, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331499496381316, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114758395047389150, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114598194190396076, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469616624942728, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903878785060722, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114829870717702922, guid: a9adf10045820d34c98bf65e141e3bef,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9adf10045820d34c98bf65e141e3bef, type: 2}
