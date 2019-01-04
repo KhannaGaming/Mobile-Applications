@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    [Header("Database")]
+   // [Header("Database")]
     //This needs the Database Controller object dragged and dropped onto it:
     //public Database_Control Database_Controller;
 
@@ -31,7 +31,9 @@ public class GameController : MonoBehaviour
     [Header("Player Base")]
 
     public int Health = 10;
-    public Transform EnemySpawnLocation;
+    public List<Transform> EnemySpawnLocations;
+
+   // public Transform EnemySpawnLocation;
 
     [Header("Canvas")]
     public GameObject NextWaveButton;
@@ -51,10 +53,14 @@ public class GameController : MonoBehaviour
     public List<GameObject> Enemies = null;
     public GameObject waveController;
 
+    private List<List<GameObject>> pathsPossible;
+    public List<GameObject> firstPathPossible;
+    public List<GameObject> secondPathPossible;
+
     // Use this for initialization
     public void Awake()
     {
-
+        
         ////Database_Controller.LoadData();
         //if (Instance == null)                   //if this instnace hasn't been made yet
         //{
@@ -80,6 +86,9 @@ public class GameController : MonoBehaviour
         //for testing only
         currentWaveNumber = 0;
         ReadLevelData();
+        pathsPossible = new List<List<GameObject>>();
+        pathsPossible.Add(firstPathPossible);
+        pathsPossible.Add(secondPathPossible);
         //ReadNextWaveData(currentWaveNumber);
     }
 
@@ -158,7 +167,9 @@ public class GameController : MonoBehaviour
     {
         if (StandardEnemies > 0)
         {
-            CurrentEnemy = Instantiate(StandardEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            int SpawanLocation = UnityEngine.Random.Range(0, EnemySpawnLocations.Count);
+            CurrentEnemy = Instantiate(StandardEnemyPrefab, EnemySpawnLocations[SpawanLocation].position, EnemySpawnLocations[SpawanLocation].rotation);
+            CurrentEnemy.GetComponent<EnemyController>().setPath(pathsPossible[SpawanLocation]);
             AddEnemy(CurrentEnemy);
         }
         if(--StandardEnemies <=0)
@@ -172,7 +183,9 @@ public class GameController : MonoBehaviour
     {
         if (SlowEnemies > 0)
         {
-            CurrentEnemy = Instantiate(SlowEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            int SpawanLocation = UnityEngine.Random.Range(0, EnemySpawnLocations.Count);
+            CurrentEnemy = Instantiate(SlowEnemyPrefab, EnemySpawnLocations[SpawanLocation].position, EnemySpawnLocations[SpawanLocation].rotation);
+            CurrentEnemy.GetComponent<EnemyController>().setPath(pathsPossible[SpawanLocation]);
             AddEnemy(CurrentEnemy);
         }
         if (--SlowEnemies <= 0)
@@ -187,7 +200,9 @@ public class GameController : MonoBehaviour
     {
         if (StealthyEnemies > 0)
         {
-            CurrentEnemy = Instantiate(StealthyEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+            int SpawanLocation = UnityEngine.Random.Range(0, EnemySpawnLocations.Count);
+            CurrentEnemy = Instantiate(StealthyEnemyPrefab, EnemySpawnLocations[SpawanLocation].position, EnemySpawnLocations[SpawanLocation].rotation);
+            CurrentEnemy.GetComponent<EnemyController>().setPath(pathsPossible[SpawanLocation]);
             AddEnemy(CurrentEnemy);
         }
         if (--StealthyEnemies <= 0)
@@ -200,8 +215,10 @@ public class GameController : MonoBehaviour
     void CreateFastEnemies()
     {
         if (FastEnemies > 0)
-        { 
-            CurrentEnemy = Instantiate(FastEnemyPrefab, EnemySpawnLocation.position, EnemySpawnLocation.rotation);
+        {
+            int SpawanLocation = UnityEngine.Random.Range(0, EnemySpawnLocations.Count);
+            CurrentEnemy = Instantiate(FastEnemyPrefab, EnemySpawnLocations[SpawanLocation].position, EnemySpawnLocations[SpawanLocation].rotation);
+            CurrentEnemy.GetComponent<EnemyController>().setPath(pathsPossible[SpawanLocation]);
             AddEnemy(CurrentEnemy);
         }
 
@@ -247,4 +264,5 @@ public class GameController : MonoBehaviour
         }
         return enemiesLeft;
     }
+    
 }

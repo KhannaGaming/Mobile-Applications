@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 95216506113897626}
   m_Layer: 0
   m_Name: Sniper_LV1
-  m_TagString: Untagged
+  m_TagString: SniperTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,7 +305,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012131611500}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.8959255, y: 0.5750127, z: -12.530754}
+  m_LocalPosition: {x: -1.029809, y: 0.251, z: 3.384277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010442910890}
@@ -812,7 +812,7 @@ Animator:
   m_GameObject: {fileID: 1000012131611500}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b654aede6e5608b478b57cafd78013c9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -834,10 +834,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 2
-  range2: 2
   rotateSpeed: 10
-  fireRate: 1
-  bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
+  damage: 10
+  fireRate: 0
+  bulletPrefab: {fileID: 1575344841451526, guid: 78c823952802f8d4bb4617213941a564,
     type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}
@@ -850,6 +850,7 @@ MonoBehaviour:
   fireFromAnimation: 0
   shootStyle: 0
   EnemiesInRange: []
+  swivelSpeed: 8
 --- !u!135 &135865712797219982
 SphereCollider:
   m_ObjectHideFlags: 1

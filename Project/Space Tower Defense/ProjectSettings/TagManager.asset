@@ -7,9 +7,12 @@ TagManager:
   - TowerButton
   - Enemy
   - StandardTurret
-  - SlowTurret
-  - FastTurret
-  - StealthyTurret
+  - Upgrade
+  - SniperTurret
+  - RocketTurret
+  - ElectricityTurret
+  - LaserTurret
+  - SpawnTowerButton
   layers:
   - Default
   - TransparentFX

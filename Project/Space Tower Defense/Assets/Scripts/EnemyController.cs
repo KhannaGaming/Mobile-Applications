@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
 
     public NavMeshAgent NMA;
     public GameObject EndPath;
-    public int currentPathNode = 1;
+    private int currentPathNode = 0;
     public int childNumber = 0;
     public float health = 10;
     private float enemySpeed = 0;
@@ -18,12 +18,16 @@ public class EnemyController : MonoBehaviour
     public int currentPlace = -1;
     public bool inRangeFirstTurret = false;
     private GameObject goldController;
+    public GameController gameController;
+    private List<GameObject> Path;
+
     // Use this for initialization
     void Start()
     {
+        
         childNumber = Random.Range(0, 3);
-        EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
-        NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
+        //;EndPath = ; // GameObject.Find("PathWNodes (" + currentPathNode + ")");
+        //NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
         enemySpeed = NMA.speed;
         goldController = GameObject.Find("GoldText");
     }
@@ -44,10 +48,10 @@ public class EnemyController : MonoBehaviour
         if (Vector3.Distance(transform.position, NMA.destination) <= 0.5f)
         {
             currentPathNode++;
-            EndPath = GameObject.Find("PathWNodes (" + currentPathNode + ")");
-            if (EndPath)
+            if (currentPathNode < Path.Count)
             {
-                NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
+                EndPath = Path[currentPathNode];// GameObject.Find("PathWNodes (" + currentPathNode + ")");               
+                NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);                
             }
             else
             {
@@ -65,7 +69,7 @@ public class EnemyController : MonoBehaviour
     ///   </summary>
     ///<param name="damage">Amount to decrease health by.
     ///</param>
-    void damageHealth(float damage)
+    public void damageHealth(float damage)
     {
         health -= damage;
     }
@@ -80,5 +84,11 @@ public class EnemyController : MonoBehaviour
     void resetSpeed()
     {
         NMA.speed = enemySpeed;
+    }
+    public void setPath(List<GameObject> path)
+    {
+        Path = path;
+        EndPath = Path[currentPathNode];
+        NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
     }
 }

@@ -193,10 +193,7 @@ public class Turret : MonoBehaviour {
         }
         LockOnTarget();
 
-        if (useLaser)
-            Laser();
-        else if (useElectric)
-            Electric();
+ 
         
 
     }

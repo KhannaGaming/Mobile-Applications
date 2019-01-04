@@ -30,4 +30,17 @@ public class RangeIndicatorController : MonoBehaviour {
         transform.localScale = new Vector3(transform.parent.GetChild(2).GetComponent<Turret>().range*4, transform.parent.GetChild(2).GetComponent<Turret>().range*4,0f);
         range = transform.parent.GetChild(2).GetComponent<Turret>().range;
     }
+
+    public void switchRangeIndicatorOn()
+    {
+       
+            GetComponent<SpriteRenderer>().enabled = true;
+        
+    }
+    public void switchRangeIndicatorOff()
+    {
+        
+            GetComponent<SpriteRenderer>().enabled = false;
+        
+    }
 }

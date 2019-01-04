@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 135931781127320436}
   m_Layer: 0
   m_Name: Standard_LV2
-  m_TagString: Untagged
+  m_TagString: StandardTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

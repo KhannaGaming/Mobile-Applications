@@ -75,6 +75,10 @@ public class MenuScript : MonoBehaviour {
         {
             foreach (GameObject btn in Tower_Slot.transform.GetChild(0).transform.GetChild(0).GetComponent<TowerController>().Buttons_)
                 btn.SetActive(false);
+            
+            foreach (GameObject STB in GameObject.FindGameObjectsWithTag("SpawnTowerButton"))
+                STB.GetComponent<TowerController>().TowerParent.transform.GetChild(1).GetComponent<RangeIndicatorController>().switchRangeIndicatorOff();
+            
         }
     }
 }
