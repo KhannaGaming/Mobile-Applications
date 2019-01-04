@@ -71,8 +71,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010467963448}
   - component: {fileID: 114657484286342362}
-  - component: {fileID: 95510018855598800}
   - component: {fileID: 135249304884787740}
+  - component: {fileID: 95192648253657894}
   m_Layer: 0
   m_Name: Laser_LV3
   m_TagString: LaserTurret
@@ -251,7 +251,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477669927132936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4002361, y: -0.37926483, z: 0.5869446}
+  m_LocalPosition: {x: 3.76, y: -0.08, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000014044696244}
@@ -509,7 +509,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011288239718}
   m_Mesh: {fileID: 4300006, guid: e8bb4513e7bf7fe44b843e76ae03c2f8, type: 3}
---- !u!95 &95510018855598800
+--- !u!95 &95192648253657894
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -541,9 +541,9 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 2
   rotateSpeed: 10
-  damage: 0
-  fireRate: 1
-  bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
+  damage: 0.05
+  fireRate: 10
+  bulletPrefab: {fileID: 1911134250363714, guid: 953b4a980ca1cc14e8848eb66d5b3575,
     type: 2}
   useLaser: 0
   lineRenderer: {fileID: 0}

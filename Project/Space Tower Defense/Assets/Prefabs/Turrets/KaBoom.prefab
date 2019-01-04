@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33721851752999362}
   - component: {fileID: 23296622037434836}
   - component: {fileID: 135666549843204174}
-  - component: {fileID: 114006528211622076}
   m_Layer: 0
   m_Name: KaBoom
   m_TagString: Untagged
@@ -85,17 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1213864696106100}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114006528211622076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1213864696106100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c733315eaa55503469d4cfbe6f9b3872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135666549843204174
 SphereCollider:
   m_ObjectHideFlags: 1

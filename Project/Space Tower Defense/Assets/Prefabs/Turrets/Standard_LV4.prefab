@@ -542,7 +542,7 @@ MonoBehaviour:
   range: 2
   rotateSpeed: 10
   damage: 2
-  fireRate: 1
+  fireRate: 0
   bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
     type: 2}
   useLaser: 0

@@ -54,7 +54,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4132414695959142}
-  - component: {fileID: 114285669572944078}
   m_Layer: 0
   m_Name: TowerSlot
   m_TagString: Untagged
@@ -139,7 +138,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4972562469536380}
-  - component: {fileID: 114099947629677208}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -483,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27d20fc4c481ce4899c8263980a1524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldAmount: 50
 --- !u!114 &114073442508763890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -597,17 +596,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114099947629677208
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1214005093195196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986559b43ca4de9468c8ddcd1288db39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114210385205358626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,7 +635,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114285669572944078}
+      - m_Target: {fileID: 0}
         m_MethodName: spawnButtons
         m_Mode: 1
         m_Arguments:
@@ -660,38 +648,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114285669572944078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1080433065975646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3310bdfa3d5e9d84088da22640b7f6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  standardTowerPrefab: {fileID: 1242466689229212, guid: 870045994582ac34e8b34c3a8373485c,
-    type: 2}
-  laserTowerPrefab: {fileID: 1464050362288478, guid: 1f8ab7a37e221bc4a842d9d829019d8d,
-    type: 2}
-  rocketTowerPrefab: {fileID: 1366537904823926, guid: 98a883c24a08c8f4d942837aa14e1575,
-    type: 2}
-  electricityTowerPrefab: {fileID: 1742073388279862, guid: 8c6629dac42b0a14a8830b7fe9488256,
-    type: 2}
-  sniperTowerPrefab: {fileID: 1530783367745898, guid: c1e85dce2bee41144969df16a7e244fe,
-    type: 2}
-  standardTowerButtonPrefab: {fileID: 1745595109433398, guid: 66a1ad196aae1874cab4bca46f79a592,
-    type: 2}
-  laserTowerButtonPrefab: {fileID: 1706582504829060, guid: c7013393bf51284448fc3aa228d21481,
-    type: 2}
-  rocketTowerButtonPrefab: {fileID: 1878536202902208, guid: 61fe1868b49e36f4e9a1a349bc15a073,
-    type: 2}
-  electricityTowerButtonPrefab: {fileID: 1546986137184314, guid: dd3e02fea589c4e4fadef2b361422b11,
-    type: 2}
-  sniperTowerButtonPrefab: {fileID: 1273173234507016, guid: 35bb17e5e2ff2fc48b892480375a4659,
-    type: 2}
-  TowerButtons: []
 --- !u!114 &114300634216806938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,6 +706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c67cc8846330624a8099b459aa9ad3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastEnemySent: 0
+  waveValue: 0
+  wavesInLevel: 0
 --- !u!114 &114433020618389106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,7 +836,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114099947629677208}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -961,8 +920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8271105844b5a44b345e0f01524067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mute: 0
-  MusicToggleButton: {fileID: 0}
 --- !u!114 &114772032495542172
 MonoBehaviour:
   m_ObjectHideFlags: 1

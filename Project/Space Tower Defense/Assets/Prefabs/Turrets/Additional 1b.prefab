@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4564241123497518}
   - component: {fileID: 33037789416244336}
   - component: {fileID: 23344949994193778}
-  - component: {fileID: 114431968644078918}
   m_Layer: 0
   m_Name: Ciircle
   m_TagString: Untagged
@@ -90,7 +89,6 @@ GameObject:
   - component: {fileID: 4297484112914918}
   - component: {fileID: 33417139492062420}
   - component: {fileID: 23345912763005870}
-  - component: {fileID: 114676437419308038}
   m_Layer: 0
   m_Name: Circle 1
   m_TagString: Untagged
@@ -140,7 +138,6 @@ GameObject:
   - component: {fileID: 4607212596085622}
   - component: {fileID: 33297470660496894}
   - component: {fileID: 23326669953513792}
-  - component: {fileID: 114513706945903452}
   m_Layer: 0
   m_Name: Circle 2
   m_TagString: Untagged
@@ -155,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1726891643624098}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -22.099998, y: 0.25437796, z: 24.060001}
+  m_LocalPosition: {x: 2.2051783, y: 2.6534317, z: 9.445304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4200403528954342}
@@ -554,42 +551,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236127286543350}
   m_Mesh: {fileID: 4300012, guid: 84775ecff385d5d419ba7da90b26f350, type: 3}
---- !u!114 &114431968644078918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1069786360417960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2856a6056f9e934e80363bf475c8323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  direction: {x: 0, y: -1, z: 0}
---- !u!114 &114513706945903452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1971605359362122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2856a6056f9e934e80363bf475c8323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  direction: {x: 0, y: 0, z: -1}
---- !u!114 &114676437419308038
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1692342560976782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2856a6056f9e934e80363bf475c8323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  direction: {x: 0, y: 1, z: 0}

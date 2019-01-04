@@ -52,7 +52,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4206777584091072}
-  - component: {fileID: 114840494298507546}
   m_Layer: 0
   m_Name: Rocket Offset
   m_TagString: Untagged
@@ -70,7 +69,6 @@ GameObject:
   - component: {fileID: 4666715456779364}
   - component: {fileID: 33791532918513160}
   - component: {fileID: 23178608110836170}
-  - component: {fileID: 114684387294681246}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -211,39 +209,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114684387294681246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1770786575994116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2856a6056f9e934e80363bf475c8323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  direction: {x: 0, y: 1, z: 0}
---- !u!114 &114840494298507546
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1406264893308192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7821b4d86f13594aa14377eed437ace, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 40
-  damage: 1
-  impactEffect: {fileID: 1756509070997670, guid: 1ee71597ac9a7a24a8dca68255dbacec,
-    type: 2}
-  launchEffect: {fileID: 0}
-  trailEffect: {fileID: 0}
-  targetHealth: {fileID: 0}
-  isLaser: 0
 --- !u!198 &198102653290294424
 ParticleSystem:
   m_ObjectHideFlags: 1

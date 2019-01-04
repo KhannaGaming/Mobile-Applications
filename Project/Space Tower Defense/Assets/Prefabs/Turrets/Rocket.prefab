@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4521479686707824}
   - component: {fileID: 33614611238785918}
   - component: {fileID: 23835799930829028}
-  - component: {fileID: 114226924213217528}
-  - component: {fileID: 114592453963630812}
+  - component: {fileID: 114475061958688680}
+  - component: {fileID: 136191887879655632}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712865524205080}
   m_Mesh: {fileID: 4300002, guid: 55a1cf8b4b97a5448a3a054a9b9c7fbb, type: 3}
---- !u!114 &114226924213217528
+--- !u!114 &114475061958688680
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,27 +93,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1712865524205080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2856a6056f9e934e80363bf475c8323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  direction: {x: 0, y: 1, z: 0}
---- !u!114 &114592453963630812
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1712865524205080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7821b4d86f13594aa14377eed437ace, type: 3}
+  m_Script: {fileID: 11500000, guid: 98aff2ca708b55443b2bbb22fa384fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 10
-  damage: 1
+  damage: 2
   impactEffect: {fileID: 0}
   launchEffect: {fileID: 0}
   trailEffect: {fileID: 0}
-  targetHealth: {fileID: 0}
-  isLaser: 0
+  shootStyle: 0
+  staticShock: []
+  staticBullet: {fileID: 0}
+  electricBounce: 3
+  shockWeaknesFactor: 2
+--- !u!136 &136191887879655632
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712865524205080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.615994
+  m_Height: 14.545778
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0000007152559, z: 0}

@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Invoke("DestroyObject", 1.0f);
+        Invoke("DestroyObject", rate);
 	}
 	
 	// Update is called once per frame

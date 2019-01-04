@@ -54,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4165633385820532}
   - component: {fileID: 33583886046905338}
-  - component: {fileID: 114605480782868352}
   - component: {fileID: 23933255631557496}
   m_Layer: 0
   m_Name: Storage
@@ -113,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632128097961422}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -22.1, y: 0.25437796, z: 9.06}
+  m_LocalPosition: {x: 5.0533223, y: 5.1561112, z: 8.387012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4099484525094508}
@@ -259,16 +258,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028429311418772}
   m_Mesh: {fileID: 4300000, guid: bf15983f1bf4c74428f6426a0bff0386, type: 3}
---- !u!114 &114605480782868352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1467858028450344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2856a6056f9e934e80363bf475c8323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  direction: {x: 0, y: -1, z: 0}

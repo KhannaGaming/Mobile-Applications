@@ -697,8 +697,8 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 2
   rotateSpeed: 10
-  damage: 0
-  fireRate: 1
+  damage: 1
+  fireRate: 0
   bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
     type: 2}
   useLaser: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   firePoints:
   - {fileID: 4386244120012070}
   - {fileID: 4828223088065614}
-  fireFromAnimation: 0
+  fireFromAnimation: 1
   shootStyle: 0
   EnemiesInRange: []
   swivelSpeed: 8

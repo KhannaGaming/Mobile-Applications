@@ -305,7 +305,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012131611500}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.029809, y: 0.251, z: 3.384277}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010442910890}
@@ -847,7 +847,7 @@ MonoBehaviour:
   useElectric: 0
   firePoints:
   - {fileID: 4143885237285812}
-  fireFromAnimation: 0
+  fireFromAnimation: 1
   shootStyle: 0
   EnemiesInRange: []
   swivelSpeed: 8

@@ -115,13 +115,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NMA: {fileID: 195791020746602888}
   EndPath: {fileID: 0}
-  currentPathNode: 1
   childNumber: 0
   health: 20
+  goldOnDeath: 5
   distanceLeft: 0
   inList: 0
   currentPlace: -1
   inRangeFirstTurret: 0
+  gameController: {fileID: 0}
 --- !u!136 &136857606853021240
 CapsuleCollider:
   m_ObjectHideFlags: 1
