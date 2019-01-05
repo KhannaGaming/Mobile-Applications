@@ -7,9 +7,18 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour {
 
     public List<GameObject> MenuItems;
-   public  GameObject MusicToggle;
+    public  GameObject MusicToggle;
     public List<GameObject> TowerSlots;
-  
+
+    private void Start()
+    {
+        for (int i = 0; i < TowerSlots.Count; i++)
+        {
+        Vector3 textPos = Camera.main.WorldToScreenPoint(TowerSlots[i].transform.GetChild(0).GetChild(0).GetComponent<TowerController>().TowerParent.transform.position);
+        TowerSlots[i].transform.position = textPos;
+        }
+    }
+
     public void Open(string Menu_Item_Name)
     {
         foreach (GameObject item in MenuItems)
