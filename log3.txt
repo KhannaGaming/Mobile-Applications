@@ -1,0 +1,97 @@
+01-05 00:02:32.389: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): setView = DecorView@dcbffb3[UnityPlayerActivity] TM=true MM=false
+01-05 00:02:32.391: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): dispatchAttachedToWindow
+01-05 00:02:32.403: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): Relayout returned: old=[0,0][0,0] new=[0,0][2220,1080] result=0x7 surface={valid=true 3343396864} changed=true
+01-05 00:02:32.422: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): MSG_RESIZED_REPORT: frame=Rect(0, 0 - 2220, 1080) ci=Rect(0, 0 - 126, 0) vi=Rect(0, 63 - 126, 0) or=2
+01-05 00:02:32.422: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): MSG_WINDOW_FOCUS_CHANGED 1
+01-05 00:02:32.447: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x7 surface={valid=true 3343450112} changed=true
+01-05 00:02:32.458: I/Unity(19372): SystemInfo CPU = ARMv7 VFPv3 NEON, Cores = 8, Memory = 5339mb
+01-05 00:02:32.458: I/Unity(19372): SystemInfo ARM big.LITTLE configuration: 4 big (mask: 0xf0), 4 little (mask: 0xf)
+01-05 00:02:32.459: I/Unity(19372): ApplicationInfo com.A4.SpaceTowerDefense version 0.3 build 67f9ebfb-2dce-4527-9046-1f9359a48a49
+01-05 00:02:32.459: I/Unity(19372): Built from '2018.2/staging' branch, Version '2018.2.16f1 (39a4ac3d51f6)', Build type 'Release', Scripting Backend 'mono'
+01-05 00:02:32.505: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=true 3343450112} changed=false
+01-05 00:02:32.565: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x3 surface={valid=true 3343450112} changed=false
+01-05 00:02:32.583: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): MSG_RESIZED_REPORT: frame=Rect(0, 0 - 2220, 1080) ci=Rect(0, 0 - 126, 0) vi=Rect(0, 63 - 0, 0) or=2
+01-05 00:02:32.583: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): MSG_RESIZED_REPORT: frame=Rect(0, 0 - 2220, 1080) ci=Rect(0, 0 - 126, 0) vi=Rect(0, 0 - 0, 0) or=2
+01-05 00:02:32.725: D/Unity(19372):  GL_EXT_debug_marker GL_ARM_rgba8 GL_ARM_mali_shader_binary GL_OES_depth24 GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_OES_packed_depth_stencil GL_OES_rgb8_rgba8 GL_EXT_read_format_bgra GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_standard_derivatives GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_image_external_essl3 GL_OES_EGL_sync GL_OES_texture_npot GL_OES_vertex_half_float GL_OES_required_internalformat GL_OES_vertex_array_object GL_OES_mapbuffer GL_EXT_texture_format_BGRA8888 GL_EXT_texture_rg GL_EXT_texture_type_2_10_10_10_REV GL_OES_fbo_render_mipmap GL_OES_element_index_uint GL_EXT_shadow_samplers GL_OES_texture_compression_astc GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_hdr GL_KHR_texture_compression_astc_sliced_3d GL_KHR_debug GL_EXT_occlusion_query_boolean GL_EXT_disjoint_timer_query GL_EXT_blend_minmax GL_EXT_discard_framebuffer GL_OES_get_program_binary GL_OES_texture_3D GL_EXT_texture_storage GL_EXT_multisampled_render_
+01-05 00:02:32.725: D/Unity(19372): to_texture GL_OES_surfaceless_context GL_OES_texture_stencil8 GL_EXT_shader_pixel_local_storage GL_ARM_shader_framebuffer_fetch GL_ARM_shader_framebuffer_fetch_depth_stencil GL_ARM_mali_program_binary GL_EXT_sRGB GL_EXT_sRGB_write_control GL_EXT_texture_sRGB_decode GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_RG8 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_OES_texture_storage_multisample_2d_array GL_OES_shader_image_atomic GL_EXT_robustness GL_EXT_draw_buffers_indexed GL_OES_draw_buffers_indexed GL_EXT_texture_border_clamp GL_OES_texture_border_clamp GL_EXT_texture_cube_map_array GL_OES_texture_cube_map_array GL_OES_sample_variables GL_OES_sample_shading GL_OES_shader_multisample_interpolation GL_EXT_shader_io_blocks GL_OES_shader_io_blocks GL_EXT_tessellation_shader GL_OES_tessellation_shader GL_EXT_primitive_bounding_box GL_OES_primitive_bounding_box GL_EXT_geometry_shader GL_OES_geometry_shader GL_ANDROID_extension_pack_es31a GL_EXT_gpu_shader5 GL_OES_gpu_shader5 GL_EXT_texture
+01-05 00:02:32.725: D/Unity(19372): _buffer GL_OES_texture_buffer GL_EXT_copy_image GL_OES_copy_image GL_EXT_shader_non_constant_global_initializers GL_EXT_color_buffer_half_float GL_EXT_color_buffer_float GL_EXT_YUV_target GL_OVR_multiview GL_OVR_multiview2 GL_OVR_multiview_multisampled_render_to_texture GL_KHR_robustness GL_KHR_robust_buffer_access_behavior GL_EXT_draw_elements_base_vertex GL_OES_draw_elements_base_vertex GL_EXT_protected_textures
+01-05 00:02:35.780: I/Unity(19372): Debug_Log class object successful
+01-05 00:02:35.780: I/Unity(19372):  
+01-05 00:02:35.780: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:35.789: I/Unity(19372): GameState class object successful
+01-05 00:02:35.789: I/Unity(19372):  
+01-05 00:02:35.789: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:35.789: I/Unity(19372): leaderboard class object successful
+01-05 00:02:35.789: I/Unity(19372):  
+01-05 00:02:35.789: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:35.790: I/Unity(19372): store class object successful
+01-05 00:02:35.790: I/Unity(19372):  
+01-05 00:02:35.790: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:35.790: I/Unity(19372): Save path being used: /storage/emulated/0/Android/data/com.A4.SpaceTowerDefense/files
+01-05 00:02:35.790: I/Unity(19372):  
+01-05 00:02:35.790: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:35.791: I/Unity(19372): Unique Client ID: 4bd2725eaf0e87ce3f6b396f3cbe71d9
+01-05 00:02:35.791: I/Unity(19372):  
+01-05 00:02:35.791: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:38.120: I/Unity(19372): Database test #1A (queryDatabase) output: Hero Upgrade #1
+01-05 00:02:38.120: I/Unity(19372):  
+01-05 00:02:38.120: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:39.508: I/Unity(19372): Database query failed (SQL Exception), query: SELECT * FROM tbl_Stor;
+01-05 00:02:39.508: I/Unity(19372):  
+01-05 00:02:39.508: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:39.510: I/Unity(19372): Exception Message: Table 'stddb.tbl_stor' doesn't exist
+01-05 00:02:39.510: I/Unity(19372):  
+01-05 00:02:39.510: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:39.510: I/Unity(19372): Database test #1B (queryDatabase) output: 
+01-05 00:02:39.510: I/Unity(19372):  
+01-05 00:02:39.510: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:40.922: I/Unity(19372): Database test #2A (checkDatabase) output: [ReturnCode Enum] True
+01-05 00:02:40.922: I/Unity(19372):  
+01-05 00:02:40.922: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:42.292: I/Unity(19372): Database test #2B (checkDatabase) output: [ReturnCode Enum] False
+01-05 00:02:42.292: I/Unity(19372):  
+01-05 00:02:42.292: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:43.657: I/Unity(19372): Database check failed (SQL Exception), query: SELECT * FROM tbl_Store WHERE
+01-05 00:02:43.657: I/Unity(19372):  
+01-05 00:02:43.657: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:43.658: I/Unity(19372): Exception Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+01-05 00:02:43.658: I/Unity(19372):  
+01-05 00:02:43.658: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:43.658: I/Unity(19372): Database test #2C (checkDatabase) output: [ReturnCode Enum] Incorrect_Syntax
+01-05 00:02:43.658: I/Unity(19372):  
+01-05 00:02:43.658: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:45.074: I/Unity(19372): Database test #3A (getDatabaseValue) output: 700
+01-05 00:02:45.074: I/Unity(19372):  
+01-05 00:02:45.074: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:45.491: I/Unity(19372): Database test #3B (getDatabaseValue) output: Hero Upgrade #3
+01-05 00:02:45.491: I/Unity(19372):  
+01-05 00:02:45.491: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:46.930: I/Unity(19372): Database test #3C (getDatabaseValue) output: 12/11/2018 09:53:14
+01-05 00:02:46.930: I/Unity(19372):  
+01-05 00:02:46.930: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.325: I/Unity(19372): Database get failed (System Exception), query: SELECT Item_Name FROM tbl_Store WHERE Item_ID = 6;
+01-05 00:02:48.325: I/Unity(19372):  
+01-05 00:02:48.325: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.325: I/Unity(19372): Exception Message: Could not find specified column in results: Item_Price
+01-05 00:02:48.325: I/Unity(19372):  
+01-05 00:02:48.325: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.325: I/Unity(19372): Database test #3D (getDatabaseValue) output: 0
+01-05 00:02:48.325: I/Unity(19372):  
+01-05 00:02:48.325: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.751: I/Unity(19372): Database get failed (System Exception), query: SELECT Item_Price FROM tbl_Store WHERE Item_ID = 6;
+01-05 00:02:48.751: I/Unity(19372):  
+01-05 00:02:48.751: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.752: I/Unity(19372): Exception Message: Specified cast is not valid.
+01-05 00:02:48.752: I/Unity(19372):  
+01-05 00:02:48.752: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.752: I/Unity(19372): Database test #3E (getDatabaseValue) output: 
+01-05 00:02:48.752: I/Unity(19372):  
+01-05 00:02:48.752: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.760: I/Unity(19372): GameController Awake Initialisation Complete
+01-05 00:02:48.760: I/Unity(19372):  
+01-05 00:02:48.760: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)
+01-05 00:02:48.844: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=true 3343450112} changed=false
+01-05 00:02:48.898: D/ViewRootImpl@407d922[UnityPlayerActivity](19372): Relayout returned: old=[0,0][2220,1080] new=[0,0][2220,1080] result=0x1 surface={valid=true 3343450112} changed=false
+01-05 00:02:53.244: I/Unity(19372): Loading from database failed: An item with the same key has already been added. Key: Pavelow
+01-05 00:02:53.244: I/Unity(19372):  
+01-05 00:02:53.244: I/Unity(19372): (Filename: ./Runtime/Export/Debug.bindings.h Line: 43)

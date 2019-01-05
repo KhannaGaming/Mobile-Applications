@@ -34,6 +34,10 @@ public class Database_Control : MonoBehaviour {
     {
         string Save_Path = Application.persistentDataPath;
         d = new Debug_Log(text, Save_Path);
+        d.Log(true, "Debug_Log class object " + ((d != null) ? "successful" : "unsuccessful"), true);
+        d.Log(true, "GameState class object " + ((GameState != null) ? "successful" : "unsuccessful"), true);
+        d.Log(true, "leaderboard class object " + ((leaderboard != null) ? "successful" : "unsuccessful"), true);
+        d.Log(true, "store class object " + ((store != null) ? "successful" : "unsuccessful"), true);
         d.Log(true, "Save path being used: " + Save_Path, true);
         //Initialising the local cache in awake due to constructor
         d.DUI = SystemInfo.deviceUniqueIdentifier;
@@ -47,6 +51,32 @@ public class Database_Control : MonoBehaviour {
             File.Create(Save_Path + "/" + leaderboard.File_Name);
         if (!File.Exists(Save_Path + "/" + GameState.File_Name))
             File.Create(Save_Path + "/" + GameState.File_Name);
+        MySqlDataReader test1 = store.queryDatabase("SELECT * FROM tbl_Store;");
+        test1.Read();
+        Debug.Log("Database test #1A (queryDatabase) output: " + test1["Item_Name"].ToString());
+        test1 = store.queryDatabase("SELECT * FROM tbl_Stor;");
+        if (test1 != null)
+            test1.Read();
+        if (test1 != null)
+            Debug.Log("Database test #1B (queryDatabase) output: " + test1["Item_Name"].ToString());
+        else
+            Debug.Log("Database test #1B (queryDatabase) output: ");
+        ReturnCode test2 = store.checkDatabase("SELECT * FROM tbl_Store;");
+        Debug.Log("Database test #2A (checkDatabase) output: [ReturnCode Enum] " + test2.ToString());
+        test2 = store.checkDatabase("SELECT * FROM tbl_Store WHERE In_Use = 0;");
+        Debug.Log("Database test #2B (checkDatabase) output: [ReturnCode Enum] " + test2.ToString());
+        test2 = store.checkDatabase("SELECT * FROM tbl_Store WHERE");
+        Debug.Log("Database test #2C (checkDatabase) output: [ReturnCode Enum] " + test2.ToString());
+        float test3float = store.getDatabaseValue<float>("Item_Price", "SELECT Item_Price FROM tbl_Store WHERE Item_ID = 6;");
+        Debug.Log("Database test #3A (getDatabaseValue) output: " + test3float.ToString());
+        string test3string = store.getDatabaseValue<string>("Item_Name", "SELECT Item_Name FROM tbl_Store WHERE Item_ID = 6;");
+        Debug.Log("Database test #3B (getDatabaseValue) output: " + test3string);
+        DateTime test3datetime = store.getDatabaseValue<DateTime>("DT_Stamp", "SELECT DT_Stamp FROM tbl_Store WHERE Item_ID = 6;");
+        Debug.Log("Database test #3C (getDatabaseValue) output: " + test3datetime.ToString());
+        test3float = store.getDatabaseValue<float>("Item_Price", "SELECT Item_Name FROM tbl_Store WHERE Item_ID = 6;");
+        Debug.Log("Database test #3D (getDatabaseValue) output: " + test3float.ToString());
+        test3string = store.getDatabaseValue<string>("Item_Price", "SELECT Item_Price FROM tbl_Store WHERE Item_ID = 6;");
+        Debug.Log("Database test #3E (getDatabaseValue) output: " + test3string);
     }
     #endregion
 }
@@ -181,8 +211,8 @@ public class Debug_Log
     //public void Log(bool success, string output, bool toConsole, [CallerLineNumber] int LineNumber = 0, [CallerMemberName] string Caller = null)
     public void Log(bool success, string output, bool toConsole)
     {
-        TextOutput.text = TextOutput.text + "\n" + ((success) ? " " : "!") + DateTime.Now + ": " + output;
         if (!Allow_Logs) return;
+        TextOutput.text = TextOutput.text + "\n" + ((success) ? " " : "!") + DateTime.Now + ": " + output;
         if (toConsole || Override) Debug.Log(output);
         try
         {
@@ -266,11 +296,11 @@ public class Local_Cache : Database_Interaction
             d.Log(true, "Attempting to get Modified date from local cache file.", false);
             try
             {
-                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                BinaryReader br = new BinaryReader(fs);
+                file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(file);
                 Modified = Convert.ToDateTime(br.ReadString());
                 br.Close();
-                fs.Close();
+                file.Close();
             }
             catch (Exception e)
             {
@@ -297,33 +327,30 @@ public class Store : Local_Cache
     /// </summary>
     public override void Save()
     {
-        d.Log(true, "Attempting to save Store contents to binary file: " + Path.Combine(d.path, File_Name), false);
+        d.Log(true, "Attempting to save Store contents to binary file: " + d.path + "/" + File_Name, false);
         // Save Store to binary file
         try
         {
-            try
+            file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+            BinaryWriter bw = new BinaryWriter(file);
+            bw.Write(Modified.ToString());
+            bw.Write(d_Store.Count);
+            foreach (var pair in d_Store)
             {
-                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                BinaryWriter bw = new BinaryWriter(fs);
-                bw.Write(Modified.ToString());
-                bw.Write(d_Store.Count);
-                foreach (var pair in d_Store)
-                {
-                    bw.Write(pair.Key);
-                    bw.Write(pair.Value);
-                }
-                bw.Close();
-                fs.Close();
+                bw.Write(pair.Key);
+                bw.Write(pair.Value);
             }
-            catch (Exception e)
-            {
-                d.Log(false, "Writing to the store .dat file failed!", true);
-            }
+            bw.Close();
+            file.Close();
             d.Log(true, "Save Store contents to binary file successful: " + Path.Combine(d.path, File_Name), false);
         }
         catch (SerializationException sEx)
         {
             d.Log(false, "Save Store contents to binary file failed: " + Path.Combine(d.path, File_Name) + " > " + sEx.Message, true);
+        }
+        catch (Exception e)
+        {
+            d.Log(false, "Writing to the store .dat file failed! > " + e.Message, true);
         }
     }
     /// <summary>
@@ -341,8 +368,8 @@ public class Store : Local_Cache
             #region Use local cache data
             try
             {
-                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                BinaryReader br = new BinaryReader(fs);
+                file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(file);
                 Modified = Convert.ToDateTime(br.ReadString());
                 Record_Count = br.ReadInt32();
                 if (Record_Count > 0)
@@ -352,7 +379,7 @@ public class Store : Local_Cache
                     d_Store.Add(br.ReadString(), (float)br.ReadSingle());
                 }
                 br.Close();
-                fs.Close();
+                file.Close();
             }
             catch (Exception e)
             {
@@ -395,8 +422,8 @@ public class Store : Local_Cache
                     try
                     {
                         // Use local cache data instead
-                        FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                        BinaryReader br = new BinaryReader(fs);
+                        file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                        BinaryReader br = new BinaryReader(file);
                         Modified = Convert.ToDateTime(br.ReadString());
                         Record_Count = br.ReadInt32();
                         if (Record_Count > 0)
@@ -406,7 +433,7 @@ public class Store : Local_Cache
                             d_Store.Add(br.ReadString(), (float)br.ReadSingle());
                         }
                         br.Close();
-                        fs.Close();
+                        file.Close();
                         d.Log(true, "Loading from local cache successful.", false);
                     }
                     catch (Exception e)
@@ -466,8 +493,8 @@ public class Leaderboard : Local_Cache
         // Save Leaderboard to binary file
         try
         {
-            FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-            BinaryWriter bw = new BinaryWriter(fs);
+            file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+            BinaryWriter bw = new BinaryWriter(file);
             bw.Write(Modified.ToString());
             bw.Write(d_Leaderboard.Count);
             foreach (var pair in d_Leaderboard)
@@ -476,7 +503,7 @@ public class Leaderboard : Local_Cache
                 bw.Write(pair.Value);
             }
             bw.Close();
-            fs.Close();
+            file.Close();
             d.Log(true, "Save Leaderboard contents to binary file successful: " + d.path + "/" + File_Name, false);
         }
         catch (Exception e)
@@ -499,8 +526,8 @@ public class Leaderboard : Local_Cache
             #region Use Local cache data
             try
             {
-                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                BinaryReader br = new BinaryReader(fs);
+                file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(file);
                 Modified = Convert.ToDateTime(br.ReadString());
                 Record_Count = br.ReadInt32();
                 if (Record_Count > 0)
@@ -510,7 +537,7 @@ public class Leaderboard : Local_Cache
                     d_Leaderboard.Add(br.ReadString(), (float)br.ReadSingle());
                 }
                 br.Close();
-                fs.Close();
+                file.Close();
             }
             catch (Exception e)
             {
@@ -554,8 +581,8 @@ public class Leaderboard : Local_Cache
                     try
                     {
                         // Use local cache data instead
-                        FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                        BinaryReader br = new BinaryReader(fs);
+                        file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                        BinaryReader br = new BinaryReader(file);
                         Modified = Convert.ToDateTime(br.ReadString());
                         Record_Count = br.ReadInt32();
                         if (Record_Count > 0)
@@ -565,7 +592,7 @@ public class Leaderboard : Local_Cache
                             d_Leaderboard.Add(br.ReadString(), (float)br.ReadSingle());
                         }
                         br.Close();
-                        fs.Close();
+                        file.Close();
                         d.Log(true, "Loading from local cache successful.", false);
                     }
                     catch (Exception e)
@@ -706,8 +733,8 @@ public class Game_State : Local_Cache
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-            BinaryWriter bw = new BinaryWriter(fs);
+            file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+            BinaryWriter bw = new BinaryWriter(file);
             bw.Write(Modified.ToString());
             bw.Write(Current_Medals);
             bw.Write(Total_Medals_Earned);
@@ -727,7 +754,7 @@ public class Game_State : Local_Cache
                 d.Log(true, "Level #" + level.Number + " - " + level.Name + " (" + level.Medals + " Medals Earned) saved to binary file: " + Path.Combine(d.path, File_Name), true);
             }
             bw.Close();
-            fs.Close();
+            file.Close();
             d.Log(true, "Save Game State contents to binary file successful: " + Path.Combine(d.path, File_Name), false);
         }
         catch (SerializationException e)
@@ -752,8 +779,8 @@ public class Game_State : Local_Cache
             try
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                BinaryReader br = new BinaryReader(fs);
+                file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                BinaryReader br = new BinaryReader(file);
                 Modified = Convert.ToDateTime(br.ReadString());
                 Current_Medals = br.ReadByte();
                 Total_Medals_Earned = br.ReadByte();
@@ -766,7 +793,7 @@ public class Game_State : Local_Cache
                     Level_Data.Add((Level_Info)bf.Deserialize(br.BaseStream));
                 }
                 br.Close();
-                fs.Close();
+                file.Close();
             }
             catch (Exception e)
             {
@@ -833,8 +860,8 @@ public class Game_State : Local_Cache
                     {
                         // Use local cache data instead
                         BinaryFormatter bf = new BinaryFormatter();
-                        FileStream fs = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
-                        BinaryReader br = new BinaryReader(fs);
+                        file = new FileStream(d.path + "/" + File_Name, FileMode.OpenOrCreate);
+                        BinaryReader br = new BinaryReader(file);
                         Modified = Convert.ToDateTime(br.ReadString());
                         Current_Medals = br.ReadByte();
                         Total_Medals_Earned = br.ReadByte();
@@ -848,7 +875,7 @@ public class Game_State : Local_Cache
                         }
                         d.Log(true, "Loading from local cache successful.", false);
                         br.Close();
-                        fs.Close();
+                        file.Close();
                     }
                     catch (Exception e)
                     {
@@ -950,7 +977,7 @@ public class Game_State : Local_Cache
                                                     "SET Medals_Earned = " + level.Medals + " " +
                                                     "WHERE Save_ID = " + Save_ID + " AND Map_ID = " + level.Number + ";");
                         }
-                        else
+                        else if (L_Exists == ReturnCode.False)
                         {
                             d.Log(true, "Data not found in tbl_Level_Save_Data for level #" + level.Number + ", Inserting record", false);
                             reader = queryDatabase("INSERT INTO tbl_Level_Save_Data " +
@@ -1031,15 +1058,15 @@ public class Level_Info
 {
     // The name of the level being saved.
     private string name = "";
-    public string Name { get { return name; } }
+    public string Name { get { return name; } set { name = value; } }
 
     // The number of the level being saved.
     private byte number = 0;
-    public byte Number { get { return number; } }
+    public byte Number { get { return number; } set { number = value; } }
 
     // The amount of medals earned by the player for this level.
     private byte medals = 1;
-    public byte Medals { get { return medals; } }
+    public byte Medals { get { return medals; } set { medals = value; } }
 
     /// <summary>
     /// Constructor for Level_Info

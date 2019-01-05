@@ -382,7 +382,6 @@ GameObject:
   - component: {fileID: 773584949}
   - component: {fileID: 773584948}
   - component: {fileID: 773584947}
-  - component: {fileID: 773584946}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -390,17 +389,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &773584946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 773584945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70cf9345bd665154ab0a5b5f3d1e3720, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &773584947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,7 +621,7 @@ Prefab:
     - target: {fileID: 224418637635834900, guid: 4d50758cc0c6635419270529635ec4e9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000000108942544
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224796610412407206, guid: 4d50758cc0c6635419270529635ec4e9,
         type: 2}
@@ -643,7 +631,7 @@ Prefab:
     - target: {fileID: 224418637635834900, guid: 4d50758cc0c6635419270529635ec4e9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030299694
+      value: -1.5586147e-14
       objectReference: {fileID: 0}
     - target: {fileID: 224967845835639714, guid: 4d50758cc0c6635419270529635ec4e9,
         type: 2}
