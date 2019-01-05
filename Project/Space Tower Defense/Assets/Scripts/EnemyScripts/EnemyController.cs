@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
         if (health <= 0)
         {
             goldController.GetComponent<GoldController>().ChangeGoldAmount(goldOnDeath);
-            Debug.Log("I died!");            
+           // Debug.Log("I died!");            
             Destroy(gameObject);
         }
         //Debug.Log("num children:"+EndPath.transform.childCount);

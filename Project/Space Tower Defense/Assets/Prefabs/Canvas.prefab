@@ -245,7 +245,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4996679543171240}
-  - component: {fileID: 114342457172330684}
   m_Layer: 0
   m_Name: TowerSlot1
   m_TagString: Untagged
@@ -2903,17 +2902,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114342457172330684
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1242602565600406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad66751473580274d9d7bba11dab00bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114342945674304914
 MonoBehaviour:
   m_ObjectHideFlags: 1

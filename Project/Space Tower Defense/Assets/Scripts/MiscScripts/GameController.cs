@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
    // [Header("Database")]
     //This needs the Database Controller object dragged and dropped onto it:
     //public Database_Control Database_Controller;
-
+    
     [Header("StandardEnemy")]
     public GameObject StandardEnemyPrefab;
     [Header("SlowEnemy")]
@@ -59,14 +59,21 @@ public class GameController : MonoBehaviour
     public List<GameObject> firstPathPossible;
     public List<GameObject> secondPathPossible;
 
+    [Header("Database")]
+    private Database_Control DB;
+
+    private byte CurrentMedalsEarned = 0;
+
    // private string path;
 
     void Start()
     {
+        DB = GameObject.Find("Database Controller").GetComponent<Database_Control>();
+        //DB.GameState.Load();
         //path = Application.persistentDataPath;
         //FileStream file = new FileStream(path + "/" + "Level" + PlayerPrefs.GetInt("LevelNumber", 1) + ".txt", FileMode.OpenOrCreate);
         //StreamWriter writer = new StreamWriter(file);
-       // writer.WriteLine("0/00/00/00/00");
+        // writer.WriteLine("0/00/00/00/00");
         //for testing only
         currentWaveNumber = 0;
         ReadLevelData();
@@ -234,7 +241,38 @@ public class GameController : MonoBehaviour
 
     void EndOfWaves()
     {
+        CurrentMedalsEarned = CalculateMedalsEarned();
+        if (!CheckLevel(Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))))
+        {
+            DB.GameState.Level_Data.Add(new Level_Info(PlayerPrefs.GetString("Level", "Level01"), Convert.ToByte(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)), CurrentMedalsEarned));
+            DB.GameState.Current_Medals += CurrentMedalsEarned;
+            DB.GameState.Total_Medals_Earned += CurrentMedalsEarned;
+            DB.GameState.Save();
+        }
+        else
+        {
+            Debug.Log(CurrentMedalsEarned);
+            Debug.Log(DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals);
+            Debug.Log(CurrentMedalsEarned > DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals);
 
+            if (CurrentMedalsEarned > DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))-1].Medals)
+            {
+                int differenceInMedals = CurrentMedalsEarned - DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))-1].Medals;
+                DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))-1].Medals = CurrentMedalsEarned;
+                DB.GameState.Current_Medals += (byte)differenceInMedals;
+                DB.GameState.Total_Medals_Earned += (byte)differenceInMedals;
+                DB.GameState.Save();
+            }
+        }
+        Debug.Log("step1");
+        PlayerPrefs.SetFloat("Highscore", (PlayerPrefs.GetFloat("Highscore", 0.0f) + (GameObject.Find("GoldText").GetComponent<GoldController>().goldAmount * CurrentMedalsEarned)));
+        Debug.Log("step2");
+        DB.leaderboard.Update(PlayerPrefs.GetString("UserName", DB.d.DUI), PlayerPrefs.GetFloat("Highscore", 0.0f));
+        Debug.Log("step3");
+        DB.leaderboard.Save();
+        Debug.Log("step4");
+        PlayerPrefs.SetString("Level", "MainMenu");
+        SceneManager.LoadScene("Loading");
     }
 
     public void AddEnemy(GameObject Enemy)
@@ -260,5 +298,36 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         NextWaveButton.transform.GetChild(0).GetComponent<Text>().enabled = true;
 
+    }
+
+    private byte CalculateMedalsEarned()
+    {
+        if (Health >= 10)
+        {
+            return 3;
+        }
+        else if (Health >= 5 && Health < 10)
+        {
+            return 2;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    private bool CheckLevel(int value)
+    {
+        try
+        {
+            if (DB.GameState.Level_Data[value-1] != null)
+                return true;
+        }
+        catch (Exception e)
+        {
+            DB.d.Log(false, "Couldn't find level data for level number: " + value + " > " + e.Message, true);
+            return false;
+        }
+        return false;
     }
 }

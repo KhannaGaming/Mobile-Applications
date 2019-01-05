@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour {
     {
         if (other.transform.tag == target.tag)
         {
-         Debug.Log("Hit");
+         //Debug.Log("Hit");
             HitTarget();
         }
     }
