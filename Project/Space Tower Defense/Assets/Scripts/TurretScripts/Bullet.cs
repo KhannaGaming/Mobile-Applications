@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+
+
+    [Header("Helper Prefabs")]
+    public GameObject rocketExplosion;
+    public GameObject staticBullet = null;
+
+
     public enum TurretType { Standard, Laser, Rocket, Electric, Sniper };
     public Transform target;
     public float speed = 10f;
@@ -13,14 +20,17 @@ public class Bullet : MonoBehaviour {
     public GameObject impactEffect;
     public GameObject launchEffect;
     public GameObject trailEffect;
+    
+
 
     [Header("Turret Type")]
     public TurretType shootStyle;
     
     public List<GameObject> staticShock = null;
-    public GameObject staticBullet = null;
     public int electricBounce = 3;
     public float shockWeaknesFactor = 2.0f;
+
+
     public void Chase(Transform _target)
     {
         target = _target;
@@ -63,7 +73,7 @@ public class Bullet : MonoBehaviour {
                 Destroy(gameObject);
                 break;
             case TurretType.Rocket:
-                Debug.Log("Rocket Hit");
+                Instantiate(rocketExplosion);
                 target.gameObject.SendMessage("damageHealth", damage);
                 Destroy(gameObject);
                 break;

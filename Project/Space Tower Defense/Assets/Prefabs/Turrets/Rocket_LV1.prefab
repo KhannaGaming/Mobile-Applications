@@ -120,8 +120,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4758625692043868}
   - component: {fileID: 114831762803206316}
-  - component: {fileID: 95625810158525862}
   - component: {fileID: 135175826184922614}
+  - component: {fileID: 95707035503820712}
   m_Layer: 0
   m_Name: Rocket_LV1
   m_TagString: RocketTurret
@@ -270,7 +270,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d749b0cbe58df544983156650e4d7aeb, type: 2}
   m_StaticBatchInfo:
@@ -305,7 +304,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d749b0cbe58df544983156650e4d7aeb, type: 2}
   m_StaticBatchInfo:
@@ -340,7 +338,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d749b0cbe58df544983156650e4d7aeb, type: 2}
   m_StaticBatchInfo:
@@ -375,7 +372,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d749b0cbe58df544983156650e4d7aeb, type: 2}
   m_StaticBatchInfo:
@@ -410,7 +406,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d749b0cbe58df544983156650e4d7aeb, type: 2}
   m_StaticBatchInfo:
@@ -445,7 +440,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d749b0cbe58df544983156650e4d7aeb, type: 2}
   m_StaticBatchInfo:
@@ -509,7 +503,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574423042134604}
   m_Mesh: {fileID: 4300002, guid: 5c149c6c8b5124748a44a2e8ffeae40f, type: 3}
---- !u!95 &95625810158525862
+--- !u!95 &95707035503820712
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -517,7 +511,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675603213557868}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 5c149c6c8b5124748a44a2e8ffeae40f, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -526,7 +520,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114831762803206316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -542,7 +535,7 @@ MonoBehaviour:
   range: 2
   rotateSpeed: 10
   damage: 1
-  fireRate: 0
+  fireRate: 0.2
   bulletPrefab: {fileID: 1712865524205080, guid: 67188f4e9c052464f9abb173816923e0,
     type: 2}
   useLaser: 0
@@ -553,7 +546,7 @@ MonoBehaviour:
   useElectric: 0
   firePoints:
   - {fileID: 4637512622287408}
-  fireFromAnimation: 1
+  fireFromAnimation: 0
   shootStyle: 0
   EnemiesInRange: []
   swivelSpeed: 0
