@@ -20,11 +20,13 @@ public class EnemyController : MonoBehaviour
     private GameObject goldController;
     public GameController gameController;
     private List<GameObject> Path;
+    private AudioSource audio;
 
     // Use this for initialization
     void Start()
     {
-        
+        audio = GetComponent<AudioSource>();
+
         childNumber = Random.Range(0, 3);
         //;EndPath = ; // GameObject.Find("PathWNodes (" + currentPathNode + ")");
         //NMA.SetDestination(EndPath.transform.GetChild(childNumber).transform.position);
@@ -72,6 +74,7 @@ public class EnemyController : MonoBehaviour
     public void damageHealth(float damage)
     {
         health -= damage;
+        audio.PlayOneShot((AudioClip)Resources.Load("Sounds/Shooting sounds/Standard"));
     }
     public void Targetable(bool inRange)
     {

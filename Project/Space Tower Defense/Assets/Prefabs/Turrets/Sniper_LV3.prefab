@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 114164934385145628}
   - component: {fileID: 135665352886678526}
   - component: {fileID: 95084258732188750}
+  - component: {fileID: 82877218143238696}
   m_Layer: 0
   m_Name: Sniper_LV3
   m_TagString: SniperTurret
@@ -426,7 +427,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -461,7 +461,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -496,7 +495,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -531,7 +529,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -566,7 +563,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -601,7 +597,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -636,7 +631,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -671,7 +665,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -706,7 +699,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -741,7 +733,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -776,7 +767,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5da48e0a83f69cc4796c686407f47e69, type: 2}
   m_StaticBatchInfo:
@@ -875,6 +865,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011212402972}
   m_Mesh: {fileID: 4300000, guid: 4e9d27c1e55fcac48907fa636a143d2a, type: 3}
+--- !u!82 &82877218143238696
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013976320434}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95084258732188750
 Animator:
   serializedVersion: 3
@@ -892,7 +962,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114164934385145628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -911,15 +980,13 @@ MonoBehaviour:
   fireRate: 0
   bulletPrefab: {fileID: 1575344841451526, guid: 78c823952802f8d4bb4617213941a564,
     type: 2}
-  useLaser: 0
-  lineRenderer: {fileID: 0}
-  electricityDelay: 1
   enemyTag: Enemy
   turretHead: {fileID: 4000013559263094}
   useElectric: 0
   firePoints:
   - {fileID: 4654152315291530}
   fireFromAnimation: 1
+  turretType: 0
   shootStyle: 0
   EnemiesInRange: []
   swivelSpeed: 8

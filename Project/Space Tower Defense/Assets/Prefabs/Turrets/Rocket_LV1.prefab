@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 114831762803206316}
   - component: {fileID: 135175826184922614}
   - component: {fileID: 95707035503820712}
+  - component: {fileID: 82918891188986318}
   m_Layer: 0
   m_Name: Rocket_LV1
   m_TagString: RocketTurret
@@ -503,6 +504,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574423042134604}
   m_Mesh: {fileID: 4300002, guid: 5c149c6c8b5124748a44a2e8ffeae40f, type: 3}
+--- !u!82 &82918891188986318
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675603213557868}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95707035503820712
 Animator:
   serializedVersion: 3
@@ -538,15 +619,13 @@ MonoBehaviour:
   fireRate: 0.2
   bulletPrefab: {fileID: 1712865524205080, guid: 67188f4e9c052464f9abb173816923e0,
     type: 2}
-  useLaser: 0
-  lineRenderer: {fileID: 0}
-  electricityDelay: 1
   enemyTag: Enemy
   turretHead: {fileID: 4496565559531458}
   useElectric: 0
   firePoints:
   - {fileID: 4637512622287408}
   fireFromAnimation: 0
+  turretType: 0
   shootStyle: 0
   EnemiesInRange: []
   swivelSpeed: 0

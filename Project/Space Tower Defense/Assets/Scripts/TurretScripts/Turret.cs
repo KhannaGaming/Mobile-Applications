@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class Turret : MonoBehaviour {
 
     public Transform target;
@@ -16,13 +18,13 @@ public class Turret : MonoBehaviour {
     private float fireCountdown = 0f;
     public GameObject bulletPrefab;
 
-    [Header("Use Laser")]
-    public bool useLaser = false;
-    public LineRenderer lineRenderer;
+    //[Header("Use Laser")]
+    //public bool useLaser = false;
+    //public LineRenderer lineRenderer;
 
-    [Header("Use Electricity")]
-    public float electricityDelay = 1.0f;
-    private float electricityCountdown = 0f;
+    //[Header("Use Electricity")]
+    //public float electricityDelay = 1.0f;
+    //private float electricityCountdown = 0f;
 
 
     [Header("Unity Setup")]
@@ -32,6 +34,8 @@ public class Turret : MonoBehaviour {
     public Transform[] firePoints;
     public bool fireFromAnimation = false;
 
+    public enum TurretType { Standard, Sniper, Electric, Rocket, Laser };
+    public TurretType turretType;
 
     public enum ShootStyle { First, Last, Strongest, Weakest};
     public ShootStyle shootStyle;
@@ -41,6 +45,9 @@ public class Turret : MonoBehaviour {
     public int swivelSpeed = 8;
 
     private Animator animator;
+    private AudioSource audio;
+
+    
 
     // Use this for initialization
     void Start()
@@ -49,7 +56,11 @@ public class Turret : MonoBehaviour {
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         transform.localPosition = Vector3.zero;
         swivelSpeed = 8;
-}
+
+        audio = GetComponent<AudioSource>();
+        
+
+    }
 
     void UpdateTarget()
     {
@@ -131,8 +142,9 @@ public class Turret : MonoBehaviour {
     void Shoot(int counter)
     {
         // Debug.Log("Shoot");
-        
-            GameObject bulletGo = null;
+        PlaySound();
+
+        GameObject bulletGo = null;
 
         if (target != null)
         {
@@ -174,11 +186,11 @@ public class Turret : MonoBehaviour {
         if (target == null)
         {
             animator.SetBool("ifInRange", false);
-            if (useLaser || useElectric)
-            {
-                if (lineRenderer.enabled)
-                    lineRenderer.enabled = false;
-            }
+            //if (useLaser || useElectric)
+            //{
+            //    if (lineRenderer.enabled)
+            //        lineRenderer.enabled = false;
+            //}
             return;
         }
         else
@@ -224,8 +236,12 @@ public class Turret : MonoBehaviour {
 
     void Fire()
     {
+
+
         if (fireCountdown <= 0f)
         {
+
+            
             int currentFirePoint = 0;
             while (currentFirePoint < firePoints.Length)
             {
@@ -239,30 +255,7 @@ public class Turret : MonoBehaviour {
         fireCountdown -= Time.deltaTime;
     }   
 
-    void Laser()
-    {
-        lineRenderer.enabled = true;
-        lineRenderer.SetPosition(0, firePoints[0].position);
-        lineRenderer.SetPosition(1, target.position);
 
-    }
-
-    void Electric()
-    {
-        lineRenderer.enabled = true;
-
-        if (electricityCountdown >= electricityDelay)
-        {
-
-
-            electricityCountdown = 0f;
-            
-        }
-            electricityCountdown += Time.deltaTime;
-       
-        //lightning.StartPosition = firePoints.position;
-        //lightning.EndPosition = target.position;
-    }
 
 
 
@@ -291,6 +284,30 @@ public class Turret : MonoBehaviour {
             {
                 EnemiesInRange.RemoveAt(i);
             }
+        }
+    }
+
+    public void PlaySound()
+    {
+        switch (turretType)
+        {
+            //{ Standard, Sniper, Electric, Rocket, Laser };
+            case TurretType.Standard:
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/Shooting sounds/Standard"));
+                break;
+            case TurretType.Sniper:
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/Shooting sounds/Sniper"));
+                break;
+            case TurretType.Electric:
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/Shooting sounds/Electric"));
+                break;
+            case TurretType.Rocket:
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/Shooting sounds/Rocket"));
+                break;
+            case TurretType.Laser:
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/Shooting sounds/Laser"));
+                break;
+
         }
     }
 

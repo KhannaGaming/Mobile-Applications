@@ -4,14 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class MenuScript : MonoBehaviour {
 
     public List<GameObject> MenuItems;
     public  GameObject MusicToggle;
     public List<GameObject> TowerSlots;
 
+    private AudioSource audio;
+
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
+
         for (int i = 0; i < TowerSlots.Count; i++)
         {
         Vector3 textPos = Camera.main.WorldToScreenPoint(TowerSlots[i].transform.GetChild(0).GetChild(0).GetComponent<TowerController>().TowerParent.transform.position);
@@ -26,9 +32,13 @@ public class MenuScript : MonoBehaviour {
             if (item.name == Menu_Item_Name)
             {
                 item.SetActive(true);
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/In Game Sounds/Accept"));
             }
             else
+            {
                 item.SetActive(false);
+                audio.PlayOneShot((AudioClip)Resources.Load("Sounds/In Game Sounds/Deny"));
+            }
         }
     }
 

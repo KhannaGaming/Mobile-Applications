@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 95879735753209630}
   - component: {fileID: 114234934995496798}
   - component: {fileID: 135707631820300662}
+  - component: {fileID: 82452301049393606}
   m_Layer: 0
   m_Name: Standard_LV3
   m_TagString: StandardTurret
@@ -390,7 +391,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -425,7 +425,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -460,7 +459,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -495,7 +493,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -530,7 +527,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -565,7 +561,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -600,7 +595,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -635,7 +629,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 595a265645e3f904ab5a6f148887976c, type: 2}
   m_StaticBatchInfo:
@@ -713,6 +706,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012324865066}
   m_Mesh: {fileID: 4300008, guid: d781a5eac5d7d6a4f9c145e9f29cdc01, type: 3}
+--- !u!82 &82452301049393606
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010854009954}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95879735753209630
 Animator:
   serializedVersion: 3
@@ -730,7 +803,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114234934995496798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -749,9 +821,6 @@ MonoBehaviour:
   fireRate: 0
   bulletPrefab: {fileID: 1896124671962892, guid: e1f6878dc71a4ec488af1993832970a6,
     type: 2}
-  useLaser: 0
-  lineRenderer: {fileID: 0}
-  electricityDelay: 1
   enemyTag: Enemy
   turretHead: {fileID: 4000011319349566}
   useElectric: 0
@@ -760,6 +829,7 @@ MonoBehaviour:
   - {fileID: 4682209792858450}
   - {fileID: 4848242648873156}
   fireFromAnimation: 1
+  turretType: 0
   shootStyle: 0
   EnemiesInRange: []
   swivelSpeed: 8
