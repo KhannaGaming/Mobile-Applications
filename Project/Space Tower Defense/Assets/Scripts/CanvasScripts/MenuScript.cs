@@ -4,14 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
-public class MenuScript : MonoBehaviour {
+
+public class MenuScript : MonoBehaviour
+{
 
     public List<GameObject> MenuItems;
-    public  GameObject MusicToggle;
+    public GameObject MusicToggle;
     public List<GameObject> TowerSlots;
     private GameObject DBGO;
     private Database_Control DB;
+    public float rateOfFireMultiplier = 1.0f;
+    public List<GameObject> ListOfAbilities;
+    public GameObject Nuke;
 
     private void Start()
     {
@@ -21,9 +27,9 @@ public class MenuScript : MonoBehaviour {
         //DB.GameState.Load();
         for (int i = 0; i < TowerSlots.Count; i++)
         {
-        Vector3 textPos = Camera.main.WorldToScreenPoint(TowerSlots[i].transform.GetChild(0).GetChild(0).GetComponent<TowerController>().TowerParent.transform.position);
-        TowerSlots[i].transform.position = textPos;
-        }
+            Vector3 textPos = Camera.main.WorldToScreenPoint(TowerSlots[i].transform.GetChild(0).GetChild(0).GetComponent<TowerController>().TowerParent.transform.position);
+            TowerSlots[i].transform.position = textPos;
+        }        
     }
 
     public void Open(string Menu_Item_Name)
@@ -66,7 +72,7 @@ public class MenuScript : MonoBehaviour {
 
             }
         }
-        else if(level.Substring(0, 8) == "MainMenu")
+        else if (level.Substring(0, 8) == "MainMenu")
         {
             PlayerPrefs.SetString("Level", level);
             SceneManager.LoadScene("Loading");
@@ -75,10 +81,10 @@ public class MenuScript : MonoBehaviour {
     public void toggleMusic()
     {
 
-       if( MusicToggle.GetComponent<Toggle>().isOn == false)
+        if (MusicToggle.GetComponent<Toggle>().isOn == false)
         {
             PlayerPrefs.SetInt("MusicToggle", 0);
-           // GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = 0;
+            // GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = 0;
         }
         else if (MusicToggle.GetComponent<Toggle>().isOn == true)
         {
@@ -99,6 +105,25 @@ public class MenuScript : MonoBehaviour {
                 MusicToggle.GetComponent<Toggle>().isOn = false;
             }
         }
+
+        if (ListOfAbilities.Count > 0)
+        {
+            if (PlayerPrefs.GetInt("SpeedUp", 0) == 0)
+            {
+                ListOfAbilities[0].GetComponent<Button>().interactable = false;
+                ListOfAbilities[0].GetComponent<SwitchIcon>().SetImage(2);
+            }
+            if (PlayerPrefs.GetInt("KillAll", 0) == 0)
+            {
+                ListOfAbilities[1].GetComponent<Button>().interactable = false;
+                ListOfAbilities[1].GetComponent<SwitchIcon>().SetImage(2);
+            }
+            if (PlayerPrefs.GetInt("SlowDown", 0) == 0)
+            {
+                ListOfAbilities[2].GetComponent<Button>().interactable = false;
+                ListOfAbilities[2].GetComponent<SwitchIcon>().SetImage(2);
+            }
+        }
     }
     public void HideButtons()
     {
@@ -106,10 +131,10 @@ public class MenuScript : MonoBehaviour {
         {
             foreach (GameObject btn in Tower_Slot.transform.GetChild(0).transform.GetChild(0).GetComponent<TowerController>().Buttons_)
                 btn.SetActive(false);
-            
+
             foreach (GameObject STB in GameObject.FindGameObjectsWithTag("SpawnTowerButton"))
                 STB.GetComponent<TowerController>().TowerParent.transform.GetChild(1).GetComponent<RangeIndicatorController>().switchRangeIndicatorOff();
-            
+
         }
     }
 
@@ -136,6 +161,88 @@ public class MenuScript : MonoBehaviour {
             DontDestroyOnLoad(DBGO);
             PlayerPrefs.SetString("Level", level);
             SceneManager.LoadScene("Loading");
+        }
+    }
+
+
+    public void ClickPowerUp(string abilities)
+    {
+        switch (abilities)
+        {
+            case "SpeedUp":
+                StartCoroutine(SpeedUpTurrets());
+                break;
+            case "SlowDown":
+                StartCoroutine(SlowDownEnemies());
+                break;
+            case "KillAll":
+                GameController GM = GameObject.Find("GameManager").GetComponent<GameController>();
+                for (int i = 0; i < GM.Enemies.Count; i++)
+                {
+                    if (GM.Enemies[i] != null)
+                        Destroy(GM.Enemies[i]);
+                }
+                StartCoroutine(KillEnemies());                
+                break;
+            default:
+                break;
+        }
+    }
+
+    public IEnumerator SpeedUpTurrets()
+    {
+        PlayerPrefs.SetInt("SpeedUp", PlayerPrefs.GetInt("SpeedUp", 0) - 1);
+        ListOfAbilities[0].GetComponent<Button>().interactable = false;
+        rateOfFireMultiplier = 2.0f;
+        ListOfAbilities[0].GetComponent<SwitchIcon>().SetImage(0);
+        yield return new WaitForSeconds(3);
+        rateOfFireMultiplier = 1.0f;
+        if (PlayerPrefs.GetInt("SpeedUp") != 0)
+        {
+            ListOfAbilities[0].GetComponent<Button>().interactable = true;
+            ListOfAbilities[0].GetComponent<SwitchIcon>().SetImage(1);
+        }
+    }
+
+    public IEnumerator SlowDownEnemies()
+    {
+        PlayerPrefs.SetInt("SlowDown", PlayerPrefs.GetInt("SlowDown", 0) - 1);
+        GameController GM = GameObject.Find("GameManager").GetComponent<GameController>();
+        ListOfAbilities[2].GetComponent<Button>().interactable = false;
+        ListOfAbilities[2].GetComponent<SwitchIcon>().SetImage(0);
+        float previousSpeed = 0.0f;
+        for (int i = 0; i < GM.Enemies.Count; i++)
+        {
+            if (GM.Enemies[i] != null)
+            {
+                previousSpeed = GM.Enemies[i].GetComponent<NavMeshAgent>().speed;
+                GM.Enemies[i].GetComponent<NavMeshAgent>().speed = previousSpeed / 2.0f;
+            }
+        }
+        yield return new WaitForSeconds(3);
+        for (int i = 0; i < GM.Enemies.Count; i++)
+        {
+            if (GM.Enemies[i] != null)
+                GM.Enemies[i].GetComponent<NavMeshAgent>().speed = previousSpeed;
+        }
+        if (PlayerPrefs.GetInt("SlowDown") != 0)
+        {
+            ListOfAbilities[2].GetComponent<Button>().interactable = true;
+            ListOfAbilities[2].GetComponent<SwitchIcon>().SetImage(1);
+        }
+    }
+
+    public IEnumerator KillEnemies()
+    {
+        PlayerPrefs.SetInt("KillAll", PlayerPrefs.GetInt("KillAll", 0) - 1);
+        ListOfAbilities[1].GetComponent<Button>().interactable = false;
+        ListOfAbilities[1].GetComponent<SwitchIcon>().SetImage(0);        
+        Instantiate(Nuke);
+        yield return new WaitForSeconds(3);
+        if (PlayerPrefs.GetInt("KillAll") != 0)
+        {
+            ListOfAbilities[1].GetComponent<Button>().interactable = true;
+            ListOfAbilities[1].GetComponent<SwitchIcon>().SetImage(1);
         }
     }
 }

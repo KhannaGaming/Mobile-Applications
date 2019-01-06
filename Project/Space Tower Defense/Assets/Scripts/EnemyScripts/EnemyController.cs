@@ -56,8 +56,8 @@ public class EnemyController : MonoBehaviour
             else
             {
                 GameObject.Find("GameManager").GetComponent<GameController>().reduceHealth();
-                this.gameObject.SetActive(false);
-                //Destroy(this.gameObject);
+                //this.gameObject.SetActive(false);
+                Destroy(this.gameObject);
             }
         }
 

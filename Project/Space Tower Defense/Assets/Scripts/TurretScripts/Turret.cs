@@ -41,10 +41,12 @@ public class Turret : MonoBehaviour {
     public int swivelSpeed = 8;
 
     private Animator animator;
+    private MenuScript menuScript;
 
     // Use this for initialization
     void Start()
     {
+        menuScript = GameObject.Find("Canvas").GetComponent<MenuScript>();
         animator = GetComponent<Animator>();
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         transform.localPosition = Vector3.zero;
@@ -76,14 +78,29 @@ public class Turret : MonoBehaviour {
 
     void FirstEnemy()
     {
-        if(EnemiesInRange.Count >0)
-        target = EnemiesInRange[0].transform;
+        for (int i = 0; i < EnemiesInRange.Count; i++)
+        {
+            if (target != null)
+            {
+                target = EnemiesInRange[0].transform;
+                break;
+            }
+        }        
     }
 
     void LastEnemy()
     {
-        if (EnemiesInRange.Count > 0)
-            target = EnemiesInRange[EnemiesInRange.Count-1].transform;
+        for (int i = EnemiesInRange.Count; i --> 0; )
+        {
+            target = EnemiesInRange[i].transform;
+            break;
+        }
+        //if (target != null)
+        //{
+
+        //    if (EnemiesInRange.Count > 0)
+        //        target = EnemiesInRange[EnemiesInRange.Count - 1].transform;
+        //}
     }
 
     void StrongestEnemy()
@@ -190,6 +207,11 @@ public class Turret : MonoBehaviour {
         {
             Fire();
         }
+        else
+        {
+            Animator anim = GetComponent<Animator>();
+            anim.speed = menuScript.rateOfFireMultiplier;           
+        }
         LockOnTarget();
 
  
@@ -233,7 +255,7 @@ public class Turret : MonoBehaviour {
                 //have delay inbetween series of fires 
                 currentFirePoint++;
             }
-            fireCountdown = 1.0f / fireRate;
+            fireCountdown = 1.0f / (fireRate * menuScript.rateOfFireMultiplier);
         }
 
         fireCountdown -= Time.deltaTime;

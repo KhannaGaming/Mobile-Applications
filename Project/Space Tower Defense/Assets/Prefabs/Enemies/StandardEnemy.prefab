@@ -115,7 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NMA: {fileID: 195791020746602888}
   EndPath: {fileID: 0}
-  currentPathNode: 1
   childNumber: 0
   health: 10
   goldOnDeath: 2
@@ -123,6 +122,7 @@ MonoBehaviour:
   inList: 0
   currentPlace: -1
   inRangeFirstTurret: 0
+  gameController: {fileID: 0}
 --- !u!136 &136857606853021240
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -156,4 +156,4 @@ NavMeshAgent:
   m_Height: 1.9999999
   m_BaseOffset: 0.99999994
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0

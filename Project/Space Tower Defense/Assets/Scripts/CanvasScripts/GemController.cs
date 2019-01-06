@@ -21,6 +21,6 @@ public class GemController : MonoBehaviour
     void Update()
     {
         // Sets the text value to "Gems: gemAmount variable"
-        gem.text = "Gems: " + gemAmount;
+        gem.text = "Gems: " + PlayerPrefs.GetInt("Gems", 0);
     }
 }

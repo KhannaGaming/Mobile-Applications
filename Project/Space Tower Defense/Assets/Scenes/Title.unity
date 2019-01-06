@@ -732,7 +732,7 @@ Prefab:
     - target: {fileID: 224995441061197954, guid: 56ec2a8ae5a846448acaf4966eb3baa6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000017551805
+      value: 0.00007040467
       objectReference: {fileID: 0}
     - target: {fileID: 224995441061197954, guid: 56ec2a8ae5a846448acaf4966eb3baa6,
         type: 2}
@@ -948,7 +948,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bf0b3cfd8ab50cc41a3ca1134ede0491, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e185cd11d2e96654f9712fb9ecad4cae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1311,6 +1311,9 @@ MonoBehaviour:
   - {fileID: 430813251}
   MusicToggle: {fileID: 0}
   TowerSlots: []
+  rateOfFireMultiplier: 1
+  ListOfAbilities: []
+  Nuke: {fileID: 0}
 --- !u!114 &2024682846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,7 +1441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.07058824, g: 0.007843138, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

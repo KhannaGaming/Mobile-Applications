@@ -43,7 +43,6 @@ public class Database_Control : MonoBehaviour {
         leaderboard.d.Clone(d);
         GameState.d.Clone(d);
         FileStream file;
-        Debug.Log(UnityEngine.Random.Range(1, 110));
         if (!File.Exists(Save_Path + "/" + store.File_Name))
         {
             file = new FileStream(Save_Path + "/" + store.File_Name, FileMode.OpenOrCreate);

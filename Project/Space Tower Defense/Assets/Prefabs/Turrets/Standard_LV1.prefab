@@ -554,7 +554,7 @@ MonoBehaviour:
   firePoints:
   - {fileID: 4497617386374804}
   fireFromAnimation: 1
-  shootStyle: 0
+  shootStyle: 1
   EnemiesInRange: []
   swivelSpeed: 8
 --- !u!135 &135895097869760552

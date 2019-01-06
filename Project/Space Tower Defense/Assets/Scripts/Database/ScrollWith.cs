@@ -8,7 +8,7 @@ public class ScrollWith : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        text = GameObject.Find("LeaderboardText");
+        text = transform.parent.GetChild(0).gameObject;
 	}
 	
 	// Update is called once per frame

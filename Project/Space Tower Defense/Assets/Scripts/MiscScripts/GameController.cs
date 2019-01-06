@@ -10,10 +10,10 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-   // [Header("Database")]
+    // [Header("Database")]
     //This needs the Database Controller object dragged and dropped onto it:
     //public Database_Control Database_Controller;
-    
+
     [Header("StandardEnemy")]
     public GameObject StandardEnemyPrefab;
     [Header("SlowEnemy")]
@@ -33,13 +33,13 @@ public class GameController : MonoBehaviour
     public int Health = 10;
     public List<Transform> EnemySpawnLocations;
 
-   // public Transform EnemySpawnLocation;
+    // public Transform EnemySpawnLocation;
 
     [Header("Canvas")]
     public GameObject NextWaveButton;
 
     private string LevelData;
-    private int currentWaveNumber = 0;
+    private int currentWaveNumber = 1;
     private int StandardEnemies = 0;
     private int SlowEnemies = 0;
     private int StealthyEnemies = 0;
@@ -47,7 +47,6 @@ public class GameController : MonoBehaviour
     private int maxWaveNumber;
     public GameObject CurrentEnemy = null;
     public bool wait = true;
-
     public static GameController Instance { get; private set; }
 
     public List<GameObject> Enemies = null;
@@ -63,8 +62,7 @@ public class GameController : MonoBehaviour
     private Database_Control DB;
 
     private byte CurrentMedalsEarned = 0;
-
-   // private string path;
+    // private string path;
 
     void Start()
     {
@@ -75,7 +73,6 @@ public class GameController : MonoBehaviour
         //StreamWriter writer = new StreamWriter(file);
         // writer.WriteLine("0/00/00/00/00");
         //for testing only
-        currentWaveNumber = 0;
         ReadLevelData();
         HealthText = GameObject.Find("Health").GetComponent<Text>();
         HealthText.text = "Health: " + Health.ToString();
@@ -92,6 +89,13 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetString("Level", "MainMenu");
             SceneManager.LoadScene("Loading");
         }
+        if (currentWaveNumber == maxWaveNumber)
+        {
+            if (checkEnemies() == 0)
+            {
+                StartCoroutine(EndGame());
+            }
+        }
     }
     public void reduceHealth()
     {
@@ -107,8 +111,8 @@ public class GameController : MonoBehaviour
 
         //Read the text from directly from the test.txt file
         /// StreamReader reader = new StreamReader(loadPath);
-        LevelData =loadPath;// reader.ReadToEnd();
-       // reader.Close();
+        LevelData = loadPath;// reader.ReadToEnd();
+                             // reader.Close();
         ReadNextWaveData(1);
     }
 
@@ -123,7 +127,7 @@ public class GameController : MonoBehaviour
                 maxWaveNumber = 0;
                 for (int i = 1; i < LevelData.Length; i++)
                 {
-                    
+
                     if (b[i] == '\n' && (b[i + 1] - '0') == waveNumber)
                     {
                         StandardEnemies = (((b[i + 3] - '0') * 10) + (b[i + 4]) - '0');
@@ -136,7 +140,7 @@ public class GameController : MonoBehaviour
                         maxWaveNumber++;
                     }
                 }
-                waveController.GetComponent<WaveController>().maxWave(maxWaveNumber-1);
+                waveController.GetComponent<WaveController>().maxWave(maxWaveNumber - 1);
             }
             return true;
         }
@@ -148,14 +152,14 @@ public class GameController : MonoBehaviour
             StealthyEnemies = 0;
             return false;
         }
-}
+    }
 
     void CreateEnemies()
     {
-        InvokeRepeating("CreateStandardEnemies", 0f, 1.0f);       
+        InvokeRepeating("CreateStandardEnemies", 0f, 1.0f);
     }
 
-   
+
 
 
     void CreateStandardEnemies()
@@ -167,10 +171,10 @@ public class GameController : MonoBehaviour
             CurrentEnemy.GetComponent<EnemyController>().setPath(pathsPossible[SpawanLocation]);
             AddEnemy(CurrentEnemy);
         }
-        if(--StandardEnemies <=0)
+        if (--StandardEnemies <= 0)
         {
             CancelInvoke("CreateStandardEnemies");
-            InvokeRepeating("CreateSlowEnemies",0.0f,0.8f);
+            InvokeRepeating("CreateSlowEnemies", 0.0f, 0.8f);
         }
     }
 
@@ -187,7 +191,7 @@ public class GameController : MonoBehaviour
         {
             CancelInvoke("CreateSlowEnemies");
             InvokeRepeating("CreateStealthyEnemies", 0f, 0.5f);
-            
+
         }
     }
 
@@ -221,17 +225,18 @@ public class GameController : MonoBehaviour
         {
             CancelInvoke("CreateFastEnemies");
             NextWaveButton.GetComponent<Button>().interactable = true;
+            currentWaveNumber++;
             StartCoroutine(NextWaveTimer());
             waveController.GetComponent<WaveController>().lastEnemySent = true;
         }
     }
+
     public void NextWave()
     {
         waveController.GetComponent<WaveController>().increaseWave();
         NextWaveButton.GetComponent<Button>().interactable = false;
         NextWaveButton.transform.GetChild(0).GetComponent<Text>().enabled = false;
 
-        currentWaveNumber++;
         if (!ReadNextWaveData(currentWaveNumber))
         {
             EndOfWaves();
@@ -247,30 +252,24 @@ public class GameController : MonoBehaviour
             DB.GameState.Level_Data.Add(new Level_Info(PlayerPrefs.GetString("Level", "Level01"), Convert.ToByte(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)), CurrentMedalsEarned));
             DB.GameState.Current_Medals += CurrentMedalsEarned;
             DB.GameState.Total_Medals_Earned += CurrentMedalsEarned;
+            PlayerPrefs.SetInt("Medals", PlayerPrefs.GetInt("Medals", 0) + CurrentMedalsEarned);
             DB.GameState.Save();
         }
         else
         {
-            Debug.Log(CurrentMedalsEarned);
-            Debug.Log(DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals);
-            Debug.Log(CurrentMedalsEarned > DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals);
-
-            if (CurrentMedalsEarned > DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))-1].Medals)
+            if (CurrentMedalsEarned > DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals)
             {
-                int differenceInMedals = CurrentMedalsEarned - DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))-1].Medals;
-                DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2))-1].Medals = CurrentMedalsEarned;
+                int differenceInMedals = CurrentMedalsEarned - DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals;
+                DB.GameState.Level_Data[Convert.ToInt32(PlayerPrefs.GetString("Level", "Level01").Substring(5, 2)) - 1].Medals = CurrentMedalsEarned;
                 DB.GameState.Current_Medals += (byte)differenceInMedals;
                 DB.GameState.Total_Medals_Earned += (byte)differenceInMedals;
+                PlayerPrefs.SetInt("Medals", PlayerPrefs.GetInt("Medals", 0) + differenceInMedals);
                 DB.GameState.Save();
             }
         }
-        Debug.Log("step1");
         PlayerPrefs.SetFloat("Highscore", (PlayerPrefs.GetFloat("Highscore", 0.0f) + (GameObject.Find("GoldText").GetComponent<GoldController>().goldAmount * CurrentMedalsEarned)));
-        Debug.Log("step2");
         DB.leaderboard.Update(PlayerPrefs.GetString("UserName", DB.d.DUI), PlayerPrefs.GetFloat("Highscore", 0.0f));
-        Debug.Log("step3");
         DB.leaderboard.Save();
-        Debug.Log("step4");
         PlayerPrefs.SetString("Level", "MainMenu");
         SceneManager.LoadScene("Loading");
     }
@@ -279,13 +278,13 @@ public class GameController : MonoBehaviour
     {
         Enemies.Add(Enemy);
     }
-    
+
     public int checkEnemies()
     {
         int enemiesLeft = 0;
         for (int i = 0; i < Enemies.Count; i++)
         {
-            if(Enemies[i] != null)
+            if (Enemies[i] != null)
             {
                 enemiesLeft++;
             }
@@ -296,8 +295,10 @@ public class GameController : MonoBehaviour
     IEnumerator NextWaveTimer()
     {
         yield return new WaitForSeconds(3.0f);
-        NextWaveButton.transform.GetChild(0).GetComponent<Text>().enabled = true;
-
+        if (currentWaveNumber != maxWaveNumber)
+        {
+            NextWaveButton.transform.GetChild(0).GetComponent<Text>().enabled = true;
+        }        
     }
 
     private byte CalculateMedalsEarned()
@@ -320,7 +321,7 @@ public class GameController : MonoBehaviour
     {
         try
         {
-            if (DB.GameState.Level_Data[value-1] != null)
+            if (DB.GameState.Level_Data[value - 1] != null)
                 return true;
         }
         catch (Exception e)
@@ -330,4 +331,13 @@ public class GameController : MonoBehaviour
         }
         return false;
     }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(3);
+        NextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "END GAME";
+        NextWaveButton.transform.GetChild(0).GetComponent<Text>().enabled = true;
+
+    }
+
 }
