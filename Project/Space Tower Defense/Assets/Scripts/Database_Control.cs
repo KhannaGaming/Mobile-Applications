@@ -634,7 +634,7 @@ public class Leaderboard : Local_Cache
     {
         try
         {
-            ReturnCode check = checkDatabase("SELECT Player_Name FROM tbl_Highscores WHERE Player_Name = '" + Key + "';");
+            ReturnCode check = checkDatabase("SELECT Player_Name FROM tbl_Highscores WHERE Unique_Identifier = '" + d.DUI + "';");
             if (check != ReturnCode.Invalid || check != ReturnCode.Incorrect_Format || check != ReturnCode.Incorrect_Syntax)
             {
                 if (check == ReturnCode.False)
